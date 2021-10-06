@@ -7,16 +7,18 @@ import { Switch, Route, useLocation } from 'react-router-dom';
 import Header from 'src/components/header';
 import HomeMainConatainer from 'src/components/homeMainContainer';
 import ModalSearchContainer from 'src/components/modalSearchContainer';
+import MessageResult from 'src/components/messageResult';
 import useStyles from './style';
 
 // == Composant
 const App = () => {
   const classes = useStyles();
-  const isDarkBodyColor = useSelector((state) => state.isDarkBodyColor);
   const isSearchFormHidden = useSelector((state) => state.isSearchFormHidden);
   const location = useLocation();
 
   return (
+    // Si on est sur la page de resultats de recherche, et qu'on veut faire une nouvelle recherche,
+    // on bascule de nouveaux les themes de couleur (body en violet + header en blanc)
     <div className={location.pathname === '/recherche' && isSearchFormHidden ? classes.resultPageTheme : classes.root}>
       <CssBaseline />
       {/* Le header ne s'affiche pas si on est sur la "modale" de recherche d'emploi */}
@@ -28,7 +30,7 @@ const App = () => {
           {isSearchFormHidden && <HomeMainConatainer />}
         </Route>
         <Route exact path="/recherche">
-          <div>hello</div>
+          {isSearchFormHidden && <MessageResult />}
         </Route>
       </Switch>
       <footer>copiright</footer>

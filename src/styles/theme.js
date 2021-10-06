@@ -10,6 +10,9 @@ const colorTheme = createTheme({
       pinkColor: '#b255cc',
       light: '#f9f9f9',
     },
+    secondary: {
+      main: '#5E35B1',
+    },
   },
 });
 export default colorTheme;

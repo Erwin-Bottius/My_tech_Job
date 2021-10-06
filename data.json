@@ -1,0 +1,447 @@
+{
+  "resultats": [
+      {
+          "id": "121NFHT",
+          "intitule": "Développeur / Développeuse informatique (H/F)",
+          "description": "Développement PHP / MYSQL / Javascript / HTML\n+ Wordpress",
+          "dateCreation": "2021-10-06T15:32:08.000Z",
+          "dateActualisation": "2021-10-06T16:07:41.000Z",
+          "lieuTravail": {
+              "libelle": "14 - CAEN",
+              "codePostal": "14000",
+              "commune": "14118"
+          },
+          "romeCode": "M1805",
+          "romeLibelle": "Études et développement informatique",
+          "appellationlibelle": "Développeur / Développeuse informatique",
+          "entreprise": {
+              "nom": "Easy-High-T",
+              "entrepriseAdaptee": false
+          },
+          "typeContrat": "CDD",
+          "typeContratLibelle": "Contrat à durée déterminée - 6 Mois",
+          "natureContrat": "Contrat travail",
+          "experienceExige": "D",
+          "experienceLibelle": "Débutant accepté",
+          "competences": [
+              {
+                  "code": "102732",
+                  "libelle": "Langages de programmation informatique",
+                  "exigence": "E"
+              },
+              {
+                  "code": "102788",
+                  "libelle": "Langage informatique HTML",
+                  "exigence": "E"
+              },
+              {
+                  "code": "109850",
+                  "libelle": "Programmation informatique",
+                  "exigence": "E"
+              },
+              {
+                  "code": "109862",
+                  "libelle": "Architecture web",
+                  "exigence": "E"
+              },
+              {
+                  "code": "109881",
+                  "libelle": "Langage informatique PHP",
+                  "exigence": "E"
+              },
+              {
+                  "code": "109882",
+                  "libelle": "Langage informatique SQL",
+                  "exigence": "E"
+              },
+              {
+                  "code": "109846",
+                  "libelle": "Concevoir et développer les programmes et applications informatiques",
+                  "exigence": "E"
+              },
+              {
+                  "code": "113317",
+                  "libelle": "Développer une application en lien avec une base de données",
+                  "exigence": "E"
+              },
+              {
+                  "code": "121055",
+                  "libelle": "Déterminer des mesures correctives",
+                  "exigence": "S"
+              }
+          ],
+          "salaire": {
+              "libelle": "Mensuel de 1600 Euros à 1600 Euros sur 12 mois"
+          },
+          "dureeTravailLibelle": "35H Horaires normaux",
+          "dureeTravailLibelleConverti": "Temps plein",
+          "alternance": false,
+          "contact": {},
+          "nombrePostes": 1,
+          "accessibleTH": false,
+          "deplacementCode": "1",
+          "deplacementLibelle": "Jamais",
+          "qualificationCode": "6",
+          "qualificationLibelle": "Employé qualifié",
+          "secteurActivite": "62",
+          "secteurActiviteLibelle": "Programmation informatique",
+          "qualitesProfessionnelles": [
+              {
+                  "libelle": "Autonomie",
+                  "description": "Capacité à prendre en charge son activité sans devoir être encadré de façon continue. Exemple : travailler efficacement sans responsable"
+              },
+              {
+                  "libelle": "Force de proposition",
+                  "description": "Capacité à être proactif, à initier, à imaginer des propositions nouvelles pour résoudre les problèmes identifiés ou pour améliorer une situation. Exemple : proposer des améliorations, être positif et constructif"
+              },
+              {
+                  "libelle": "Rigueur",
+                  "description": "Capacité à respecter les règles et codes de l'entreprise, à réaliser des tâches en suivant avec précision les procédures et instructions fournies , à transmettre des informations avec exactitude. Exemple : être ponctuel, respecter les engagements, résister à la distraction"
+              }
+          ],
+          "origineOffre": {
+              "origine": "1",
+              "urlOrigine": "https://candidat.pole-emploi.fr/offres/recherche/detail/121NFHT"
+          },
+          "offresManqueCandidats": false
+      },
+      {
+          "id": "121NBMJ",
+          "intitule": "Développeur / Développeuse informatique",
+          "description": "Tuanis IT est une Entreprise de Services du Numérique (ESN/SSII) né en 2018, qui compte aujourd'hui 90 collaborateurs, en perpétuel mouvement, à l'image de son animal emblématique, le Colibri, et tournée vers la différence.\n\nNous sommes reconnus pour notre proximité et notre volonté de permettre à chacun d'évoluer afin de grandir au sein de Tuanis IT. En intégrant nos équipes, vous rejoignez une communauté d'experts, dans un environnement convivial où vos idées seront les bienvenues.\n\nEnvie d'évoluer dans un groupe à taille humaine,Tuanis It vous propose le poste de développeur C++ basé à Grenoble. \n\nVous serez amené à concevoir, construire et maintenir un code C ++ efficace et fiable, suggérer et mettre en œuvre des améliorations.\n\nOn dit que vous êtes curieux et rigoureux, des qualités qui vous permettront de faire la différence ! Vous vous reconnaissez dans cette offre ? Vous avez envie de rejoindre nos équipes ? Contactez- nous !\n",
+          "dateCreation": "2021-10-06T14:47:58.000Z",
+          "dateActualisation": "2021-10-06T14:48:00.000Z",
+          "lieuTravail": {
+              "libelle": "69 - LIMONEST",
+              "codePostal": "69760",
+              "commune": "69116"
+          },
+          "romeCode": "M1805",
+          "romeLibelle": "Études et développement informatique",
+          "appellationlibelle": "Développeur / Développeuse informatique",
+          "entreprise": {
+              "nom": "TUANIS IT",
+              "entrepriseAdaptee": false
+          },
+          "typeContrat": "CDI",
+          "typeContratLibelle": "Contrat à durée indéterminée",
+          "natureContrat": "Contrat travail",
+          "experienceExige": "D",
+          "experienceLibelle": "Débutant accepté",
+          "competences": [
+              {
+                  "code": "109846",
+                  "libelle": "Concevoir et développer les programmes et applications informatiques",
+                  "exigence": "S"
+              },
+              {
+                  "code": "117309",
+                  "libelle": "Établir un cahier des charges",
+                  "exigence": "S"
+              },
+              {
+                  "code": "118637",
+                  "libelle": "Analyser les besoins du client",
+                  "exigence": "S"
+              },
+              {
+                  "code": "121055",
+                  "libelle": "Déterminer des mesures correctives",
+                  "exigence": "S"
+              },
+              {
+                  "code": "124517",
+                  "libelle": "Rédiger une Spécification Technique de Besoin (STB)",
+                  "exigence": "S"
+              }
+          ],
+          "salaire": {
+              "libelle": "Annuel de 30000,00 Euros à 35000,00 Euros sur 12 mois"
+          },
+          "dureeTravailLibelle": "35H Horaires normaux",
+          "dureeTravailLibelleConverti": "Temps plein",
+          "alternance": false,
+          "contact": {},
+          "nombrePostes": 1,
+          "accessibleTH": false,
+          "qualificationCode": "9",
+          "qualificationLibelle": "Cadre",
+          "secteurActivite": "62",
+          "secteurActiviteLibelle": "Conseil en systèmes et logiciels informatiques",
+          "qualitesProfessionnelles": [
+              {
+                  "libelle": "Sens de la communication",
+                  "description": "Capacité à transmettre clairement des informations, à échanger, à écouter activement, à réceptionner des informations et messages et à faire preuve d'ouverture d'esprit. Exemple : être à l'écoute, être attentif aux autres"
+              },
+              {
+                  "libelle": "Autonomie",
+                  "description": "Capacité à prendre en charge son activité sans devoir être encadré de façon continue. Exemple : travailler efficacement sans responsable"
+              },
+              {
+                  "libelle": "Sens de l'organisation",
+                  "description": "Capacité à planifier, à prioriser, à anticiper des actions en tenant compte des moyens, des ressources, des objectifs et du calendrier pour les réaliser. Exemple : planifier, ordonner ses actions par priorité"
+              }
+          ],
+          "origineOffre": {
+              "origine": "1",
+              "urlOrigine": "https://candidat.pole-emploi.fr/offres/recherche/detail/121NBMJ"
+          },
+          "offresManqueCandidats": false
+      },
+      {
+          "id": "3008417",
+          "intitule": "Développeur-euse d'outils informatiques SQL / Windev (H/F)",
+          "description": "Dans le cadre de l'évolution de ses outils logiciels composant les systèmes de l'information, Territoire Énergie Drôme - SDED recherche un développeur informatique afin de renforcer son équipe.\nAu sein de notre SSI, l'équipe de développement à en charge le développement d'interfaces avec notre ERP métiers opérationnels ainsi que le développement et l'évolution d'applications WEB destinée à nos \" usagers \"\n ",
+          "dateCreation": "2021-10-06T14:43:34.000Z",
+          "dateActualisation": "2021-10-06T14:43:34.000Z",
+          "lieuTravail": {
+              "libelle": "26 - Drôme"
+          },
+          "romeCode": "I1401",
+          "romeLibelle": "Maintenance informatique et bureautique",
+          "appellationlibelle": "Assistant / Assistante aux utilisateurs en informatique",
+          "entreprise": {
+              "description": "Structures de coopération territoriale",
+              "entrepriseAdaptee": false
+          },
+          "typeContrat": "CDD",
+          "typeContratLibelle": "Contrat à durée déterminée - 36 Mois",
+          "natureContrat": "Contrat travail",
+          "experienceExige": "E",
+          "experienceLibelle": "Expérience exigée de 2 An(s)",
+          "salaire": {},
+          "alternance": false,
+          "nombrePostes": 1,
+          "accessibleTH": false,
+          "origineOffre": {
+              "origine": "2",
+              "urlOrigine": "https://candidat.pole-emploi.fr/offres/recherche/detail/3008417",
+              "partenaires": [
+                  {
+                      "nom": "PEP",
+                      "url": "https://place-emploi-public.gouv.fr/offre-emploi/O026210900396066",
+                      "logo": "https://www.pole-emploi.fr/static/img/partenaires/pep80.png"
+                  }
+              ]
+          }
+      },
+      {
+          "id": "121MYRQ",
+          "intitule": "Développeur / Développeuse informatique",
+          "description": "Le développeur informatique participe à une ou plusieurs phases du cycle de vie des logiciels en lien avec la mise en œuvre du projet PROMETHEE avec l'équipe pluridisciplinaire et interuniversitaire.\n\nIl/Elle prend part aux finalités suivantes :\n- Proposition de modules et ressources d'apprentissage numérique mutualisés, hybrides et ludo pédagogique \n- Mise à disposition d'une plateforme pédagogique favorisant les apprentissages et en lien avec les usages des enseignants et des étudiants \n- Amélioration du suivi des apprentissages pour les formations hybrides, distancielles et présentielles\n\nIl/Elle sera chargé-e de :\n- Participer à l'audit de la plateforme de cours en ligne en lien avec la refonte de Moodle et établir une étude de besoins afin de co-produire un cahier des charges pour l'optimisation de la plateforme Moodle (ergonomie, accessibilité, plugins, thèmes, lien avec d'autres applications, etc.)\n- Assurer des développements spécifiques en lien avec moodle et pouvant être interfacés avec les applications de l'université (la création et la gestion des cours et des utilisateurs, Chatbot )\n- Assurer l'intégration web des infographies\n- Prendre en charge les missions d'assistance de niveau 2 \n- Développer une interface de suivi des traces d'apprentissage à destination des enseignants et des étudiants accessibles depuis moodle.\n- Prévoir et étudier les évolutions des outils dans le contexte de l'établissement et proposer des solutions cohérentes avec le système d'information de l'établissement et ses usages en travaillant à leur cohérence technique et fonctionnelle\n\nSe référer à la fiche de poste complète : https://www.unimes.fr/fr/util/recrutement/biatss.html \n",
+          "dateCreation": "2021-10-06T14:20:03.000Z",
+          "dateActualisation": "2021-10-06T14:20:05.000Z",
+          "lieuTravail": {
+              "libelle": "30 - NIMES",
+              "codePostal": "30000",
+              "commune": "30189"
+          },
+          "romeCode": "M1805",
+          "romeLibelle": "Études et développement informatique",
+          "appellationlibelle": "Développeur / Développeuse informatique",
+          "entreprise": {
+              "nom": "UNIVERSITE DE NIMES",
+              "description": "Université de Nîmes, établissement d'enseignement supérieur et de recherche",
+              "url": "https://www.unimes.fr/fr/util/recrutement/biatss.html",
+              "entrepriseAdaptee": false
+          },
+          "typeContrat": "CDD",
+          "typeContratLibelle": "Contrat à durée déterminée - 12 Mois",
+          "natureContrat": "Contrat travail",
+          "experienceExige": "D",
+          "experienceLibelle": "Débutant accepté",
+          "competences": [
+              {
+                  "code": "102788",
+                  "libelle": "Langage informatique HTML",
+                  "exigence": "E"
+              },
+              {
+                  "code": "106861",
+                  "libelle": "Principes d'intégration de matériels et de logiciels",
+                  "exigence": "S"
+              },
+              {
+                  "code": "109870",
+                  "libelle": "Langage informatique Java",
+                  "exigence": "E"
+              },
+              {
+                  "code": "109881",
+                  "libelle": "Langage informatique PHP",
+                  "exigence": "E"
+              },
+              {
+                  "code": "109882",
+                  "libelle": "Langage informatique SQL",
+                  "exigence": "E"
+              },
+              {
+                  "code": "113236",
+                  "libelle": "Langage informatique CSS",
+                  "exigence": "E"
+              },
+              {
+                  "code": "120246",
+                  "libelle": "Gestion de projet",
+                  "exigence": "E"
+              },
+              {
+                  "code": "109846",
+                  "libelle": "Concevoir et développer les programmes et applications informatiques",
+                  "exigence": "S"
+              },
+              {
+                  "code": "113317",
+                  "libelle": "Développer une application en lien avec une base de données",
+                  "exigence": "E"
+              },
+              {
+                  "code": "115531",
+                  "libelle": "Sélectionner, assembler et intégrer des composants informatiques (progiciels, bases de données, développements spécifiques, ...)",
+                  "exigence": "S"
+              },
+              {
+                  "code": "117309",
+                  "libelle": "Établir un cahier des charges",
+                  "exigence": "S"
+              },
+              {
+                  "code": "118637",
+                  "libelle": "Analyser les besoins du client",
+                  "exigence": "E"
+              },
+              {
+                  "code": "120370",
+                  "libelle": "Déterminer les phases et procédures de tests techniques et fonctionnels de programmes et applications informatiques",
+                  "exigence": "E"
+              },
+              {
+                  "code": "120672",
+                  "libelle": "Réaliser des supports techniques",
+                  "exigence": "S"
+              },
+              {
+                  "code": "121055",
+                  "libelle": "Déterminer des mesures correctives",
+                  "exigence": "E"
+              },
+              {
+                  "code": "124517",
+                  "libelle": "Rédiger une Spécification Technique de Besoin (STB)",
+                  "exigence": "S"
+              }
+          ],
+          "salaire": {
+              "libelle": "Mensuel de 3100,00 Euros à 3150,00 Euros sur 12 mois"
+          },
+          "dureeTravailLibelle": "37H15 Horaires normaux",
+          "dureeTravailLibelleConverti": "Temps plein",
+          "alternance": false,
+          "contact": {
+              "nom": "UNIVERSITE DE NIMES - Mme ELODIE RASAF",
+              "coordonnees1": "Pour postuler, utiliser le lien suivant : https://candidat.pole-emploi.fr/offres/recherche/detail/121MYRQ",
+              "courriel": "Pour postuler, utiliser le lien suivant : https://candidat.pole-emploi.fr/offres/recherche/detail/121MYRQ"
+          },
+          "nombrePostes": 1,
+          "accessibleTH": false,
+          "qualificationCode": "8",
+          "qualificationLibelle": "Agent de maîtrise",
+          "secteurActivite": "85",
+          "secteurActiviteLibelle": "Enseignement supérieur",
+          "qualitesProfessionnelles": [
+              {
+                  "libelle": "Force de proposition",
+                  "description": "Capacité à être proactif, à initier, à imaginer des propositions nouvelles pour résoudre les problèmes identifiés ou pour améliorer une situation. Exemple : proposer des améliorations, être positif et constructif"
+              },
+              {
+                  "libelle": "Réactivité",
+                  "description": "Capacité à réagir rapidement face à des évènements et à des imprévus, en hiérarchisant les actions, en fonction de leur degré d'urgence / d'importance. Exemple : faire preuve de dynamisme, vivacité, énergie, comprendre vite"
+              },
+              {
+                  "libelle": "Sens de l'organisation",
+                  "description": "Capacité à planifier, à prioriser, à anticiper des actions en tenant compte des moyens, des ressources, des objectifs et du calendrier pour les réaliser. Exemple : planifier, ordonner ses actions par priorité"
+              }
+          ],
+          "origineOffre": {
+              "origine": "1",
+              "urlOrigine": "https://candidat.pole-emploi.fr/offres/recherche/detail/121MYRQ"
+          },
+          "offresManqueCandidats": false
+      },
+      {
+          "id": "3005313",
+          "intitule": "Développeur d'applications informatiques H/F",
+          "description": "Créer des algorithmes de recherche de données permettant d'explorer les données utiles.\nParticiper aux travaux d'automatisation du traitement / prétraitement d'images.\nParticiper aux réunions et aux groupes de travaux technico-opérationnels en interne et/ou en externe (DGA, autres organismes étatiques, industriel...).\nDévelopper et mettre en oeuvre des outils de traitement automatisé au profit de la section expérimentation du bureau.\nContribuer à la veille technique en capitalisant les connaissances sur des sujets déterminés.\nMaintenir l'évolution des outils et des méthodes de la section. ",
+          "dateCreation": "2021-10-06T13:59:50.000Z",
+          "dateActualisation": "2021-10-06T13:59:50.000Z",
+          "lieuTravail": {
+              "libelle": "France"
+          },
+          "romeCode": "M1805",
+          "romeLibelle": "Études et développement informatique",
+          "appellationlibelle": "Concepteur / Conceptrice d'application informatique",
+          "entreprise": {
+              "description": "Ministère des Armées",
+              "entrepriseAdaptee": false
+          },
+          "typeContrat": "CDD",
+          "typeContratLibelle": "Contrat à durée déterminée - 36 Mois",
+          "natureContrat": "Contrat travail",
+          "experienceExige": "E",
+          "experienceLibelle": "Expérience exigée de 2 An(s)",
+          "salaire": {},
+          "alternance": false,
+          "nombrePostes": 1,
+          "accessibleTH": false,
+          "origineOffre": {
+              "origine": "2",
+              "urlOrigine": "https://candidat.pole-emploi.fr/offres/recherche/detail/3005313",
+              "partenaires": [
+                  {
+                      "nom": "PEP",
+                      "url": "https://place-emploi-public.gouv.fr/offre-emploi/2021-702805",
+                      "logo": "https://www.pole-emploi.fr/static/img/partenaires/pep80.png"
+                  }
+              ]
+          }
+      },
+      {
+          "id": "3004775",
+          "intitule": "DEVELOPPEUR INFORMATIQUE AU SEIN D'UN CDAD H/F",
+          "description": "Gérer la configuration des produits.\nIndustrialiser des processus de tests en proposant et mettant en oeuvre des solutions techniques pour automatiser tout ou partie des tests.\nGarantir par des tests techniques, la fiabilité d'un système d'information en parallèle de ses évolutions.\nS'assurer de la maintenabilité, du comportement et de la performance de l'application. Préparer les recettes « usine ».\nFavoriser les pratiques collaboratives nécessaires à la mise en place de la Démarche Driven\nDéveloppement (BDD, ATDD).\nProcéder à la mise en oeuvre des campagnes techniques (tests d'intégration, de performance, de robustesse, de sécurité, etc.).\nAssurer un support technique auprès des analystes de tests pour comprendre les impacts systèmes et applicatifs des tests.\nAssurer la veille technologique.\nParticiper à la mise en oeuvre de la politique favorisant le DEVOPS. ",
+          "dateCreation": "2021-10-06T13:57:59.000Z",
+          "dateActualisation": "2021-10-06T13:57:59.000Z",
+          "lieuTravail": {
+              "libelle": "France"
+          },
+          "romeCode": "M1805",
+          "romeLibelle": "Études et développement informatique",
+          "appellationlibelle": "Concepteur / Conceptrice d'application informatique",
+          "entreprise": {
+              "description": "Ministère des Armées",
+              "entrepriseAdaptee": false
+          },
+          "typeContrat": "CDD",
+          "typeContratLibelle": "Contrat à durée déterminée - 36 Mois",
+          "natureContrat": "Contrat travail",
+          "experienceExige": "E",
+          "experienceLibelle": "Expérience exigée de 2 An(s)",
+          "salaire": {},
+          "alternance": false,
+          "nombrePostes": 1,
+          "accessibleTH": false,
+          "origineOffre": {
+              "origine": "2",
+              "urlOrigine": "https://candidat.pole-emploi.fr/offres/recherche/detail/3004775",
+              "partenaires": [
+                  {
+                      "nom": "PEP",
+                      "url": "https://place-emploi-public.gouv.fr/offre-emploi/2021-714352",
+                      "logo": "https://www.pole-emploi.fr/static/img/partenaires/pep80.png"
+                  }
+              ]
+          }
+      }
+    ]
+  }

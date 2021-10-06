@@ -11,12 +11,12 @@ import { useDispatch } from 'react-redux';
 import { useLocation, Link } from 'react-router-dom';
 
 // IMPORT FICHIERS
-import { TOGGLE_PRINT_SEARCH_FORM, TOGGLE_THEME_COLOR } from 'src/store/actions';
+import { TOGGLE_PRINT_SEARCH_FORM, CHANGE_INPUTS_VALUES } from 'src/store/actions';
 import useStyles from './style';
 
 const Header = () => {
   const classes = useStyles();
-  const dispacth = useDispatch();
+  const dispatch = useDispatch();
   const location = useLocation();
 
   return (
@@ -28,11 +28,20 @@ const Header = () => {
          && (
          <IconButton
            onClick={() => {
-             dispacth({
-               type: TOGGLE_THEME_COLOR,
-             });
-             dispacth({
+             // lorsqu'on click sur l'icone SEARCH, on affiche la modale
+             dispatch({
                type: TOGGLE_PRINT_SEARCH_FORM,
+             });
+             // Et on reset les valeurs des deux inputs
+             dispatch({
+               type: CHANGE_INPUTS_VALUES,
+               field: 'locationInputValue',
+               inputValue: '',
+             });
+             dispatch({
+               type: CHANGE_INPUTS_VALUES,
+               field: 'jobInputValue',
+               inputValue: '',
              });
            }}
            edge="start"

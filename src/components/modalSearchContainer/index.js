@@ -43,18 +43,6 @@ const ModalSearchContainer = () => {
               dispatch({
                 type: TOGGLE_PRINT_SEARCH_FORM,
               });
-
-              // Et on reset les valeurs des deux inputs
-              dispatch({
-                type: CHANGE_INPUTS_VALUES,
-                field: 'locationInputValue',
-                inputValue: '',
-              });
-              dispatch({
-                type: CHANGE_INPUTS_VALUES,
-                field: 'jobInputValue',
-                inputValue: '',
-              });
             }}
           >
             <InputBase
