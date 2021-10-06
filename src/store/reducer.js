@@ -1,7 +1,13 @@
-import { TOGGLE_PRINT_SEARCH_FORM } from './actions';
+import
+{
+  TOGGLE_PRINT_SEARCH_FORM,
+  CHANGE_INPUTS_VALUES,
+} from './actions';
 
 const initialState = {
   isSearchFormHidden: true,
+  jobInputValue: '',
+  locationInputValue: '',
 };
 
 const reducer = (state = initialState, action) => {
@@ -9,7 +15,13 @@ const reducer = (state = initialState, action) => {
     case TOGGLE_PRINT_SEARCH_FORM:
       return {
         ...state,
-        isSearchFormHidden: false,
+        isSearchFormHidden: !state.isSearchFormHidden,
+      };
+
+    case CHANGE_INPUTS_VALUES:
+      return {
+        ...state,
+        [action.field]: action.inputValue,
       };
 
     default:

@@ -1,6 +1,8 @@
-// == Import
+// == Import FICHIER
 import Header from 'src/components/header';
 import SearchHomeConatainer from 'src/components/searchHomeContainer';
+import ModalSearchContainer from 'src/components/modalSearchContainer';
+// import NPM
 import { CssBaseline } from '@material-ui/core';
 import './styles.scss';
 import { useSelector } from 'react-redux';
@@ -12,6 +14,7 @@ const App = () => {
       <CssBaseline />
       {isSearchFormHidden && <Header />}
       {isSearchFormHidden && <SearchHomeConatainer />}
+      { (isSearchFormHidden === false) && <ModalSearchContainer /> }
       <footer>copiright</footer>
     </div>
   );

@@ -7,7 +7,7 @@ const colorTheme = createTheme({
       main: '#1e0447',
       black: '#000000',
       transparentText: 'rgba(255, 255, 255, 0.5)',
-      pinkColor: '#d25ef2',
+      pinkColor: '#b255cc',
     },
   },
 });
