@@ -1,11 +1,16 @@
+// IMPPORT NPM
 import {
-  Box, Typography, Card, CardActions, CardContent, Button, InputBase,
+  Box, Typography, Card, CardContent, Button, InputBase,
 } from '@material-ui/core';
 import CloseIcon from '@material-ui/icons/Close';
 import { useDispatch, useSelector } from 'react-redux';
-import { 
+import { useHistory } from 'react-router-dom';
+
+// IMPORT FICHIERS
+import {
   TOGGLE_PRINT_SEARCH_FORM,
-  CHANGE_INPUTS_VALUES } from 'src/store/actions';
+  CHANGE_INPUTS_VALUES,
+} from 'src/store/actions';
 import useStyles from './style';
 
 const ModalSearchContainer = () => {
@@ -13,6 +18,7 @@ const ModalSearchContainer = () => {
   const locationInputValue = useSelector((state) => state.locationInputValue);
   const classes = useStyles();
   const dispatch = useDispatch();
+  const history = useHistory();
 
   return (
     <Box className={classes.root}>
@@ -27,7 +33,30 @@ const ModalSearchContainer = () => {
       </Typography>
       <Card className={classes.cardSearchModal}>
         <CardContent>
-          <form>
+          <form
+            onSubmit={(event) => {
+              event.preventDefault();
+              // Au Submit du formulaire, on change l'url
+              history.push(`/recherche?emploi=${jobInputValue}&localisation=${locationInputValue}`);
+
+              // On cache de nouveau la modale de recherche
+              dispatch({
+                type: TOGGLE_PRINT_SEARCH_FORM,
+              });
+
+              // Et on reset les valeurs des deux inputs
+              dispatch({
+                type: CHANGE_INPUTS_VALUES,
+                field: 'locationInputValue',
+                inputValue: '',
+              });
+              dispatch({
+                type: CHANGE_INPUTS_VALUES,
+                field: 'jobInputValue',
+                inputValue: '',
+              });
+            }}
+          >
             <InputBase
               className={classes.searchModalInput}
               placeholder="Recherche d'emploi"
@@ -55,22 +84,18 @@ const ModalSearchContainer = () => {
                 });
               }}
             />
+            <Button
+              variant="contained"
+              size="large"
+              className={classes.searchButton}
+              type="submit"
+            >
+              RECHERCHER
+            </Button>
           </form>
-
         </CardContent>
-        <CardActions>
-          <Button
-            variant="contained"
-            size="large"
-            className={classes.searchButton}
-          >
-            RECHERCHER
-          </Button>
-        </CardActions>
       </Card>
-
     </Box>
-
   );
 };
 

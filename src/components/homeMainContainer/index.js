@@ -8,7 +8,7 @@ import { useDispatch } from 'react-redux';
 import { TOGGLE_PRINT_SEARCH_FORM } from 'src/store/actions';
 import useStyles from './style';
 
-const SearchHomeConatainer = () => {
+const HomeMainConatainer = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
 
@@ -26,10 +26,10 @@ const SearchHomeConatainer = () => {
         className={classes.root}
         startIcon={<SearchIcon className={classes.searchIcon} style={{ fontSize: '2rem' }} />}
       >
-        Rechercher des titres de postes ou de mots clés
+        Rechercher des titres de postes
       </Button>
     </Box>
   );
 };
 
-export default SearchHomeConatainer;
+export default HomeMainConatainer;

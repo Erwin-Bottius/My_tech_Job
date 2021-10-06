@@ -6,6 +6,7 @@ import
 
 const initialState = {
   isSearchFormHidden: true,
+  isDarkBodyColor: false,
   jobInputValue: '',
   locationInputValue: '',
 };

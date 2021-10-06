@@ -1,18 +1,22 @@
 import { makeStyles } from '@material-ui/core';
 import colorTheme from 'src/styles/theme';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   root: {
     backgroundColor: colorTheme.palette.primary.white,
     color: colorTheme.palette.primary.black,
-    padding: '2%',
+    padding: '2% 5%',
   },
-  menuButton: {
-    marginRight: theme.spacing(2),
+  resultPageTheme: {
+    padding: '2% 5%',
+    color: colorTheme.palette.primary.white,
+    backgroundColor: colorTheme.palette.primary.main,
   },
-  title: {
-    flexGrow: 1,
+  tool: {
+    display: 'flex',
+    justifyContent: 'space-between',
   },
+
 }));
 
 export default useStyles;

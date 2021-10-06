@@ -8,6 +8,7 @@ const colorTheme = createTheme({
       black: '#000000',
       transparentText: 'rgba(255, 255, 255, 0.5)',
       pinkColor: '#b255cc',
+      light: '#f9f9f9',
     },
   },
 });
