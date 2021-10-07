@@ -7,7 +7,7 @@ import { Switch, Route, useLocation } from 'react-router-dom';
 import Header from 'src/components/header';
 import HomeMainConatainer from 'src/components/homeMainContainer';
 import ModalSearchContainer from 'src/components/modalSearchContainer';
-import MessageResult from 'src/components/messageResult';
+import ResultPageContainer from 'src/components/resultPageContainer';
 import useStyles from './style';
 
 // == Composant
@@ -30,7 +30,7 @@ const App = () => {
           {isSearchFormHidden && <HomeMainConatainer />}
         </Route>
         <Route exact path="/recherche">
-          {isSearchFormHidden && <MessageResult />}
+          {isSearchFormHidden && <ResultPageContainer />}
         </Route>
       </Switch>
       <footer>copiright</footer>

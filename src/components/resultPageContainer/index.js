@@ -1,5 +1,7 @@
 // IMPORT NPM
-import { Box } from '@material-ui/core';
+import {
+  Box, Card, CardContent, Typography,
+} from '@material-ui/core';
 import { useSelector } from 'react-redux';
 
 // IMPORTS FICHIERS
@@ -7,9 +9,9 @@ import ResultPageCard from 'src/components/resultPageCard';
 import data from '../../../data.json';
 import useStyles from './style';
 
-const MessageResult = () => {
-  const locationInputValue = useSelector((state) => state.locationInputValue);
-  const jobInputValue = useSelector((state) => state.jobInputValue);
+const ResultPageContainer = () => {
+  const locationSearched = useSelector((state) => state.locationSearched);
+  const jobSearched = useSelector((state) => state.jobSearched);
   const classes = useStyles();
   const getDate = (actualisationDate) => {
     const date = new Date(actualisationDate);
@@ -18,9 +20,14 @@ const MessageResult = () => {
 
   return (
     <div className={classes.root}>
-      <Box>
-        Résultats de recherche pour {jobInputValue} dans {locationInputValue}
-      </Box>
+      <Card>
+        <CardContent>
+          <Typography variant="h6" className={classes.resultMessage}>
+            Résultats de recherche pour <span className={classes.span}>{jobSearched} </span>
+            dans <span className={classes.span}>{locationSearched} </span>
+          </Typography>
+        </CardContent>
+      </Card>
       <Box>
         {data.resultats.map((element) => (
           <ResultPageCard
@@ -38,4 +45,4 @@ const MessageResult = () => {
   );
 };
 
-export default MessageResult;
+export default ResultPageContainer;

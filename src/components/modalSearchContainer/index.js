@@ -10,6 +10,7 @@ import { useHistory } from 'react-router-dom';
 import {
   TOGGLE_PRINT_SEARCH_FORM,
   CHANGE_INPUTS_VALUES,
+  CHANGE_SEARCHED_VALUE,
 } from 'src/store/actions';
 import useStyles from './style';
 
@@ -38,6 +39,29 @@ const ModalSearchContainer = () => {
               event.preventDefault();
               // Au Submit du formulaire, on change l'url
               history.push(`/recherche?emploi=${jobInputValue}&localisation=${locationInputValue}`);
+
+              // On ajoute les valeurs des inputs au state locationsearched et jobsearched
+              dispatch({
+                type: CHANGE_SEARCHED_VALUE,
+                searched: 'locationSearched',
+                value: locationInputValue,
+              });
+              dispatch({
+                type: CHANGE_SEARCHED_VALUE,
+                searched: 'jobSearched',
+                value: jobInputValue,
+              });
+              // Et on reset les valeurs des deux inputs
+              dispatch({
+                type: CHANGE_INPUTS_VALUES,
+                field: 'locationInputValue',
+                inputValue: '',
+              });
+              dispatch({
+                type: CHANGE_INPUTS_VALUES,
+                field: 'jobInputValue',
+                inputValue: '',
+              });
 
               // On cache de nouveau la modale de recherche
               dispatch({

@@ -5,7 +5,7 @@ import {
 } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
 import { useDispatch } from 'react-redux';
-import { TOGGLE_PRINT_SEARCH_FORM } from 'src/store/actions';
+import { TOGGLE_PRINT_SEARCH_FORM, CHANGE_INPUTS_VALUES } from 'src/store/actions';
 import useStyles from './style';
 
 const HomeMainConatainer = () => {
@@ -17,8 +17,21 @@ const HomeMainConatainer = () => {
       <Typography variant="h6"> Trouver le job qui vous convient <span className={classes.span}> vraiment </span></Typography>
       <Button
         onClick={() => {
+          // On affiche la modale de recherche
           dispatch({
             type: TOGGLE_PRINT_SEARCH_FORM,
+          });
+          // Et on reset les deux inputs,
+          // au cas les state de valeur d'input de sont pas null a cause du storage
+          dispatch({
+            type: CHANGE_INPUTS_VALUES,
+            field: 'locationInputValue',
+            inputValue: '',
+          });
+          dispatch({
+            type: CHANGE_INPUTS_VALUES,
+            field: 'jobInputValue',
+            inputValue: '',
           });
         }}
         variant="contained"

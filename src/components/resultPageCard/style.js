@@ -3,9 +3,10 @@ import colorTheme from 'src/styles/theme';
 
 const useStyles = makeStyles(() => ({
   root: {
-    width: '100%',
+    width: '90%',
     marginTop: '1rem',
     padding: '2% 5%',
+    margin: 'auto',
   },
   cardFooter: {
     display: 'flex',
@@ -13,7 +14,7 @@ const useStyles = makeStyles(() => ({
     padding: '2% 5%',
   },
   button: {
-    fontWeight: 'bolder',
+    fontWeight: 'bold',
     color: colorTheme.palette.primary.white,
     backgroundColor: colorTheme.palette.secondary.main,
   },
