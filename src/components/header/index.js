@@ -11,7 +11,7 @@ import { useDispatch } from 'react-redux';
 import { useLocation, Link } from 'react-router-dom';
 
 // IMPORT FICHIERS
-import { TOGGLE_PRINT_SEARCH_FORM, CHANGE_INPUTS_VALUES } from 'src/store/actions';
+import { TOGGLE_PRINT_SEARCH_FORM } from 'src/store/actions';
 import useStyles from './style';
 
 const Header = () => {
@@ -31,17 +31,6 @@ const Header = () => {
              // lorsqu'on click sur l'icone SEARCH, on affiche la modale
              dispatch({
                type: TOGGLE_PRINT_SEARCH_FORM,
-             });
-             // Et on reset les valeurs des deux inputs
-             dispatch({
-               type: CHANGE_INPUTS_VALUES,
-               field: 'locationInputValue',
-               inputValue: '',
-             });
-             dispatch({
-               type: CHANGE_INPUTS_VALUES,
-               field: 'jobInputValue',
-               inputValue: '',
              });
            }}
            edge="start"

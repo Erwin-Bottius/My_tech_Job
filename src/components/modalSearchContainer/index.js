@@ -5,6 +5,7 @@ import {
 import CloseIcon from '@material-ui/icons/Close';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import axios from 'axios';
 
 // IMPORT FICHIERS
 import {
@@ -21,6 +22,45 @@ const ModalSearchContainer = () => {
   const dispatch = useDispatch();
   const history = useHistory();
 
+  const handleSubmitForm = (event) => {
+    event.preventDefault();
+    // Au Submit du formulaire, on change l'url
+    history.push(`/recherche?emploi=${jobInputValue}&localisation=${locationInputValue}`);
+
+    // On ajoute les valeurs des inputs au state locationsearched et jobsearched
+    dispatch({
+      type: CHANGE_SEARCHED_VALUE,
+      searched: 'locationSearched',
+      value: locationInputValue,
+    });
+    dispatch({
+      type: CHANGE_SEARCHED_VALUE,
+      searched: 'jobSearched',
+      value: jobInputValue,
+    });
+    // Et on reset les valeurs des deux inputs
+    dispatch({
+      type: CHANGE_INPUTS_VALUES,
+      field: 'locationInputValue',
+      inputValue: '',
+    });
+    dispatch({
+      type: CHANGE_INPUTS_VALUES,
+      field: 'jobInputValue',
+      inputValue: '',
+    });
+
+    axios.get('http://localhost:3000')
+      .then((data) => {
+        console.log(data);
+      });
+
+    // On cache de nouveau la modale de recherche
+    dispatch({
+      type: TOGGLE_PRINT_SEARCH_FORM,
+    });
+  };
+
   return (
     <Box className={classes.root}>
       <CloseIcon
@@ -35,39 +75,7 @@ const ModalSearchContainer = () => {
       <Card className={classes.cardSearchModal}>
         <CardContent>
           <form
-            onSubmit={(event) => {
-              event.preventDefault();
-              // Au Submit du formulaire, on change l'url
-              history.push(`/recherche?emploi=${jobInputValue}&localisation=${locationInputValue}`);
-
-              // On ajoute les valeurs des inputs au state locationsearched et jobsearched
-              dispatch({
-                type: CHANGE_SEARCHED_VALUE,
-                searched: 'locationSearched',
-                value: locationInputValue,
-              });
-              dispatch({
-                type: CHANGE_SEARCHED_VALUE,
-                searched: 'jobSearched',
-                value: jobInputValue,
-              });
-              // Et on reset les valeurs des deux inputs
-              dispatch({
-                type: CHANGE_INPUTS_VALUES,
-                field: 'locationInputValue',
-                inputValue: '',
-              });
-              dispatch({
-                type: CHANGE_INPUTS_VALUES,
-                field: 'jobInputValue',
-                inputValue: '',
-              });
-
-              // On cache de nouveau la modale de recherche
-              dispatch({
-                type: TOGGLE_PRINT_SEARCH_FORM,
-              });
-            }}
+            onSubmit={handleSubmitForm}
           >
             <InputBase
               className={classes.searchModalInput}
