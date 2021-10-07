@@ -12,6 +12,9 @@ import {
   TOGGLE_PRINT_SEARCH_FORM,
   CHANGE_INPUTS_VALUES,
   CHANGE_SEARCHED_VALUE,
+  TOGGLE_BACKDROP,
+  ADD_JOBS,
+  CLEAR_JOBS,
 } from 'src/store/actions';
 import useStyles from './style';
 
@@ -49,10 +52,23 @@ const ModalSearchContainer = () => {
       field: 'jobInputValue',
       inputValue: '',
     });
+    // On passe le state backdrop a true pour afficher l loading
+    dispatch({ type: TOGGLE_BACKDROP });
+    // Au submit, on clear le tableau contenant toutes les offres d'empois
+    dispatch({ type: CLEAR_JOBS });
 
+    // On requete le server qui lui meme requete l'API
     axios.get('http://localhost:3000')
-      .then((data) => {
-        console.log(data);
+      .then((response) => {
+        dispatch({
+          type: ADD_JOBS,
+          jobsResponse: response.data.resultats,
+        });
+      })
+      .finally(() => {
+        // Une fois que la requete est terminée,
+        // on repasse backdrop a false pour arreter l'animation
+        dispatch({ type: TOGGLE_BACKDROP });
       });
 
     // On cache de nouveau la modale de recherche

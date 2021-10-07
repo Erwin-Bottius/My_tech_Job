@@ -1,18 +1,26 @@
 // IMPORT NPM
 import {
-  Box, Card, CardContent, Typography,
+  Box,
+  Card,
+  CardContent,
+  Typography,
+  Backdrop,
+  CircularProgress,
 } from '@material-ui/core';
 import { useSelector } from 'react-redux';
 
 // IMPORTS FICHIERS
 import ResultPageCard from 'src/components/resultPageCard';
-import data from '../../../data.json';
 import useStyles from './style';
 
 const ResultPageContainer = () => {
   const locationSearched = useSelector((state) => state.locationSearched);
   const jobSearched = useSelector((state) => state.jobSearched);
+  const jobs = useSelector((state) => state.jobs);
+  const backdrop = useSelector((state) => state.backdropOpen);
   const classes = useStyles();
+
+  // Fonction qui transforme la date d'actualisation de l'offre d'emploi au bon format
   const getDate = (actualisationDate) => {
     const date = new Date(actualisationDate);
     return date.toLocaleDateString('fr');
@@ -29,7 +37,7 @@ const ResultPageContainer = () => {
         </CardContent>
       </Card>
       <Box>
-        {data.resultats.map((element) => (
+        {jobs.map((element) => (
           <ResultPageCard
             key={element.id}
             logo={element.origineOffre.partenaires ? element.origineOffre.partenaires[0].logo : 'n/c'}
@@ -39,8 +47,10 @@ const ResultPageContainer = () => {
             date={getDate(element.dateActualisation)}
           />
         ))}
-
       </Box>
+      <Backdrop open={backdrop} className={classes.backdrop}>
+        <CircularProgress color="inherit" />
+      </Backdrop>
     </div>
   );
 };

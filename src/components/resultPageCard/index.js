@@ -12,7 +12,7 @@ import { PropTypes } from 'prop-types';
 import useStyles from './style';
 
 const ResultPageCard = ({
-  logo = 'n/c', job = 'n/c', company = 'n/c', location = 'n/c', date = 'n/c',
+  logo, job, company, location, date,
 }) => {
   const classes = useStyles();
   return (
@@ -39,12 +39,20 @@ const ResultPageCard = ({
   );
 };
 
+ResultPageCard.defaultProps = {
+  logo: 'N/C',
+  job: 'N/C',
+  company: 'N/C',
+  location: 'N/C',
+  date: 'N/C',
+};
+
 ResultPageCard.propTypes = {
-  logo: PropTypes.string.isRequired,
-  job: PropTypes.string.isRequired,
-  company: PropTypes.string.isRequired,
-  location: PropTypes.string.isRequired,
-  date: PropTypes.string.isRequired,
+  logo: PropTypes.string,
+  job: PropTypes.string,
+  company: PropTypes.string,
+  location: PropTypes.string,
+  date: PropTypes.string,
 
 };
 
