@@ -11,13 +11,15 @@ import { useSelector } from 'react-redux';
 
 // IMPORTS FICHIERS
 import ResultPageCard from 'src/components/resultPageCard';
+import Error from 'src/components/error';
 import useStyles from './style';
 
 const ResultPageContainer = () => {
-  const locationSearched = useSelector((state) => state.locationSearched);
-  const jobSearched = useSelector((state) => state.jobSearched);
-  const jobs = useSelector((state) => state.jobs);
-  const backdrop = useSelector((state) => state.backdropOpen);
+  const locationSearched = useSelector((state) => state.search.locationSearched);
+  const jobSearched = useSelector((state) => state.search.jobSearched);
+  const jobs = useSelector((state) => state.search.jobs);
+  const backdrop = useSelector((state) => state.search.backdropOpen);
+  const hasError = useSelector((state) => state.search.hasError);
   const classes = useStyles();
 
   // Fonction qui transforme la date d'actualisation de l'offre d'emploi au bon format
@@ -27,7 +29,13 @@ const ResultPageContainer = () => {
   };
 
   return (
-    <div className={classes.root}>
+    <div className={hasError ? classes.errorContainer : classes.root}>
+      {/* Si l'animation backdrop est en cours (donc que la requete a l'api n'est pas terminée)
+      On affiche pas la card de message // Et si il ya eu une erreur dans la requete
+      on affiche le composant Error  */}
+      {hasError && <Error />}
+      {!backdrop && (hasError === false)
+      && (
       <Card>
         <CardContent>
           <Typography variant="h6" className={classes.resultMessage}>
@@ -36,6 +44,7 @@ const ResultPageContainer = () => {
           </Typography>
         </CardContent>
       </Card>
+      )}
       <Box>
         {jobs.map((element) => (
           <ResultPageCard

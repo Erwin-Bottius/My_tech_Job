@@ -5,6 +5,13 @@ const useStyles = makeStyles((theme) => ({
   root: {
     width: '100%',
   },
+  errorContainer: {
+    width: '100%',
+    display: 'flex',
+    flexDirection: 'column',
+    textAlign: 'center',
+    alignItems: 'center',
+  },
   resultMessage: {
     fontWeight: 'bold',
   },

@@ -5,7 +5,6 @@ import {
 import CloseIcon from '@material-ui/icons/Close';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import axios from 'axios';
 
 // IMPORT FICHIERS
 import {
@@ -13,14 +12,15 @@ import {
   CHANGE_INPUTS_VALUES,
   CHANGE_SEARCHED_VALUE,
   TOGGLE_BACKDROP,
-  ADD_JOBS,
   CLEAR_JOBS,
+  GET_JOBS,
+  RESET_SEARCH_ERROR,
 } from 'src/store/actions';
 import useStyles from './style';
 
 const ModalSearchContainer = () => {
-  const jobInputValue = useSelector((state) => state.jobInputValue);
-  const locationInputValue = useSelector((state) => state.locationInputValue);
+  const jobInputValue = useSelector((state) => state.search.jobInputValue);
+  const locationInputValue = useSelector((state) => state.search.locationInputValue);
   const classes = useStyles();
   const dispatch = useDispatch();
   const history = useHistory();
@@ -29,6 +29,9 @@ const ModalSearchContainer = () => {
     event.preventDefault();
     // Au Submit du formulaire, on change l'url
     history.push(`/recherche?emploi=${jobInputValue}&localisation=${locationInputValue}`);
+
+    // SI jamais le state hasError est a true avant le submit, on le repasse a false
+    dispatch({ type: RESET_SEARCH_ERROR });
 
     // On ajoute les valeurs des inputs au state locationsearched et jobsearched
     dispatch({
@@ -52,25 +55,12 @@ const ModalSearchContainer = () => {
       field: 'jobInputValue',
       inputValue: '',
     });
-    // On passe le state backdrop a true pour afficher l loading
-    dispatch({ type: TOGGLE_BACKDROP });
     // Au submit, on clear le tableau contenant toutes les offres d'empois
     dispatch({ type: CLEAR_JOBS });
+    // On passe le state backdrop a true pour afficher l loading
+    dispatch({ type: TOGGLE_BACKDROP });
 
-    // On requete le server qui lui meme requete l'API
-    axios.get('http://localhost:3000')
-      .then((response) => {
-        dispatch({
-          type: ADD_JOBS,
-          jobsResponse: response.data.resultats,
-        });
-      })
-      .finally(() => {
-        // Une fois que la requete est terminée,
-        // on repasse backdrop a false pour arreter l'animation
-        dispatch({ type: TOGGLE_BACKDROP });
-      });
-
+    dispatch({ type: GET_JOBS });
     // On cache de nouveau la modale de recherche
     dispatch({
       type: TOGGLE_PRINT_SEARCH_FORM,

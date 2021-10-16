@@ -13,7 +13,7 @@ import useStyles from './style';
 // == Composant
 const App = () => {
   const classes = useStyles();
-  const isSearchFormHidden = useSelector((state) => state.isSearchFormHidden);
+  const isSearchFormHidden = useSelector((state) => state.search.isSearchFormHidden);
   const location = useLocation();
 
   return (

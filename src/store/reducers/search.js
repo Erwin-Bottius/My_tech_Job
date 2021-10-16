@@ -3,12 +3,14 @@ import
   TOGGLE_PRINT_SEARCH_FORM,
   CHANGE_INPUTS_VALUES,
   CHANGE_SEARCHED_VALUE,
-  ADD_JOBS,
-  CLEAR_JOBS,
+  GET_JOBS_SUCCESS,
+  GET_JOBS_ERROR,
   TOGGLE_BACKDROP,
-} from './actions';
+  CLEAR_JOBS,
+  RESET_SEARCH_ERROR,
+} from 'src/store/actions';
 
-const initialState = {
+export const initialState = {
   isSearchFormHidden: true,
   jobInputValue: '',
   locationInputValue: '',
@@ -16,16 +18,17 @@ const initialState = {
   jobSearched: '',
   jobs: [],
   backdropOpen: false,
+  hasError: false,
 };
 
-const reducer = (state = initialState, action) => {
+const searchReducer = (state = initialState, action) => {
   switch (action.type) {
-    case TOGGLE_PRINT_SEARCH_FORM:
+    case TOGGLE_PRINT_SEARCH_FORM: {
       return {
         ...state,
         isSearchFormHidden: !state.isSearchFormHidden,
       };
-
+    }
     case CHANGE_INPUTS_VALUES:
       return {
         ...state,
@@ -41,19 +44,31 @@ const reducer = (state = initialState, action) => {
         ...state,
         backdropOpen: !state.backdropOpen,
       };
-    case ADD_JOBS:
-      return {
-        ...state,
-        jobs: [...state.jobs, ...action.jobsResponse],
-      };
     case CLEAR_JOBS:
       return {
         ...state,
         jobs: [],
+      };
+    case GET_JOBS_SUCCESS:
+      return {
+        ...state,
+        jobs: action.jobsResponse,
+        backdropOpen: false,
+      };
+    case GET_JOBS_ERROR:
+      return {
+        ...state,
+        backdropOpen: false,
+        hasError: true,
+      };
+    case RESET_SEARCH_ERROR:
+      return {
+        ...state,
+        hasError: false,
       };
     default:
       return state;
   }
 };
 
-export default reducer;
+export default searchReducer;
