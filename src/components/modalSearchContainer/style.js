@@ -7,12 +7,20 @@ const useStyles = makeStyles(() => ({
     height: '100vh',
     display: 'flex',
     flexDirection: 'column',
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
     color: colorTheme.palette.primary.transparentText,
-    padding: '5%',
+    paddingTop: '10rem',
+    padding: '5% 10%',
+  },
+  searchCard: {
+    width: '100%',
+    marginTop: '1rem',
+    background: colorTheme.palette.primary.white,
+    paddingBottom: '1rem',
+    borderRadius: '4px',
   },
   searchModalInput: {
-    padding: '1rem 0',
+    padding: '1rem 1rem',
     width: '100%',
   },
   cross: {
@@ -30,7 +38,10 @@ const useStyles = makeStyles(() => ({
     background: colorTheme.palette.primary.pinkColor,
     color: colorTheme.palette.primary.white,
     fontWeight: 'bolder',
-    width: '100%',
+    width: '80%',
+    display: 'block',
+    margin: 'auto',
+    marginTop: '1rem',
   },
 
 }));

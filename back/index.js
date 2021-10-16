@@ -5,6 +5,7 @@ const cors = require('cors');
 const app = express();
 const port = 3000;
 app.use(cors());
+app.use(express.json());
 
 const tokenConfig = {
   method: 'post',
@@ -23,13 +24,16 @@ const tokenConfig = {
   }),
 
 };
-app.get('/', async (req, res) => {
+app.post('/', async (req, res) => {
   try {
+    const { base, location } = req.body;
+
+    console.log(`https://api.emploi-store.fr/partenaire/offresdemploi/v2/offres/search?motsCles=M1805,${base}&departement=${location}&sort=2&range=0-9`);
     const responseToken = await axios(tokenConfig);
     const responseJobs = await axios(
       {
         method: 'get',
-        url: 'https://api.emploi-store.fr/partenaire/offresdemploi/v2/offres/search?motsCles=M1805&sort=2&range=0-9',
+        url: `https://api.emploi-store.fr/partenaire/offresdemploi/v2/offres/search?motsCles=M1805,${base}&departement=${location}&sort=2&range=0-9`,
         headers: {
           Authorization: `Bearer ${responseToken.data.access_token}`,
         },

@@ -1,7 +1,8 @@
 // IMPPORT NPM
 import {
-  Box, Typography, Card, CardContent, Button, InputBase,
+  Box, Typography, Button, InputBase,
 } from '@material-ui/core';
+import Autocomplete from '@material-ui/lab/Autocomplete';
 import CloseIcon from '@material-ui/icons/Close';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
@@ -16,6 +17,8 @@ import {
   GET_JOBS,
   RESET_SEARCH_ERROR,
 } from 'src/store/actions';
+import getFilterdDepartments from 'src/store/selectors/filteredDepartments';
+import departments from '../../../data/departments';
 import useStyles from './style';
 
 const ModalSearchContainer = () => {
@@ -78,49 +81,67 @@ const ModalSearchContainer = () => {
       <Typography variant="h6">
         Trouvez le job qui vous convient <span className={classes.span}>vraiment</span>.
       </Typography>
-      <Card className={classes.cardSearchModal}>
-        <CardContent>
-          <form
-            onSubmit={handleSubmitForm}
+      <div className={classes.searchCard}>
+        <form
+          onSubmit={handleSubmitForm}
+        >
+          <InputBase
+            className={classes.searchModalInput}
+            placeholder="Recherche d'emploi"
+            variant="outlined"
+            value={jobInputValue}
+            onChange={(event) => {
+              dispatch({
+                type: CHANGE_INPUTS_VALUES,
+                field: 'jobInputValue',
+                inputValue: event.target.value,
+              });
+            }}
+          />
+          <hr />
+          <Autocomplete
+            onChange={(event, newValue) => {
+              dispatch({
+                type: CHANGE_INPUTS_VALUES,
+                field: 'locationInputValue',
+                inputValue: newValue,
+              });
+            }}
+            id="custom-input-demo"
+            options={getFilterdDepartments(locationInputValue, departments)
+              .map((department) => department.nom)}
+            renderInput={(params) => (
+              <div
+                ref={params.InputProps.ref}
+              >
+                <InputBase
+                  {...params.inputProps}
+                  className={classes.searchModalInput}
+                  placeholder="département, ville"
+                  variant="outlined"
+                  value={locationInputValue}
+                  onChange={(event) => {
+                    dispatch({
+                      type: CHANGE_INPUTS_VALUES,
+                      field: 'locationInputValue',
+                      inputValue: event.target.value,
+                    });
+                  }}
+                />
+                <hr />
+              </div>
+            )}
+          />
+          <Button
+            variant="contained"
+            size="large"
+            className={classes.searchButton}
+            type="submit"
           >
-            <InputBase
-              className={classes.searchModalInput}
-              placeholder="Recherche d'emploi"
-              variant="outlined"
-              value={jobInputValue}
-              onChange={(event) => {
-                dispatch({
-                  type: CHANGE_INPUTS_VALUES,
-                  field: 'jobInputValue',
-                  inputValue: event.target.value,
-                });
-              }}
-            />
-            <hr />
-            <InputBase
-              className={classes.searchModalInput}
-              placeholder="Lieu : ville, code postale, région"
-              variant="outlined"
-              value={locationInputValue}
-              onChange={(event) => {
-                dispatch({
-                  type: CHANGE_INPUTS_VALUES,
-                  field: 'locationInputValue',
-                  inputValue: event.target.value,
-                });
-              }}
-            />
-            <Button
-              variant="contained"
-              size="large"
-              className={classes.searchButton}
-              type="submit"
-            >
-              RECHERCHER
-            </Button>
-          </form>
-        </CardContent>
-      </Card>
+            RECHERCHER
+          </Button>
+        </form>
+      </div>
     </Box>
   );
 };
