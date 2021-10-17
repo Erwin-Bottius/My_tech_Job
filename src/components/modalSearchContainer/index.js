@@ -17,8 +17,9 @@ import {
   GET_JOBS,
   RESET_SEARCH_ERROR,
 } from 'src/store/actions';
-import getFilterdDepartments from 'src/store/selectors/filteredDepartments';
+import getFilterdLocation from 'src/store/selectors/filteredLocations';
 import departments from '../../../data/departments';
+import frenchStates from '../../../data/states';
 import useStyles from './style';
 
 const ModalSearchContainer = () => {
@@ -31,7 +32,9 @@ const ModalSearchContainer = () => {
   const handleSubmitForm = (event) => {
     event.preventDefault();
     // Au Submit du formulaire, on change l'url
-    history.push(`/recherche?emploi=${jobInputValue}&localisation=${locationInputValue}`);
+    history.push(`/recherche?emploi=${jobInputValue
+      .toLowerCase().normalize('NFD').replace(/\p{Diacritic}/gu, '')}&localisation=${locationInputValue
+      .toLowerCase().normalize('NFD').replace(/\p{Diacritic}/gu, '')}`);
 
     // SI jamais le state hasError est a true avant le submit, on le repasse a false
     dispatch({ type: RESET_SEARCH_ERROR });
@@ -108,8 +111,8 @@ const ModalSearchContainer = () => {
               });
             }}
             id="custom-input-demo"
-            options={getFilterdDepartments(locationInputValue, departments)
-              .map((department) => department.nom)}
+            options={getFilterdLocation(locationInputValue, [...departments, ...frenchStates])
+              .map((location) => location.nom)}
             renderInput={(params) => (
               <div
                 ref={params.InputProps.ref}

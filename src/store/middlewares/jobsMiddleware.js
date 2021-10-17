@@ -6,14 +6,35 @@ import {
 } from 'src/store/actions';
 
 import departments from '../../../data/departments';
+import frenchStates from '../../../data/states';
 
 const jobsMiddleware = (store) => (next) => (action) => {
   if (action.type === GET_JOBS) {
+    let isFrenchState = false;
+    let isDepartment = false;
     // Ici nous récupérons le state pour envoyer le jobds recherché + le code du département
     const state = store.getState();
-    const location = departments.find((department) => (
-      department.nom.toLowerCase() === state.search.locationSearched.toLowerCase()));
-
+    let location = '';
+    // Si l'utilsateur a renseigné une valeur dans l'input localisation
+    //  on recherche le département correspondant
+    if (state.search.locationSearched) {
+      location = departments.find((department) => (
+        department.nom.toLowerCase() === state.search.locationSearched.toLowerCase()));
+      if (location) isDepartment = true;
+      // Si on ne trouve pas le département correspondant
+      // alors on cherche dans le tableau des régions
+      else {
+        location = frenchStates.find((frenchState) => (
+          frenchState.nom.toLowerCase() === state.search.locationSearched.toLowerCase()));
+        if (location) isFrenchState = true;
+      }
+    }
+    console.log({
+      base: state.search.jobSearched,
+      location: location ? location.code : location,
+      isFrenchState,
+      isDepartment,
+    });
     // On requete le server qui lui meme requete l'API
     axios({
       method: 'post',
@@ -23,7 +44,9 @@ const jobsMiddleware = (store) => (next) => (action) => {
       },
       data: {
         base: state.search.jobSearched,
-        location: location.code,
+        location: location ? location.code : location,
+        isFrenchState,
+        isDepartment,
       },
     })
       .then((response) => {

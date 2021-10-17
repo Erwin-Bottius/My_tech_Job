@@ -39,8 +39,8 @@ const ResultPageContainer = () => {
       <Card>
         <CardContent>
           <Typography variant="h6" className={classes.resultMessage}>
-            Résultats de recherche pour <span className={classes.span}>{jobSearched} </span>
-            dans <span className={classes.span}>{locationSearched} </span>
+            Résultats de recherche pour <span className={classes.span}>{jobSearched || 'jobs les plus populaires'} </span>
+            dans <span className={classes.span}>{locationSearched || 'France'} </span>
           </Typography>
         </CardContent>
       </Card>

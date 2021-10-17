@@ -4,6 +4,7 @@ import colorTheme from 'src/styles/theme';
 const useStyles = makeStyles((theme) => ({
   root: {
     width: '100%',
+    height: '100%',
   },
   errorContainer: {
     width: '100%',
