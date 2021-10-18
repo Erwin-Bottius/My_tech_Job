@@ -41,7 +41,7 @@ const jobsMiddleware = (store) => (next) => (action) => {
       data: {
         base: state.search.jobSearched,
         location: location ? location.code : location,
-        rangeMin: state.requestMinRange,
+        minRange: state.search.requestMinRange,
         isFrenchState,
         isDepartment,
       },

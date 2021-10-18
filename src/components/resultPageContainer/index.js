@@ -64,7 +64,7 @@ const ResultPageContainer = () => {
             date={getDate(element.dateActualisation)}
           />
         ))}
-        {!backdrop
+        {!backdrop && !hasError
         && (
         <Button
           onClick={handleOnclickLoadMore}

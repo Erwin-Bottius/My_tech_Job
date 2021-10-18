@@ -34,6 +34,7 @@ app.post('/', async (req, res) => {
           location,
           isDepartment,
           isFrenchState,
+          minRange,
           responseToken));
           // On push le résultat de chaque requete dans le tableu jobs[]
         if (responseJobs.data.resultats) jobs.push(...responseJobs.data.resultats);
@@ -61,6 +62,7 @@ app.post('/', async (req, res) => {
     }
   }
   catch (error) {
+    console.log(error);
     res.status(500).send(error);
   }
 });
