@@ -90,7 +90,7 @@ const ModalSearchContainer = () => {
         >
           <InputBase
             className={classes.searchModalInput}
-            placeholder="Recherche d'emploi"
+            placeholder="langages, frameworks, librairies"
             variant="outlined"
             value={jobInputValue}
             onChange={(event) => {
@@ -120,7 +120,7 @@ const ModalSearchContainer = () => {
                 <InputBase
                   {...params.inputProps}
                   className={classes.searchModalInput}
-                  placeholder="département, ville"
+                  placeholder="département, région"
                   variant="outlined"
                   value={locationInputValue}
                   onChange={(event) => {

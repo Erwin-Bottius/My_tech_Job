@@ -29,12 +29,6 @@ const jobsMiddleware = (store) => (next) => (action) => {
         if (location) isFrenchState = true;
       }
     }
-    console.log({
-      base: state.search.jobSearched,
-      location: location ? location.code : location,
-      isFrenchState,
-      isDepartment,
-    });
     // On requete le server qui lui meme requete l'API
     axios({
       method: 'post',
@@ -52,13 +46,13 @@ const jobsMiddleware = (store) => (next) => (action) => {
       .then((response) => {
         // SI l'api répond mais que la requete de l'utilisateur ne renvoit aucun résultat,
         // on émet l'action d'erreur
-        if (response.data.resultats.length === 0) {
+        if (response.data.length === 0) {
           store.dispatch({ type: GET_JOBS_ERROR });
         }
         else {
           store.dispatch({
             type: GET_JOBS_SUCCESS,
-            jobsResponse: response.data.resultats,
+            jobsResponse: response.data,
           });
         }
       })
