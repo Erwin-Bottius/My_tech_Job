@@ -8,13 +8,18 @@ import {
   Button,
 } from '@material-ui/core';
 import { PropTypes } from 'prop-types';
+import { useHistory } from 'react-router-dom';
 // IMPORT FICHIERS
 import useStyles from './style';
 
 const ResultPageCard = ({
-  logo, job, company, location, date,
+  logo, job, company, location, date, id,
 }) => {
   const classes = useStyles();
+  const history = useHistory();
+  const handleClickOfferDetail = () => {
+    history.push(`/offre-d-emploi/${id}`);
+  };
   return (
     <Card className={classes.root}>
       <CardContent>
@@ -31,7 +36,12 @@ const ResultPageCard = ({
       </CardContent>
       <CardActions className={classes.cardFooter}>
         {date}
-        <Button variant="contained" size="small" className={classes.button}>
+        <Button
+          onClick={handleClickOfferDetail}
+          variant="contained"
+          size="small"
+          className={classes.button}
+        >
           Afficher
         </Button>
       </CardActions>
@@ -53,6 +63,7 @@ ResultPageCard.propTypes = {
   company: PropTypes.string,
   location: PropTypes.string,
   date: PropTypes.string,
+  id: PropTypes.string.isRequired,
 
 };
 

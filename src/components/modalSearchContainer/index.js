@@ -16,6 +16,7 @@ import {
   CLEAR_JOBS,
   GET_JOBS,
   RESET_SEARCH_ERROR,
+  RESET_MIN_RANGE,
 } from 'src/store/actions';
 import getFilterdLocation from 'src/store/selectors/filteredLocations';
 import departments from '../../../data/departments';
@@ -38,6 +39,9 @@ const ModalSearchContainer = () => {
 
     // SI jamais le state hasError est a true avant le submit, on le repasse a false
     dispatch({ type: RESET_SEARCH_ERROR });
+
+    // ON reset le state requestMinRange => 0
+    dispatch({ type: RESET_MIN_RANGE });
 
     // On ajoute les valeurs des inputs au state locationsearched et jobsearched
     dispatch({
@@ -65,7 +69,6 @@ const ModalSearchContainer = () => {
     dispatch({ type: CLEAR_JOBS });
     // On passe le state backdrop a true pour afficher l loading
     dispatch({ type: TOGGLE_BACKDROP });
-
     dispatch({ type: GET_JOBS });
     // On cache de nouveau la modale de recherche
     dispatch({
@@ -103,6 +106,7 @@ const ModalSearchContainer = () => {
           />
           <hr />
           <Autocomplete
+            openOnFocus
             onChange={(event, newValue) => {
               dispatch({
                 type: CHANGE_INPUTS_VALUES,

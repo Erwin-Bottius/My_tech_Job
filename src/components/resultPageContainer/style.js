@@ -4,7 +4,6 @@ import colorTheme from 'src/styles/theme';
 const useStyles = makeStyles((theme) => ({
   root: {
     width: '100%',
-    height: '100%',
   },
   errorContainer: {
     width: '100%',
@@ -22,6 +21,13 @@ const useStyles = makeStyles((theme) => ({
   backdrop: {
     zIndex: theme.zIndex.drawer + 1,
     color: '#fff',
+  },
+  loadMore: {
+    fontWeight: 'bold',
+    display: 'block',
+    margin: '2rem auto',
+    color: colorTheme.palette.primary.white,
+    backgroundColor: colorTheme.palette.primary.pinkColor,
   },
 
 }));

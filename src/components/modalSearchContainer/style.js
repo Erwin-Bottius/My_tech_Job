@@ -9,7 +9,7 @@ const useStyles = makeStyles(() => ({
     flexDirection: 'column',
     justifyContent: 'flex-start',
     color: colorTheme.palette.primary.transparentText,
-    paddingTop: '10rem',
+    paddingTop: '5rem',
     padding: '5% 10%',
   },
   searchCard: {

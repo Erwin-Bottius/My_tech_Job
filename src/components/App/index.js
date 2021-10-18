@@ -8,6 +8,7 @@ import Header from 'src/components/header';
 import HomeMainConatainer from 'src/components/homeMainContainer';
 import ModalSearchContainer from 'src/components/modalSearchContainer';
 import ResultPageContainer from 'src/components/resultPageContainer';
+import JobOffer from 'src/components/jobOffer';
 import useStyles from './style';
 
 // == Composant
@@ -19,7 +20,7 @@ const App = () => {
   return (
     // Si on est sur la page de resultats de recherche, et qu'on veut faire une nouvelle recherche,
     // on bascule de nouveaux les themes de couleur (body en violet + header en blanc)
-    <div className={location.pathname === '/recherche' && isSearchFormHidden ? classes.resultPageTheme : classes.root}>
+    <div className={location.pathname !== '/' && isSearchFormHidden ? classes.resultPageTheme : classes.root}>
       <CssBaseline />
       {/* Le header ne s'affiche pas si on est sur la "modale" de recherche d'emploi */}
       {isSearchFormHidden && <Header />}
@@ -31,6 +32,9 @@ const App = () => {
         </Route>
         <Route exact path="/recherche">
           {isSearchFormHidden && <ResultPageContainer />}
+        </Route>
+        <Route exact path="/offre-d-emploi/:id">
+          {isSearchFormHidden && <JobOffer />}
         </Route>
       </Switch>
       <footer>copiright</footer>

@@ -3,6 +3,8 @@ import {
   GET_JOBS,
   GET_JOBS_SUCCESS,
   GET_JOBS_ERROR,
+  INCREMENT_REQUEST_MIN_RANGE,
+
 } from 'src/store/actions';
 
 import departments from '../../../data/departments';
@@ -39,6 +41,7 @@ const jobsMiddleware = (store) => (next) => (action) => {
       data: {
         base: state.search.jobSearched,
         location: location ? location.code : location,
+        rangeMin: state.requestMinRange,
         isFrenchState,
         isDepartment,
       },
@@ -46,7 +49,7 @@ const jobsMiddleware = (store) => (next) => (action) => {
       .then((response) => {
         // SI l'api répond mais que la requete de l'utilisateur ne renvoit aucun résultat,
         // on émet l'action d'erreur
-        if (response.data.length === 0) {
+        if (response.data.length === 0 && state.search.requestMinRange === 0) {
           store.dispatch({ type: GET_JOBS_ERROR });
         }
         else {
@@ -54,6 +57,7 @@ const jobsMiddleware = (store) => (next) => (action) => {
             type: GET_JOBS_SUCCESS,
             jobsResponse: response.data,
           });
+          store.dispatch({ type: INCREMENT_REQUEST_MIN_RANGE });
         }
       })
       .catch(() => {

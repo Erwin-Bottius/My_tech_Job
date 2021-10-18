@@ -18,6 +18,7 @@ app.post('/', async (req, res) => {
       location,
       isDepartment,
       isFrenchState,
+      minRange,
     } = req.body;
     // variable qui trabsforme base en tableau
     // , si jamais l'utilisateur a renseigné plusiseurs technos
@@ -54,6 +55,7 @@ app.post('/', async (req, res) => {
         location,
         isDepartment,
         isFrenchState,
+        minRange,
         responseToken));
       res.send(responseJobs.data.resultats);
     }

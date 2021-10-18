@@ -20,11 +20,12 @@ const Header = () => {
   const location = useLocation();
 
   return (
-    <AppBar position="static" className={location.pathname === '/recherche' ? classes.resultPageTheme : classes.root}>
+    <AppBar position="static" className={location.pathname !== '/' ? classes.resultPageTheme : classes.root}>
       <Toolbar className={classes.tool}>
-        {/* SI on est sur la page de résultats, on affiche un icone SEARCH dans le header pour
+        {/* SI on est sur la page de résultats ou d'offre,
+         on affiche un icone SEARCH dans le header pour
         avoir la possibilité d'éffectuer une nouvelle recherche */}
-        {location.pathname === '/recherche'
+        {location.pathname !== '/'
          && (
          <IconButton
            onClick={() => {

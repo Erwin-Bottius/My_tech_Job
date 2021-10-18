@@ -4,14 +4,16 @@ import {
   Card,
   CardContent,
   Typography,
+  Button,
   Backdrop,
   CircularProgress,
 } from '@material-ui/core';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 // IMPORTS FICHIERS
 import ResultPageCard from 'src/components/resultPageCard';
 import Error from 'src/components/error';
+import { GET_JOBS } from 'src/store/actions';
 import useStyles from './style';
 
 const ResultPageContainer = () => {
@@ -21,6 +23,11 @@ const ResultPageContainer = () => {
   const backdrop = useSelector((state) => state.search.backdropOpen);
   const hasError = useSelector((state) => state.search.hasError);
   const classes = useStyles();
+  const dispatch = useDispatch();
+
+  const handleOnclickLoadMore = () => {
+    dispatch({ type: GET_JOBS });
+  };
 
   // Fonction qui transforme la date d'actualisation de l'offre d'emploi au bon format
   const getDate = (actualisationDate) => {
@@ -53,9 +60,20 @@ const ResultPageContainer = () => {
             job={element.intitule}
             company={element.entreprise.nom}
             location={element.lieuTravail.libelle}
+            id={element.id}
             date={getDate(element.dateActualisation)}
           />
         ))}
+        {!backdrop
+        && (
+        <Button
+          onClick={handleOnclickLoadMore}
+          className={classes.loadMore}
+          variant="contained"
+          size="medium"
+        >Charger Plus
+        </Button>
+        )}
       </Box>
       <Backdrop open={backdrop} className={classes.backdrop}>
         <CircularProgress color="inherit" />

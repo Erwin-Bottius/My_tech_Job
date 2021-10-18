@@ -8,6 +8,7 @@ import
   TOGGLE_BACKDROP,
   CLEAR_JOBS,
   RESET_SEARCH_ERROR,
+  RESET_MIN_RANGE,
 } from 'src/store/actions';
 
 export const initialState = {
@@ -19,6 +20,7 @@ export const initialState = {
   jobs: [],
   backdropOpen: false,
   hasError: false,
+  requestMinRange: 0,
 };
 
 const searchReducer = (state = initialState, action) => {
@@ -52,8 +54,14 @@ const searchReducer = (state = initialState, action) => {
     case GET_JOBS_SUCCESS:
       return {
         ...state,
-        jobs: action.jobsResponse,
+        jobs: [...state.jobs, ...action.jobsResponse],
+        requestMinRange: state.requestMinRange + 15,
         backdropOpen: false,
+      };
+    case RESET_MIN_RANGE:
+      return {
+        ...state,
+        requestMinRange: 0,
       };
     case GET_JOBS_ERROR:
       return {
