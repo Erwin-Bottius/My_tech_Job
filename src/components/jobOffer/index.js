@@ -8,6 +8,7 @@ import { useEffect } from 'react';
 
 // Import Fichiers
 import getJobObject from 'src/store/selectors/jobOfferSelector';
+import getDate from 'src/store/functions/getDate';
 import useStyles from './style';
 
 const JobOffer = () => {
@@ -16,6 +17,7 @@ const JobOffer = () => {
   const { id } = useParams();
   const jobs = useSelector((state) => state.search.jobs);
   const jobOfferObject = getJobObject(id, jobs);
+  const currentDate = Date.now();
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -69,7 +71,10 @@ const JobOffer = () => {
           variant="subtitle1"
           className={classes.offer__card__subtitle}
         >DATE DE PUBLICATION
-          <span className={classes.offer__card__span}> {jobOfferObject.dateActualisation}</span>
+          <span
+            className={classes.offer__card__span}
+          > {getDate(jobOfferObject.dateActualisation, currentDate)}
+          </span>
         </Typography>
         <hr className={classes.offer__card__hr} />
         <Typography

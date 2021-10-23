@@ -7,6 +7,8 @@ const useStyles = makeStyles((theme) => ({
   },
   offer__subHeader: {
     width: '100%',
+    borderRadius: '0px',
+    boxShadow: '1px 4px 3px 1px rgba(222,222,222,0.28)',
   },
   offer__subHeader__cardContent: {
     display: 'flex',
@@ -20,6 +22,7 @@ const useStyles = makeStyles((theme) => ({
   },
   offer__card: {
     width: '100%',
+    marginBottom: '3rem',
     padding: '1rem 2rem',
   },
   offer__card__hr: {
@@ -44,8 +47,10 @@ const useStyles = makeStyles((theme) => ({
   offer__footer: {
     width: '100%',
     position: 'fixed',
-    bottom: 0,
+    maxHeight: '4rem',
+    bottom: '0',
     padding: '0.3rem 1.5rem',
+    borderRadius: '0px',
   },
   offer__footer__cardContent: {
     width: '100%',

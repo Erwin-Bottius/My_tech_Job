@@ -14,6 +14,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import ResultPageCard from 'src/components/resultPageCard';
 import Error from 'src/components/error';
 import { GET_JOBS } from 'src/store/actions';
+import getDate from 'src/store/functions/getDate';
 import useStyles from './style';
 
 const ResultPageContainer = () => {
@@ -24,15 +25,10 @@ const ResultPageContainer = () => {
   const hasError = useSelector((state) => state.search.hasError);
   const classes = useStyles();
   const dispatch = useDispatch();
+  const currentDate = Date.now();
 
   const handleOnclickLoadMore = () => {
     dispatch({ type: GET_JOBS });
-  };
-
-  // Fonction qui transforme la date d'actualisation de l'offre d'emploi au bon format
-  const getDate = (actualisationDate) => {
-    const date = new Date(actualisationDate);
-    return date.toLocaleDateString('fr');
   };
 
   return (
@@ -43,7 +39,7 @@ const ResultPageContainer = () => {
       {hasError && <Error />}
       {!backdrop && (hasError === false)
       && (
-      <Card>
+      <Card className={classes.card__message}>
         <CardContent>
           <Typography variant="h6" className={classes.resultMessage}>
             Résultats de recherche pour <span className={classes.span}>{jobSearched || 'jobs les plus populaires'} </span>
@@ -61,7 +57,7 @@ const ResultPageContainer = () => {
             company={element.entreprise.nom}
             location={element.lieuTravail.libelle}
             id={element.id}
-            date={getDate(element.dateActualisation)}
+            date={getDate(element.dateActualisation, currentDate)}
           />
         ))}
         {!backdrop && !hasError

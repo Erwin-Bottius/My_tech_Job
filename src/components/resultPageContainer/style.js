@@ -12,6 +12,10 @@ const useStyles = makeStyles((theme) => ({
     textAlign: 'center',
     alignItems: 'center',
   },
+  card__message: {
+    borderRadius: '0px',
+    boxShadow: '1px 4px 3px 1px rgba(222,222,222,0.28)',
+  },
   resultMessage: {
     fontWeight: 'bold',
   },
