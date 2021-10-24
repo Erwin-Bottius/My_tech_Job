@@ -1,6 +1,6 @@
 // IMPPORT NPM
 import {
-  Box, Typography, Button, InputBase,
+  Box, Typography, Button, InputBase, Chip,
 } from '@material-ui/core';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import CloseIcon from '@material-ui/icons/Close';
@@ -11,7 +11,11 @@ import { useHistory } from 'react-router-dom';
 import {
   TOGGLE_PRINT_SEARCH_FORM,
   CHANGE_INPUTS_VALUES,
-  CHANGE_SEARCHED_VALUE,
+  CHANGE_LOCATIONSEARCHED_VALUE,
+  CHANGE_JOBSEARCHED_VALUE,
+  DELETE_EL_JOBSEARCHED_VALUE,
+  DELETE_LAST_EL_JOBSEARCHED_VALUE,
+  RESET_JOBSEARCHED_VALUE,
   TOGGLE_BACKDROP,
   CLEAR_JOBS,
   GET_JOBS,
@@ -26,6 +30,7 @@ import useStyles from './style';
 const ModalSearchContainer = () => {
   const jobInputValue = useSelector((state) => state.search.jobInputValue);
   const locationInputValue = useSelector((state) => state.search.locationInputValue);
+  const jobSearched = useSelector((state) => state.search.jobSearched);
   const classes = useStyles();
   const dispatch = useDispatch();
   const history = useHistory();
@@ -43,16 +48,10 @@ const ModalSearchContainer = () => {
     // ON reset le state requestMinRange => 0
     dispatch({ type: RESET_MIN_RANGE });
 
-    // On ajoute les valeurs des inputs au state locationsearched et jobsearched
+    // On ajoute les valeurs de l'input location au state locationsearched
     dispatch({
-      type: CHANGE_SEARCHED_VALUE,
-      searched: 'locationSearched',
-      value: locationInputValue,
-    });
-    dispatch({
-      type: CHANGE_SEARCHED_VALUE,
-      searched: 'jobSearched',
-      value: jobInputValue,
+      type: CHANGE_LOCATIONSEARCHED_VALUE,
+      locationSearched: locationInputValue,
     });
     // Et on reset les valeurs des deux inputs
     dispatch({
@@ -74,8 +73,16 @@ const ModalSearchContainer = () => {
     dispatch({
       type: TOGGLE_PRINT_SEARCH_FORM,
     });
+
+    dispatch({ type: RESET_JOBSEARCHED_VALUE });
   };
 
+  const handleDeleteChip = (chipToDelete) => {
+    dispatch({
+      type: DELETE_EL_JOBSEARCHED_VALUE,
+      deletedJob: chipToDelete,
+    });
+  };
   return (
     <Box className={classes.root}>
       <CloseIcon
@@ -91,19 +98,79 @@ const ModalSearchContainer = () => {
         <form
           onSubmit={handleSubmitForm}
         >
-          <InputBase
-            className={classes.searchModalInput}
-            placeholder="langages, frameworks, librairies"
-            variant="outlined"
-            value={jobInputValue}
-            onChange={(event) => {
-              dispatch({
-                type: CHANGE_INPUTS_VALUES,
-                field: 'jobInputValue',
-                inputValue: event.target.value,
-              });
-            }}
-          />
+          <div className={classes.jobsInput__container}>
+            {jobSearched.length < 1
+            && <p className={classes.jobsInput__notice}>Appuyer sur Entrer pour ajouter un</p> }
+            <ul className={classes.jobsInput__ul}>
+              {jobSearched.map((element, index) => (
+                // eslint-disable-next-line react/no-array-index-key
+                <li key={`${element}${index}`}>
+                  <Chip
+                    className={classes.jobsInput__chip}
+                    label={element}
+                    onDelete={() => {
+                      handleDeleteChip(element);
+                    }}
+                  />
+                </li>
+              ))}
+            </ul>
+            <InputBase
+              className={classes.jobsInput}
+              placeholder="langage, framework..."
+              variant="outlined"
+              value={jobInputValue}
+              // a la perte du focus, si l'utilsateur n'a pas creer le Chip
+              // On le créé pour lui, seulement si la valeur de l'input est non nulle
+              onBlur={() => {
+                if (jobSearched.length < 5 && jobInputValue) {
+                  dispatch({
+                    type: CHANGE_JOBSEARCHED_VALUE,
+                    jobSearched: jobInputValue,
+                  });
+                  // puis on reset l'input
+                  dispatch({
+                    type: CHANGE_INPUTS_VALUES,
+                    field: 'jobInputValue',
+                    inputValue: '',
+                  });
+                }
+              }}
+              onKeyDown={(event) => {
+                console.log(event.key);
+                if ((event.key === 'Enter' || event.key === ' ') && jobInputValue && jobInputValue) {
+                  if (jobSearched.length > 4) {
+                    event.preventDefault();
+                    return;
+                  }
+                  event.preventDefault();
+                  // On ajoute les valeurs de l'input job au state jobSearched (tableau)
+                  dispatch({
+                    type: CHANGE_JOBSEARCHED_VALUE,
+                    jobSearched: jobInputValue,
+                  });
+                  // puis on reset l'input
+                  dispatch({
+                    type: CHANGE_INPUTS_VALUES,
+                    field: 'jobInputValue',
+                    inputValue: '',
+                  });
+                }
+                else if (event.key === 'Backspace' && jobInputValue === '') {
+                  dispatch({
+                    type: DELETE_LAST_EL_JOBSEARCHED_VALUE,
+                  });
+                }
+              }}
+              onChange={(event) => {
+                dispatch({
+                  type: CHANGE_INPUTS_VALUES,
+                  field: 'jobInputValue',
+                  inputValue: event.target.value,
+                });
+              }}
+            />
+          </div>
           <hr />
           <Autocomplete
             openOnFocus

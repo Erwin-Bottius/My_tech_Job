@@ -2,7 +2,11 @@ import
 {
   TOGGLE_PRINT_SEARCH_FORM,
   CHANGE_INPUTS_VALUES,
-  CHANGE_SEARCHED_VALUE,
+  CHANGE_LOCATIONSEARCHED_VALUE,
+  CHANGE_JOBSEARCHED_VALUE,
+  RESET_JOBSEARCHED_VALUE,
+  DELETE_EL_JOBSEARCHED_VALUE,
+  DELETE_LAST_EL_JOBSEARCHED_VALUE,
   GET_JOBS_SUCCESS,
   GET_JOBS_ERROR,
   TOGGLE_BACKDROP,
@@ -16,7 +20,7 @@ export const initialState = {
   jobInputValue: '',
   locationInputValue: '',
   locationSearched: '',
-  jobSearched: '',
+  jobSearched: [],
   jobs: [],
   backdropOpen: false,
   hasError: false,
@@ -36,10 +40,37 @@ const searchReducer = (state = initialState, action) => {
         ...state,
         [action.field]: action.inputValue,
       };
-    case CHANGE_SEARCHED_VALUE:
+    case CHANGE_LOCATIONSEARCHED_VALUE:
       return {
         ...state,
-        [action.searched]: action.value,
+        locationSearched: action.locationSearched,
+      };
+    case CHANGE_JOBSEARCHED_VALUE:
+      return {
+        ...state,
+        jobSearched: [...state.jobSearched, action.jobSearched],
+      };
+    case DELETE_EL_JOBSEARCHED_VALUE: {
+      // Ici on supprime l'élément du tableau qui a été surpprimé par l'utilisateur
+      const newJobSearched = state.jobSearched.filter((element) => element !== action.deletedJob);
+      return {
+        ...state,
+        jobSearched: newJobSearched,
+      };
+    }
+    case DELETE_LAST_EL_JOBSEARCHED_VALUE: {
+      // Ici on supprime le dernier élément du tableau qui a été surpprimé par l'utilisateur
+      const newJobSearched = [...state.jobSearched];
+      newJobSearched.pop();
+      return {
+        ...state,
+        jobSearched: newJobSearched,
+      };
+    }
+    case RESET_JOBSEARCHED_VALUE:
+      return {
+        ...state,
+        jobSearched: [],
       };
     case TOGGLE_BACKDROP:
       return {

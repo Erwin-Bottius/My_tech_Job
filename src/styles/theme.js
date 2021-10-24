@@ -12,7 +12,7 @@ const colorTheme = createTheme({
     },
     secondary: {
       main: '#5E35B1',
-      light: '#e8e8e8',
+      light: '#e0e0e0',
     },
   },
 });

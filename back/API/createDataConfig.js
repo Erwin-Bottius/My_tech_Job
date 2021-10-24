@@ -17,6 +17,7 @@ const createDataConfig = function (base,
     url += `&region=${location}`;
   }
   url += `&sort=2&range=${minRange}-${minRange + 14}`;
+  console.log(url);
   return {
     method: 'get',
     url: url,
