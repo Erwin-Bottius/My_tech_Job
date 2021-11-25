@@ -11,7 +11,7 @@ import { useDispatch } from 'react-redux';
 import { useLocation, Link } from 'react-router-dom';
 
 // IMPORT FICHIERS
-import { TOGGLE_PRINT_SEARCH_FORM } from 'src/store/actions';
+import { TOGGLE_PRINT_SEARCH_FORM, RESET_JOBSEARCHED_VALUE } from 'src/store/actions';
 import useStyles from './style';
 
 const Header = () => {
@@ -41,7 +41,14 @@ const Header = () => {
          </IconButton>
          )}
         <Typography variant="h6">
-          <Link to="/"> My Tech Job </Link>
+          <Link
+            to="/"
+            onClick={() => {
+              dispatch({ type: RESET_JOBSEARCHED_VALUE });
+            }}
+          >
+            My Tech Job
+          </Link>
         </Typography>
         <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
           <MenuIcon />

@@ -5,7 +5,9 @@ const createDataConfig = function (base,
   isDepartment,
   isFrenchState,
   minRange,
-  responseToken) {
+  responseToken,
+  experience,
+  contractType) {
   let url = 'https://api.emploi-store.fr/partenaire/offresdemploi/v2/offres/search?motsCles=M1805';
   if (base) {
     url += `,${base}`;
@@ -15,6 +17,20 @@ const createDataConfig = function (base,
   }
   else if (location && isFrenchState) {
     url += `&region=${location}`;
+  }
+  if (experience) {
+    console.log('ok');
+    url += `&experience=${experience}`;
+  }
+  console.log(`******************* experience:${experience}`);
+  console.log(`******************* contrat:${contractType}`);
+  if (contractType) {
+    if (contractType === 'CDI' || contractType === 'CDD') {
+      url += `&typeContrat=${contractType}`;
+    }
+    else if (contractType === 'alternate') {
+      url += '&natureContrat=E2';
+    }
   }
   url += `&sort=2&range=${minRange}-${minRange + 14}`;
   console.log(url);

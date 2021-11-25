@@ -13,6 +13,7 @@ const colorTheme = createTheme({
     secondary: {
       main: '#5E35B1',
       light: '#e0e0e0',
+      blue: '#1de9b6',
     },
   },
 });

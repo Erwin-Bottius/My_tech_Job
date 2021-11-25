@@ -12,6 +12,7 @@ import frenchStates from '../../../data/states';
 
 const jobsMiddleware = (store) => (next) => (action) => {
   if (action.type === GET_JOBS) {
+    // PARTIE LOCALISATION **********************************
     let isFrenchState = false;
     let isDepartment = false;
     // Ici nous récupérons le state pour envoyer le jobds recherché + le code du département
@@ -30,7 +31,10 @@ const jobsMiddleware = (store) => (next) => (action) => {
           frenchState.nom.toLowerCase() === state.search.locationSearched.toLowerCase()));
         if (location) isFrenchState = true;
       }
+      // Si l'utilisateur n'a pas entré de localisation, alors nous traiterons le cas en back
+      // (la recherche s'éffectura donc sur toute la france)
     }
+
     // On requete le server qui lui meme requete l'API
     axios({
       method: 'post',
@@ -44,6 +48,8 @@ const jobsMiddleware = (store) => (next) => (action) => {
         minRange: state.search.requestMinRange,
         isFrenchState,
         isDepartment,
+        experience: state.search.filters.experienceValue,
+        contractType: state.search.filters.contractTypeValue,
       },
     })
       .then((response) => {
@@ -53,9 +59,17 @@ const jobsMiddleware = (store) => (next) => (action) => {
           store.dispatch({ type: GET_JOBS_ERROR });
         }
         else {
+          /* Ici nous mappons sur le tableau d'objets que l'api nous renvoit (les offres d'emplois)
+          si il y a un logo dans l'objet, on return l'objet,
+          sinon on ajoute la propriété avatarBgColor qui est une random color qui nous servira
+          pour l'avatar de l'offre
+          */
+          const jobsArray = response.data.map((element) => (element.origineOffre.partenaires
+            ? element
+            : { ...element, avatarBgColor: `rgb(${Math.round(Math.random() * 255)}, ${Math.round(Math.random() * 255)}, ${Math.round(Math.random() * 255)})` }));
           store.dispatch({
             type: GET_JOBS_SUCCESS,
-            jobsResponse: response.data,
+            jobsResponse: jobsArray,
           });
           store.dispatch({ type: INCREMENT_REQUEST_MIN_RANGE });
         }

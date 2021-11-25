@@ -13,7 +13,7 @@ import { useHistory } from 'react-router-dom';
 import useStyles from './style';
 
 const ResultPageCard = ({
-  logo, job, company, location, date, id,
+  logo, job, company, location, date, id, avatarBgColor,
 }) => {
   const classes = useStyles();
   const history = useHistory();
@@ -23,7 +23,14 @@ const ResultPageCard = ({
   return (
     <Card className={classes.root}>
       <CardContent>
-        <Avatar alt="logo entreprise" src={logo} />
+        <Avatar
+          alt="logo entreprise"
+          src={logo}
+          className={classes.avatar}
+          style={logo === 'n/c' ? { background: avatarBgColor } : {}}
+        >
+          {(logo === 'n/c' && company.charAt(0) !== ' ') ? company.charAt(0) : 'i' }
+        </Avatar>
         <Typography variant="subtitle1">
           {job}
         </Typography>
@@ -55,6 +62,7 @@ ResultPageCard.defaultProps = {
   company: 'N/C',
   location: 'N/C',
   date: 'N/C',
+  avatarBgColor: 'N/C',
 };
 
 ResultPageCard.propTypes = {
@@ -64,6 +72,7 @@ ResultPageCard.propTypes = {
   location: PropTypes.string,
   date: PropTypes.string,
   id: PropTypes.string.isRequired,
+  avatarBgColor: PropTypes.string,
 
 };
 

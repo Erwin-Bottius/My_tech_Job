@@ -20,7 +20,7 @@ const frenchStates = [
     code: '06',
   },
   {
-    nom: 'Île-de-France',
+    nom: 'Ile-de-France',
     code: '11',
   },
   {

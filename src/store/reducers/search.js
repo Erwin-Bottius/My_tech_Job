@@ -13,6 +13,8 @@ import
   CLEAR_JOBS,
   RESET_SEARCH_ERROR,
   RESET_MIN_RANGE,
+  TOGGLE_PRINT_FILTERS_MODAL,
+  SET_CONTRACTTYPE_VALUE,
 } from 'src/store/actions';
 
 export const initialState = {
@@ -25,6 +27,11 @@ export const initialState = {
   backdropOpen: false,
   hasError: false,
   requestMinRange: 0,
+  isFiltersModalHidden: true,
+  filters: {
+    contractTypeValue: '',
+    experienceValue: '',
+  },
 };
 
 const searchReducer = (state = initialState, action) => {
@@ -104,6 +111,20 @@ const searchReducer = (state = initialState, action) => {
       return {
         ...state,
         hasError: false,
+      };
+    case TOGGLE_PRINT_FILTERS_MODAL:
+      return {
+        ...state,
+        isFiltersModalHidden: !state.isFiltersModalHidden,
+
+      };
+    case SET_CONTRACTTYPE_VALUE:
+      return {
+        ...state,
+        filters: {
+          ...state.filters,
+          [action.formName]: action.newValue,
+        },
       };
     default:
       return state;

@@ -3,18 +3,30 @@ import colorTheme from 'src/styles/theme';
 
 const useStyles = makeStyles(() => ({
   root: {
-    width: '100%',
-    height: '100vh',
+    position: 'absolute',
+    top: 0,
+    bottom: 0,
+    right: 0,
+    left: 0,
+    zIndex: 1101,
+    // 1101 car la valeur par defaut du zindex de Appbar venant
+    // de MUI (dans le composant header) est de 1100
+    background: colorTheme.palette.primary.main,
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'flex-start',
     color: colorTheme.palette.primary.transparentText,
     paddingTop: '8rem',
     padding: '5% 10%',
+    overflowY: 'auto',
+  },
+  hidden: {
+    display: 'none',
   },
   searchCard: {
     width: '100%',
     marginTop: '1rem',
+    marginBottom: '2rem',
     background: colorTheme.palette.primary.white,
     paddingBottom: '1rem',
     borderRadius: '4px',
@@ -70,6 +82,9 @@ const useStyles = makeStyles(() => ({
     paddingBottom: '0.3rem',
     fontFamily: 'Roboto',
     fontStyle: 'italic',
+  },
+  populatSearches_title: {
+    marginBottom: '1rem',
   },
 
 }));

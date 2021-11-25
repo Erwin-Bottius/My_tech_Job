@@ -12,6 +12,7 @@ app.use(cors());
 app.use(express.json());
 
 app.post('/', async (req, res) => {
+  console.log(req.body);
   try {
     const {
       base,
@@ -19,23 +20,29 @@ app.post('/', async (req, res) => {
       isDepartment,
       isFrenchState,
       minRange,
+      experience,
+      contractType,
     } = req.body;
 
     // Ici nous récupérons le token qui va nous permettre de requeter l'API
     const responseToken = await axios(tokenConfig);
     const jobs = [];
-    // Si l'utilsateur n'a pas resigné de base, on requete sans base pour avaoir
-    // tous les jobs
+    // Si l'utilsateur n'a pas reseigné de base, on requete sans base pour avoir
+    // toutes les offres
     if (base.length === 0) {
-      const responseJobs = await axios(createDataConfig(undefined,
+      const responseJobs = await axios(createDataConfig(
+        undefined,
         location,
         isDepartment,
         isFrenchState,
         minRange,
-        responseToken));
+        responseToken,
+        experience,
+        contractType,
+      ));
       res.send(responseJobs.data.resultats);
     }
-    // Si l'utilisateur a rebseigné au moins un langage
+    // Si l'utilisateur a renseigné au moins un langage
     else {
     // on boucle sur le tableau comportant les bases (technos)
     //  en faisant une requete pour chaque techno
@@ -45,7 +52,9 @@ app.post('/', async (req, res) => {
           isDepartment,
           isFrenchState,
           minRange,
-          responseToken));
+          responseToken,
+          experience,
+          contractType));
         // On push le résultat de chaque requete dans le tableu jobs[]
         if (responseJobs.data.resultats) jobs.push(...responseJobs.data.resultats);
       }

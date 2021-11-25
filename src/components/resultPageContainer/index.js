@@ -12,8 +12,9 @@ import { useSelector, useDispatch } from 'react-redux';
 
 // IMPORTS FICHIERS
 import ResultPageCard from 'src/components/resultPageCard';
+import filterIcon from 'src/assets/images/edit4.png';
 import Error from 'src/components/error';
-import { GET_JOBS } from 'src/store/actions';
+import { GET_JOBS, TOGGLE_PRINT_FILTERS_MODAL } from 'src/store/actions';
 import getDate from 'src/store/functions/getDate';
 import useStyles from './style';
 
@@ -42,13 +43,37 @@ const ResultPageContainer = () => {
       <Card className={classes.card__message}>
         <CardContent>
           <Typography variant="h6" className={classes.resultMessage}>
-            Résultats de recherche pour <span className={classes.span}>{jobSearched || 'jobs les plus populaires'} </span>
+            Résultats de recherche pour
+            <span className={classes.span}>
+              {jobSearched.length > 0 ? ` ${jobSearched.join(' ')} ` : ' jobs les plus populaires '}
+            </span>
             dans <span className={classes.span}>{locationSearched || 'France'} </span>
           </Typography>
         </CardContent>
       </Card>
       )}
+      {!backdrop && !hasError
+        && (
+        <div className={classes.filtersContainer}>
+          <Typography variant="body1">
+            Des centaines d'offres trouvées
+          </Typography>
+          <Button
+            className={classes.filtersButton}
+            variant="contained"
+            size="medium"
+            onClick={() => {
+              dispatch({ type: TOGGLE_PRINT_FILTERS_MODAL });
+            }}
+          >
+            <img src={filterIcon} alt="filter icon" className={classes.filtersButton__img} />
+            Filtres
+          </Button>
+        </div>
+        )}
       <Box>
+        { /* Ici nous faisons un map sur les offres d'emplois récupérées par notre requete
+         a l'api afin de creer un composant resulTpageCard pour chaqque offre d'emploi */}
         {jobs.map((element) => (
           <ResultPageCard
             key={element.id}
@@ -58,6 +83,7 @@ const ResultPageContainer = () => {
             location={element.lieuTravail.libelle}
             id={element.id}
             date={getDate(element.dateActualisation, currentDate)}
+            avatarBgColor={element.avatarBgColor}
           />
         ))}
         {!backdrop && !hasError
@@ -67,7 +93,8 @@ const ResultPageContainer = () => {
           className={classes.loadMore}
           variant="contained"
           size="medium"
-        >Charger Plus
+        >
+          Charger Plus
         </Button>
         )}
       </Box>

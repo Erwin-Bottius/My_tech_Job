@@ -30,9 +30,22 @@ const JobOffer = () => {
             <Avatar
               className={classes.offer__subHeader__avatar}
               alt="logo entreprise"
+              // Si l'entreprise a un logo, on le met dans l'avatar,
+               // sinon On met le random BackgroundColor
               src={jobOfferObject.origineOffre.partenaires
                 ? jobOfferObject.origineOffre.partenaires[0].logo : 'n/c'}
-            />
+              style={jobOfferObject.origineOffre.partenaires
+                ? {}
+                : { background: jobOfferObject.avatarBgColor }}
+            >
+              {/* Si l'entrepirise a un logo, on le met dans l'avatar,
+              si Pas de logo mais le nom de l'entreprise
+               est renseigné, on met la premiere lettre du nom de l'entrepirsie ;
+               Si ni avatar ni nom d'entreprise, ce sera la lettre i par default */}
+              {jobOfferObject.origineOffre.partenaires
+                ? jobOfferObject.origineOffre.partenaires[0].logo
+                : (jobOfferObject.entreprise.nom && jobOfferObject.entreprise.nom.charAt(0))}
+            </Avatar>
           </div>
           <div>
             <Typography className={classes.offer__subHeader__subTitle} variant="subtitle1">

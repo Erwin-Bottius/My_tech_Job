@@ -33,6 +33,27 @@ const useStyles = makeStyles((theme) => ({
     color: colorTheme.palette.primary.white,
     backgroundColor: colorTheme.palette.primary.pinkColor,
   },
+  filtersContainer: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    padding: '1rem 2rem',
+  },
+  filtersButton: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    fontWeight: 'bold',
+    padding: '0.6rem 1rem',
+    color: colorTheme.palette.primary.white,
+    backgroundColor: colorTheme.palette.primary.pinkColor,
+  },
+  filtersButton__img: {
+    marginRight: '0.6rem',
+    height: '18px',
+    width: '15px',
+    color: 'white',
+  },
 
 }));
 

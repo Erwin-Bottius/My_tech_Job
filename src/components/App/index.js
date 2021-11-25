@@ -1,6 +1,5 @@
 // import NPM
 import { CssBaseline } from '@material-ui/core';
-import { useSelector } from 'react-redux';
 import { Switch, Route, useLocation } from 'react-router-dom';
 
 // == Import FICHIER
@@ -9,32 +8,31 @@ import HomeMainConatainer from 'src/components/homeMainContainer';
 import ModalSearchContainer from 'src/components/modalSearchContainer';
 import ResultPageContainer from 'src/components/resultPageContainer';
 import JobOffer from 'src/components/jobOffer';
+import ModalFilters from '../modalFilters';
 import useStyles from './style';
 
 // == Composant
 const App = () => {
   const classes = useStyles();
-  const isSearchFormHidden = useSelector((state) => state.search.isSearchFormHidden);
   const location = useLocation();
 
   return (
-    // Si on est sur la page de resultats de recherche, et qu'on veut faire une nouvelle recherche,
-    // on bascule de nouveaux les themes de couleur (body en violet + header en blanc)
-    <div className={location.pathname !== '/' && isSearchFormHidden ? classes.resultPageTheme : classes.root}>
+    // changement de couleur du body et header en fonction de la page
+    <div className={location.pathname === '/' ? classes.root : (classes.resultPageTheme)}>
       <CssBaseline />
-      {/* Le header ne s'affiche pas si on est sur la "modale" de recherche d'emploi */}
-      {isSearchFormHidden && <Header />}
-      { (isSearchFormHidden === false) && <ModalSearchContainer /> }
 
+      <Header />
+      <ModalSearchContainer />
+      <ModalFilters />
       <Switch>
         <Route exact path="/">
-          {isSearchFormHidden && <HomeMainConatainer />}
+          <HomeMainConatainer />
         </Route>
         <Route exact path="/recherche">
-          {isSearchFormHidden && <ResultPageContainer />}
+          <ResultPageContainer />
         </Route>
         <Route exact path="/offre-d-emploi/:id">
-          {isSearchFormHidden && <JobOffer />}
+          <JobOffer />
         </Route>
       </Switch>
       <footer>copiright</footer>

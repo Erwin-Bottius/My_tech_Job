@@ -6,6 +6,7 @@ import Autocomplete from '@material-ui/lab/Autocomplete';
 import CloseIcon from '@material-ui/icons/Close';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import { useEffect } from 'react';
 
 // IMPORT FICHIERS
 import {
@@ -15,7 +16,6 @@ import {
   CHANGE_JOBSEARCHED_VALUE,
   DELETE_EL_JOBSEARCHED_VALUE,
   DELETE_LAST_EL_JOBSEARCHED_VALUE,
-  RESET_JOBSEARCHED_VALUE,
   TOGGLE_BACKDROP,
   CLEAR_JOBS,
   GET_JOBS,
@@ -23,6 +23,8 @@ import {
   RESET_MIN_RANGE,
 } from 'src/store/actions';
 import getFilterdLocation from 'src/store/selectors/filteredLocations';
+import GuidedResearchButton from 'src/components/guidedSearchedButton';
+import basesGuidedResearch from '../../../data/basesGuidedResearch';
 import departments from '../../../data/departments';
 import frenchStates from '../../../data/states';
 import useStyles from './style';
@@ -31,9 +33,14 @@ const ModalSearchContainer = () => {
   const jobInputValue = useSelector((state) => state.search.jobInputValue);
   const locationInputValue = useSelector((state) => state.search.locationInputValue);
   const jobSearched = useSelector((state) => state.search.jobSearched);
+  const isSearchFormHidden = useSelector((state) => state.search.isSearchFormHidden);
   const classes = useStyles();
   const dispatch = useDispatch();
   const history = useHistory();
+  useEffect(() => {
+    if (!isSearchFormHidden) document.body.style.overflow = 'hidden';
+    else document.body.style.overflow = 'visible';
+  }, [isSearchFormHidden]);
 
   const handleSubmitForm = (event) => {
     event.preventDefault();
@@ -64,7 +71,11 @@ const ModalSearchContainer = () => {
       field: 'jobInputValue',
       inputValue: '',
     });
-    // Au submit, on clear le tableau contenant toutes les offres d'empois
+    // Au submit, on clear le tableau contenant toutes les offres d'emplois
+    // car c'est la meme action que lorsque l'on click sur le button load more
+    // qui ajoute les nouveau résultats aux résultats éxistant
+    // (on ajoutes les nouvelles offres dans le meme tableau)
+    // il faut donc clear les résultats seulement pour une nouvelle recherche
     dispatch({ type: CLEAR_JOBS });
     // On passe le state backdrop a true pour afficher l loading
     dispatch({ type: TOGGLE_BACKDROP });
@@ -73,10 +84,8 @@ const ModalSearchContainer = () => {
     dispatch({
       type: TOGGLE_PRINT_SEARCH_FORM,
     });
-
-    dispatch({ type: RESET_JOBSEARCHED_VALUE });
   };
-
+  // Fonction qui supprimera le chip (tag a l'interieur de l'input)
   const handleDeleteChip = (chipToDelete) => {
     dispatch({
       type: DELETE_EL_JOBSEARCHED_VALUE,
@@ -84,7 +93,7 @@ const ModalSearchContainer = () => {
     });
   };
   return (
-    <Box className={classes.root}>
+    <Box className={isSearchFormHidden ? classes.hidden : classes.root}>
       <CloseIcon
         className={classes.cross}
         onClick={() => {
@@ -137,7 +146,6 @@ const ModalSearchContainer = () => {
                 }
               }}
               onKeyDown={(event) => {
-                console.log(event.key);
                 if ((event.key === 'Enter' || event.key === ' ') && jobInputValue && jobInputValue) {
                   if (jobSearched.length > 4) {
                     event.preventDefault();
@@ -174,6 +182,9 @@ const ModalSearchContainer = () => {
           <hr />
           <Autocomplete
             openOnFocus
+            autoComplete
+            freeSolo
+            value={locationInputValue}
             onChange={(event, newValue) => {
               dispatch({
                 type: CHANGE_INPUTS_VALUES,
@@ -212,10 +223,24 @@ const ModalSearchContainer = () => {
             className={classes.searchButton}
             type="submit"
           >
-            RECHERCHER
+            rechercher
           </Button>
         </form>
       </div>
+      <Typography variant="h6" className={classes.populatSearches_title}>
+        Recherche les plus fréquentes
+      </Typography>
+      {/* Ici on map sur le tableau qui contient lui meme plusieurs tableaux
+      dans lesquels nous avons differents langage de programmations afin de creer
+      une recherhce guidée qui permet au click d'ajouter directement tous les langages concerné
+      dans la recherche */}
+      {basesGuidedResearch.map((element) => (
+        <GuidedResearchButton
+          key={element}
+          bases={element}
+        />
+
+      ))}
     </Box>
   );
 };

@@ -1,5 +1,5 @@
 import { makeStyles } from '@material-ui/core';
-import colorTheme from 'src/styles/theme'
+import colorTheme from 'src/styles/theme';
 
 const useStyles = makeStyles(() => ({
 
@@ -11,12 +11,13 @@ const useStyles = makeStyles(() => ({
     color: colorTheme.palette.primary.transparentText,
 
   },
-  root: {
+  button: {
     borderRadius: '100px',
     color: colorTheme.palette.primary.main,
-    fontWeight: 'bold',
+    fontSize: '1.2rem',
     marginTop: '1rem',
     background: colorTheme.palette.primary.white,
+    textTransform: 'capitalize',
     '&:hover': {
       background: colorTheme.palette.primary.white,
     },
