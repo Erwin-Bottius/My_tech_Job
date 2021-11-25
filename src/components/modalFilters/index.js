@@ -28,7 +28,10 @@ const ModalFilters = () => {
   // rendu de la modale et changeons l'overflow du body afin de cacher
   // en dessous de la modale tout ce qui pourrait être affiché
   useEffect(() => {
-    if (!isFiltersModalHidden) document.body.style.overflow = 'hidden';
+    if (!isFiltersModalHidden) {
+      window.scrollTo(0, 0);
+      document.body.style.overflow = 'hidden';
+    }
     else document.body.style.overflow = 'visible';
   }, [isFiltersModalHidden]);
   return (
