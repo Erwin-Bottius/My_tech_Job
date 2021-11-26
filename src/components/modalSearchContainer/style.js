@@ -31,10 +31,6 @@ const useStyles = makeStyles(() => ({
     paddingBottom: '1rem',
     borderRadius: '4px',
   },
-  searchModalInput: {
-    padding: '1rem 1rem',
-    width: '100%',
-  },
   cross: {
     color: colorTheme.palette.primary.white,
     fontSize: '2rem',
@@ -55,38 +51,9 @@ const useStyles = makeStyles(() => ({
     margin: 'auto',
     marginTop: '1rem',
   },
-  jobsInput__container: {
-    width: '100%',
-    padding: '1.5rem 0 1rem 0',
-    display: 'flex',
-    flexWrap: 'wrap',
-  },
-  jobsInput: {
-    padding: '0 1rem',
-  },
-  jobsInput__ul: {
-    display: 'flex',
-    flexWrap: 'wrap',
-    maxWidth: '100%',
-  },
-  jobsInput__chip: {
-    color: colorTheme.palette.primary.white,
-    marginLeft: '5px',
-    marginBottom: '5px',
-    backgroundColor: colorTheme.palette.secondary.main,
-  },
-  jobsInput__notice: {
-    color: colorTheme.palette.secondary.light,
-    width: '100%',
-    paddingLeft: '1rem',
-    paddingBottom: '0.3rem',
-    fontFamily: 'Roboto',
-    fontStyle: 'italic',
-  },
   populatSearches_title: {
     marginBottom: '1rem',
   },
-
 }));
 
 export default useStyles;

@@ -3,6 +3,7 @@ import { persistStore, persistReducer } from 'redux-persist';
 import jobsMiddleware from 'src/store/middlewares/jobsMiddleware';
 import storage from 'redux-persist/lib/storage';
 import reducer from 'src/store/reducers';
+import getCityCodeMiddleware from './middlewares/getCitycodeMiddleware';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
@@ -15,6 +16,7 @@ const persistConfig = {
 
 const enhancers = composeEnhancers(
   applyMiddleware(
+    getCityCodeMiddleware,
     jobsMiddleware,
   ),
 );

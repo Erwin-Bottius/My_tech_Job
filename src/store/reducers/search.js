@@ -15,12 +15,17 @@ import
   RESET_MIN_RANGE,
   TOGGLE_PRINT_FILTERS_MODAL,
   SET_CONTRACTTYPE_VALUE,
+  GET_CITYCODE_GEOLOCATION_SUCCESS,
+  SET_STATUSCODE,
+  SET_GEOLOCATION_LOADING,
 } from 'src/store/actions';
 
 export const initialState = {
   isSearchFormHidden: true,
+  statusCode: '',
   jobInputValue: '',
   locationInputValue: '',
+  cityCode: '',
   locationSearched: '',
   jobSearched: [],
   jobs: [],
@@ -28,6 +33,7 @@ export const initialState = {
   hasError: false,
   requestMinRange: 0,
   isFiltersModalHidden: true,
+  geolocationLoading: false,
   filters: {
     contractTypeValue: '',
     experienceValue: '',
@@ -125,6 +131,21 @@ const searchReducer = (state = initialState, action) => {
           ...state.filters,
           [action.formName]: action.newValue,
         },
+      };
+    case GET_CITYCODE_GEOLOCATION_SUCCESS:
+      return {
+        ...state,
+        cityCode: action.cityCode,
+      };
+    case SET_STATUSCODE:
+      return {
+        ...state,
+        statusCode: action.statusCode,
+      };
+    case SET_GEOLOCATION_LOADING:
+      return {
+        ...state,
+        geolocationLoading: !state.geolocationLoading,
       };
     default:
       return state;

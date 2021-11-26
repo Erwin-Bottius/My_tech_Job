@@ -4,6 +4,7 @@ import {
   GET_JOBS_SUCCESS,
   GET_JOBS_ERROR,
   INCREMENT_REQUEST_MIN_RANGE,
+  SET_STATUSCODE,
 
 } from 'src/store/actions';
 
@@ -15,24 +16,32 @@ const jobsMiddleware = (store) => (next) => (action) => {
     // PARTIE LOCALISATION **********************************
     let isFrenchState = false;
     let isDepartment = false;
+    let isCity = false;
     // Ici nous récupérons le state pour envoyer le jobds recherché + le code du département
     const state = store.getState();
     let location = '';
-    // Si l'utilsateur a renseigné une valeur dans l'input localisation
-    //  on recherche le département correspondant
-    if (state.search.locationSearched) {
-      location = departments.find((department) => (
-        department.nom.toLowerCase() === state.search.locationSearched.toLowerCase()));
-      if (location) isDepartment = true;
-      // Si on ne trouve pas le département correspondant
-      // alors on cherche dans le tableau des régions
-      else {
-        location = frenchStates.find((frenchState) => (
-          frenchState.nom.toLowerCase() === state.search.locationSearched.toLowerCase()));
-        if (location) isFrenchState = true;
+    if (state.search.locationSearched && state.locationSearched !== 'Toute la France') {
+      // Si l'utilsateur a renseigné une valeur dans l'input localisation
+      //  on recherche le département correspondant
+      if (state.search.locationSearched === 'Autour de moi') {
+        isCity = true;
+        location = { code: state.search.cityCode };
       }
-      // Si l'utilisateur n'a pas entré de localisation, alors nous traiterons le cas en back
-      // (la recherche s'éffectura donc sur toute la france)
+      else {
+        location = departments.find((department) => (
+          department.nom.toLowerCase() === state.search.locationSearched.toLowerCase()));
+        if (location) isDepartment = true;
+        // Si on ne trouve pas le département correspondant
+        // alors on cherche dans le tableau des régions
+        else {
+          location = frenchStates.find((frenchState) => (
+            frenchState.nom.toLowerCase() === state.search.locationSearched.toLowerCase()));
+          if (location) isFrenchState = true;
+        }
+      }
+      // Si l'utilisateur n'a pas entré de localisation ou que sa recherche est étendue sur
+      // toute la France alors nous traiterons le cas en back
+      // (la recherche s'éffectura donc sur toute la france dans les 2 cas)
     }
 
     // On requete le server qui lui meme requete l'API
@@ -48,6 +57,7 @@ const jobsMiddleware = (store) => (next) => (action) => {
         minRange: state.search.requestMinRange,
         isFrenchState,
         isDepartment,
+        isCity,
         experience: state.search.filters.experienceValue,
         contractType: state.search.filters.contractTypeValue,
       },
@@ -57,6 +67,14 @@ const jobsMiddleware = (store) => (next) => (action) => {
         // on émet l'action d'erreur
         if (response.data.length === 0 && state.search.requestMinRange === 0) {
           store.dispatch({ type: GET_JOBS_ERROR });
+        }
+        // Si nous recevons un tableau vide mais ce n'est pas la premiere requete
+        // alors on met les statut 200 pour que le button loead more ne s'affiche plus
+        else if (response.data.length === 0 && state.search.requestMinRange !== 0) {
+          store.dispatch({
+            type: SET_STATUSCODE,
+            statusCode: 200,
+          });
         }
         else {
           /* Ici nous mappons sur le tableau d'objets que l'api nous renvoit (les offres d'emplois)
@@ -72,6 +90,10 @@ const jobsMiddleware = (store) => (next) => (action) => {
             jobsResponse: jobsArray,
           });
           store.dispatch({ type: INCREMENT_REQUEST_MIN_RANGE });
+          store.dispatch({
+            type: SET_STATUSCODE,
+            statusCode: response.status,
+          });
         }
       })
       .catch(() => {

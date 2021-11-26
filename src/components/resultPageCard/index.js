@@ -46,7 +46,7 @@ const ResultPageCard = ({
         <Button
           onClick={handleClickOfferDetail}
           variant="contained"
-          size="small"
+          size="medium"
           className={classes.button}
         >
           Afficher

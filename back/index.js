@@ -22,8 +22,13 @@ app.post('/', async (req, res) => {
       minRange,
       experience,
       contractType,
+      isCity,
     } = req.body;
-
+    // L'api de pole emploi nous renvoit un statut 206 si nous avons un contenu partiel
+    // Et 200 si nous avons récupéré toute la data, nous allons donc faire le meme procéder
+    // pour savoir en front si on peut faire de nouvelles requetes avec les meme critère
+    // pour récupérer de la data supplementaire
+    let responseStatus = 200;
     // Ici nous récupérons le token qui va nous permettre de requeter l'API
     const responseToken = await axios(tokenConfig);
     const jobs = [];
@@ -39,8 +44,12 @@ app.post('/', async (req, res) => {
         responseToken,
         experience,
         contractType,
+        isCity,
       ));
-      res.send(responseJobs.data.resultats);
+      if (Number(responseJobs.status) === 206) {
+        responseStatus = 206;
+      }
+      res.status(responseStatus).send(responseJobs.data.resultats);
     }
     // Si l'utilisateur a renseigné au moins un langage
     else {
@@ -54,7 +63,11 @@ app.post('/', async (req, res) => {
           minRange,
           responseToken,
           experience,
-          contractType));
+          contractType,
+          isCity));
+        if (Number(responseJobs.status) === 206) {
+          responseStatus = 206;
+        }
         // On push le résultat de chaque requete dans le tableu jobs[]
         if (responseJobs.data.resultats) jobs.push(...responseJobs.data.resultats);
       }
@@ -67,11 +80,12 @@ app.post('/', async (req, res) => {
         return !duplicate;
       });
       // Puis on envoie la reponse au front
-      res.send(filteredUNiqueResult);
+      console.log(responseStatus);
+      res.status(responseStatus).send(filteredUNiqueResult);
     }
   }
   catch (error) {
-    // console.log(error);
+    console.log(error);
     res.status(500).send(error);
   }
 });

@@ -24,6 +24,7 @@ const ResultPageContainer = () => {
   const jobs = useSelector((state) => state.search.jobs);
   const backdrop = useSelector((state) => state.search.backdropOpen);
   const hasError = useSelector((state) => state.search.hasError);
+  const statusCode = useSelector((state) => state.search.statusCode);
   const classes = useStyles();
   const dispatch = useDispatch();
   const currentDate = Date.now();
@@ -86,7 +87,7 @@ const ResultPageContainer = () => {
             avatarBgColor={element.avatarBgColor}
           />
         ))}
-        {!backdrop && !hasError
+        {!backdrop && !hasError && Number(statusCode) === 206
         && (
         <Button
           onClick={handleOnclickLoadMore}

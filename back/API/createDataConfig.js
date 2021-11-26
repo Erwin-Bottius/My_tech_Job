@@ -7,23 +7,27 @@ const createDataConfig = function (base,
   minRange,
   responseToken,
   experience,
-  contractType) {
+  contractType,
+  isCity) {
   let url = 'https://api.emploi-store.fr/partenaire/offresdemploi/v2/offres/search?motsCles=M1805';
+  // ****** BASES
   if (base) {
     url += `,${base}`;
   }
-  if (location && isDepartment) {
+  // ***** LOCATION
+  if (location && isCity) {
+    url += `&commune=${location}&distance=30`;
+  }
+  else if (location && isDepartment) {
     url += `&departement=${location}`;
   }
   else if (location && isFrenchState) {
     url += `&region=${location}`;
   }
+  // ***** FILTERS
   if (experience) {
-    console.log('ok');
     url += `&experience=${experience}`;
   }
-  console.log(`******************* experience:${experience}`);
-  console.log(`******************* contrat:${contractType}`);
   if (contractType) {
     if (contractType === 'CDI' || contractType === 'CDD') {
       url += `&typeContrat=${contractType}`;
