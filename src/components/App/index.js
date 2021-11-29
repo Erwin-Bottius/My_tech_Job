@@ -1,32 +1,39 @@
 // import NPM
 import { CssBaseline } from '@material-ui/core';
 import { Switch, Route, useLocation } from 'react-router-dom';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 // == Import FICHIER
-import Header from 'src/components/header';
-import HomeMainConatainer from 'src/components/homeMainContainer';
+import HeaderMobile from 'src/components/headerMobile';
+import HomeMobile from 'src/components/homeMobile';
 import ModalSearchContainer from 'src/components/modalSearchContainer';
 import ResultPageContainer from 'src/components/resultPageContainer';
 import JobOffer from 'src/components/jobOffer';
-import ModalFilters from '../modalFilters';
+import HeaderDesk from 'src/components/headerDesktop';
+import ModalFilters from 'src/components/modalFilters';
+import HomeDesk from 'src/components/homeDesktop';
 import useStyles from './style';
 
 // == Composant
 const App = () => {
   const classes = useStyles();
   const location = useLocation();
+  const isMobile = useMediaQuery('(max-width:800px)');
 
   return (
     // changement de couleur du body et header en fonction de la page
     <div className={location.pathname === '/' ? classes.root : (classes.resultPageTheme)}>
       <CssBaseline />
-
-      <Header />
+      { isMobile
+        ? <HeaderMobile />
+        : <HeaderDesk />}
       <ModalSearchContainer />
       <ModalFilters />
       <Switch>
         <Route exact path="/">
-          <HomeMainConatainer />
+          { isMobile
+            ? <HomeMobile />
+            : <HomeDesk />}
         </Route>
         <Route exact path="/recherche">
           <ResultPageContainer />

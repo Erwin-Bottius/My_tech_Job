@@ -1,42 +1,41 @@
-// IMPPORT NPM
 import {
-  Box, Typography, Button,
+  Box,
+  Typography,
+  Button,
 } from '@material-ui/core';
-import CloseIcon from '@material-ui/icons/Close';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { useEffect } from 'react';
+import SearchIcon from '@material-ui/icons/Search';
 
 // IMPORT FICHIERS
+import JobsInput from 'src/components/JobsInput';
+import LocationInput from 'src/components/LocationInput';
 import {
-  TOGGLE_PRINT_SEARCH_FORM,
-  CHANGE_INPUTS_VALUES,
-  CHANGE_LOCATIONSEARCHED_VALUE,
-  TOGGLE_BACKDROP,
-  CLEAR_JOBS,
-  GET_JOBS,
+  RESET_STATES,
   RESET_SEARCH_ERROR,
   RESET_MIN_RANGE,
+  CHANGE_LOCATIONSEARCHED_VALUE,
+  CHANGE_INPUTS_VALUES,
+  CLEAR_JOBS,
+  TOGGLE_BACKDROP,
+  GET_JOBS,
 } from 'src/store/actions';
 import GuidedResearchButton from 'src/components/guidedSearchedButton';
-import JobsInput from 'src/components/JobsInput';
 import basesGuidedResearch from '../../../data/basesGuidedResearch';
 import useStyles from './style';
-import LocationInput from '../LocationInput';
 
-const ModalSearchContainer = () => {
-  const jobInputValue = useSelector((state) => state.search.jobInputValue);
-  const locationInputValue = useSelector((state) => state.search.locationInputValue);
-  const isSearchFormHidden = useSelector((state) => state.search.isSearchFormHidden);
-  const geolocationLoading = useSelector((state) => state.search.geolocationLoading);
+const HomeDesk = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const history = useHistory();
+  const jobInputValue = useSelector((state) => state.search.jobInputValue);
+  const locationInputValue = useSelector((state) => state.search.locationInputValue);
+  const geolocationLoading = useSelector((state) => state.search.geolocationLoading);
+  // Lorsque l'utilisateur est sur la page home, on reset tous le sates
   useEffect(() => {
-    if (!isSearchFormHidden) document.body.style.overflow = 'hidden';
-    else document.body.style.overflow = 'visible';
-  }, [isSearchFormHidden]);
-
+    dispatch({ type: RESET_STATES });
+  }, []);
   const handleSubmitForm = (event) => {
     if (geolocationLoading) {
       event.preventDefault();
@@ -74,39 +73,31 @@ const ModalSearchContainer = () => {
       // On passe le state backdrop a true pour afficher l loading
       dispatch({ type: TOGGLE_BACKDROP });
       dispatch({ type: GET_JOBS });
-      // On cache de nouveau la modale de recherche
-      dispatch({
-        type: TOGGLE_PRINT_SEARCH_FORM,
-      });
     }
   };
   return (
-    <Box className={isSearchFormHidden ? classes.hidden : classes.root}>
-      <CloseIcon
-        className={classes.cross}
-        onClick={() => {
-          dispatch({ type: TOGGLE_PRINT_SEARCH_FORM });
-        }}
-      />
-      <Typography variant="h6">
-        Trouvez le job qui vous convient <span className={classes.span}>vraiment</span>.
+    <Box className={classes.box}>
+      <Typography
+        variant="h6"
+        className={classes.title}
+      >
+        Trouver le job qui vous convient
+        <span className={classes.span}> vraiment </span>
       </Typography>
       <div className={classes.searchCard}>
         <form
+          className={classes.form}
           onSubmit={handleSubmitForm}
         >
           <JobsInput />
-          <hr />
+          <div className={classes.hr} />
           <LocationInput />
-          <hr />
           <Button
             variant="contained"
-            size="large"
             className={classes.searchButton}
             type="submit"
-          >
-            rechercher
-          </Button>
+            startIcon={<SearchIcon className={classes.searchIcon} style={{ fontSize: '2rem' }} />}
+          />
         </form>
       </div>
       <Typography variant="h6" className={classes.populatSearches_title}>
@@ -116,15 +107,17 @@ const ModalSearchContainer = () => {
       dans lesquels nous avons differents langage de programmations afin de creer
       une recherhce guidée qui permet au click d'ajouter directement tous les langages concerné
       dans la recherche */}
-      {basesGuidedResearch.map((element) => (
-        <GuidedResearchButton
-          key={element}
-          bases={element}
-        />
+      <div className={classes.guided__container}>
+        {basesGuidedResearch.map((element) => (
+          <GuidedResearchButton
+            key={element}
+            bases={element}
+          />
 
-      ))}
+        ))}
+      </div>
     </Box>
   );
 };
 
-export default ModalSearchContainer;
+export default HomeDesk;

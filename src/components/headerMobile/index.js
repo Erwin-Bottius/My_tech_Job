@@ -1,12 +1,11 @@
 // IMPORT NPM
 import {
-  AppBar,
-  Toolbar,
   Typography,
   IconButton,
 } from '@material-ui/core';
+import { useState } from 'react';
 import SearchIcon from '@material-ui/icons/Search';
-import MenuIcon from '@material-ui/icons/Menu';
+import { Turn as Hamburger } from 'hamburger-react';
 import { useDispatch } from 'react-redux';
 import { useLocation, Link } from 'react-router-dom';
 
@@ -14,18 +13,18 @@ import { useLocation, Link } from 'react-router-dom';
 import { TOGGLE_PRINT_SEARCH_FORM, RESET_JOBSEARCHED_VALUE } from 'src/store/actions';
 import useStyles from './style';
 
-const Header = () => {
+const HeaderMobile = () => {
   const classes = useStyles();
+  const [isOpen, setOpen] = useState(false);
   const dispatch = useDispatch();
   const location = useLocation();
 
   return (
-    <AppBar position="static" className={location.pathname !== '/' ? classes.resultPageTheme : classes.root}>
-      <Toolbar className={classes.tool}>
-        {/* SI on est sur la page de résultats ou d'offre,
+    <div className={location.pathname !== '/' ? classes.resultPageTheme : classes.root}>
+      {/* SI on est sur la page de résultats ou d'offre,
          on affiche un icone SEARCH dans le header pour
         avoir la possibilité d'éffectuer une nouvelle recherche */}
-        {location.pathname !== '/'
+      {location.pathname !== '/'
          && (
          <IconButton
            onClick={() => {
@@ -40,22 +39,24 @@ const Header = () => {
            <SearchIcon />
          </IconButton>
          )}
-        <Typography variant="h6">
-          <Link
-            to="/"
-            onClick={() => {
-              dispatch({ type: RESET_JOBSEARCHED_VALUE });
-            }}
-          >
-            My Tech Job
-          </Link>
-        </Typography>
-        <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-          <MenuIcon />
-        </IconButton>
-      </Toolbar>
-    </AppBar>
+      <Typography variant="h6">
+        <Link
+          to="/"
+          onClick={() => {
+            dispatch({ type: RESET_JOBSEARCHED_VALUE });
+          }}
+        >
+          My Tech Job
+        </Link>
+      </Typography>
+      <Hamburger
+        toggled={isOpen}
+        toggle={setOpen}
+        className={classes.menuButton}
+        size={22}
+      />
+    </div>
   );
 };
 
-export default Header;
+export default HeaderMobile;

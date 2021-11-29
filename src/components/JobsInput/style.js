@@ -8,8 +8,16 @@ const useStyles = makeStyles(() => ({
     display: 'flex',
     flexWrap: 'wrap',
   },
+  jobsInput__container_desktop: {
+    width: '40%',
+    textAlign: 'left',
+    '& input::placeholder': {
+      fontSize: '1.3rem',
+    },
+  },
   jobsInput: {
     padding: '0 1rem',
+    width: '100%',
   },
   jobsInput__ul: {
     display: 'flex',
@@ -29,6 +37,20 @@ const useStyles = makeStyles(() => ({
     paddingBottom: '0.3rem',
     fontFamily: 'Roboto',
     fontStyle: 'italic',
+  },
+  jobsInput__container_desktop_result: {
+    display: 'flex',
+    '& input': {
+      width: 'auto',
+      '& ::placeholder': {
+        fontSize: '1rem',
+      },
+    },
+  },
+  jobsInput__ul_desktop_result: {
+    display: 'flex',
+    flexBasis: '50rem',
+    flexWrap: 'wrap',
   },
 }));
 

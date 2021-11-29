@@ -1,6 +1,7 @@
 // IMPORT NPM
 import { useDispatch, useSelector } from 'react-redux';
-import { Chip, InputBase } from '@material-ui/core';
+import { useLocation } from 'react-router-dom';
+import { Chip, InputBase, useMediaQuery } from '@material-ui/core';
 
 // IMPORT FICHIERS
 import {
@@ -12,7 +13,9 @@ import {
 import useStyles from './style';
 
 const JobsInput = () => {
+  const isMobile = useMediaQuery('(max-width:800px)');
   const dispatch = useDispatch();
+  const location = useLocation();
   const classes = useStyles();
   const jobSearched = useSelector((state) => state.search.jobSearched);
   const jobInputValue = useSelector((state) => state.search.jobInputValue);
@@ -24,14 +27,98 @@ const JobsInput = () => {
       deletedJob: chipToDelete,
     });
   };
-
+  // Version Mobile
+  if (isMobile) {
+    return (
+      <div className={classes.jobsInput__container}>
+        {jobSearched.length < 1
+        && <p className={classes.jobsInput__notice}>Appuyer sur Entrer pour ajouter un</p> }
+        <ul className={classes.jobsInput__ul}>
+          {jobSearched.map((element, index) => (
+            // eslint-disable-next-line react/no-array-index-key
+            <li key={`${element}${index}`}>
+              <Chip
+                className={classes.jobsInput__chip}
+                label={element}
+                onDelete={() => {
+                  handleDeleteChip(element);
+                }}
+              />
+            </li>
+          ))}
+        </ul>
+        <InputBase
+          className={classes.jobsInput}
+          placeholder="langage, framework..."
+          variant="outlined"
+          value={jobInputValue}
+  // a la perte du focus, si l'utilsateur n'a pas creer le Chip
+  // On le créé pour lui, seulement si la valeur de l'input est non nulle
+          onBlur={() => {
+            if (jobSearched.length < 5 && jobInputValue) {
+              dispatch({
+                type: CHANGE_JOBSEARCHED_VALUE,
+                jobSearched: jobInputValue,
+              });
+              // puis on reset l'input
+              dispatch({
+                type: CHANGE_INPUTS_VALUES,
+                field: 'jobInputValue',
+                inputValue: '',
+              });
+            }
+          }}
+          onKeyDown={(event) => {
+            if ((event.key === 'Enter' || event.key === ' ') && jobInputValue && jobInputValue) {
+              if (jobSearched.length > 4) {
+                event.preventDefault();
+                return;
+              }
+              event.preventDefault();
+              // On ajoute les valeurs de l'input job au state jobSearched (tableau)
+              dispatch({
+                type: CHANGE_JOBSEARCHED_VALUE,
+                jobSearched: jobInputValue,
+              });
+              // puis on reset l'input
+              dispatch({
+                type: CHANGE_INPUTS_VALUES,
+                field: 'jobInputValue',
+                inputValue: '',
+              });
+            }
+            else if (event.key === 'Backspace' && jobInputValue === '') {
+              dispatch({
+                type: DELETE_LAST_EL_JOBSEARCHED_VALUE,
+              });
+            }
+          }}
+          onChange={(event) => {
+            dispatch({
+              type: CHANGE_INPUTS_VALUES,
+              field: 'jobInputValue',
+              inputValue: event.target.value,
+            });
+          }}
+        />
+      </div>
+    );
+  }
+  // Version Desktop
   return (
-    <div className={classes.jobsInput__container}>
-      {jobSearched.length < 1
-&& <p className={classes.jobsInput__notice}>Appuyer sur Entrer pour ajouter un</p> }
-      <ul className={classes.jobsInput__ul}>
+    <div
+      className={location.pathname === '/'
+        ? classes.jobsInput__container_desktop
+        : classes.jobsInput__container_desktop_result}
+    >
+      {jobSearched.length < 1 && (location.pathname === '/')
+      && <p className={classes.jobsInput__notice}>Appuyer sur Entrer pour ajouter un</p> }
+      <ul className={location.pathname === '/'
+        ? classes.jobsInput__ul
+        : classes.jobsInput__ul_desktop_result}
+      >
         {jobSearched.map((element, index) => (
-        // eslint-disable-next-line react/no-array-index-key
+          // eslint-disable-next-line react/no-array-index-key
           <li key={`${element}${index}`}>
             <Chip
               className={classes.jobsInput__chip}

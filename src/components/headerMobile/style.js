@@ -3,14 +3,23 @@ import colorTheme from 'src/styles/theme';
 
 const useStyles = makeStyles(() => ({
   root: {
-    backgroundColor: colorTheme.palette.primary.white,
+    width: '100%',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between',
     color: colorTheme.palette.primary.black,
-    padding: '3% 5%',
+    backgroundColor: colorTheme.palette.primary.white,
+    padding: '4% 5%',
   },
   resultPageTheme: {
-    padding: '3% 5%',
+    width: '100%',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between',
     color: colorTheme.palette.primary.white,
     backgroundColor: colorTheme.palette.primary.main,
+    padding: '4% 5%',
+
   },
   tool: {
     display: 'flex',

@@ -9,7 +9,7 @@ import { useDispatch } from 'react-redux';
 import { TOGGLE_PRINT_SEARCH_FORM, RESET_STATES } from 'src/store/actions';
 import useStyles from './style';
 
-const HomeMainConatainer = () => {
+const HomeMobile = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
   // Lorsque l'utilisateur est sur la page home, on reset tous le sates
@@ -37,4 +37,4 @@ const HomeMainConatainer = () => {
   );
 };
 
-export default HomeMainConatainer;
+export default HomeMobile;
