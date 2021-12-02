@@ -12,6 +12,7 @@ import JobOffer from 'src/components/jobOffer';
 import HeaderDesk from 'src/components/headerDesktop';
 import ModalFilters from 'src/components/modalFilters';
 import HomeDesk from 'src/components/homeDesktop';
+import ResultContainerDesktop from 'src/components/resultContainerDesktop/';
 import useStyles from './style';
 
 // == Composant
@@ -22,7 +23,7 @@ const App = () => {
 
   return (
     // changement de couleur du body et header en fonction de la page
-    <div className={location.pathname === '/' ? classes.root : (classes.resultPageTheme)}>
+    <div className={location.pathname === '/' ? classes.root : classes.resultPageTheme}>
       <CssBaseline />
       { isMobile
         ? <HeaderMobile />
@@ -36,7 +37,9 @@ const App = () => {
             : <HomeDesk />}
         </Route>
         <Route exact path="/recherche">
-          <ResultPageContainer />
+          {isMobile
+            ? <ResultPageContainer />
+            : <ResultContainerDesktop />}
         </Route>
         <Route exact path="/offre-d-emploi/:id">
           <JobOffer />

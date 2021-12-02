@@ -90,7 +90,6 @@ const HomeDesk = () => {
           onSubmit={handleSubmitForm}
         >
           <JobsInput />
-          <div className={classes.hr} />
           <LocationInput />
           <Button
             variant="contained"
@@ -100,7 +99,7 @@ const HomeDesk = () => {
           />
         </form>
       </div>
-      <Typography variant="h6" className={classes.populatSearches_title}>
+      <Typography variant="h6" className={classes.popularSearches_title}>
         Recherche les plus fréquentes
       </Typography>
       {/* Ici on map sur le tableau qui contient lui meme plusieurs tableaux

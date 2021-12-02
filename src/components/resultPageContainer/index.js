@@ -7,6 +7,7 @@ import {
   Button,
   Backdrop,
   CircularProgress,
+  useMediaQuery,
 } from '@material-ui/core';
 import { useSelector, useDispatch } from 'react-redux';
 
@@ -19,6 +20,7 @@ import getDate from 'src/store/functions/getDate';
 import useStyles from './style';
 
 const ResultPageContainer = () => {
+  const isMobile = useMediaQuery('(max-width:800px)');
   const locationSearched = useSelector((state) => state.search.locationSearched);
   const jobSearched = useSelector((state) => state.search.jobSearched);
   const jobs = useSelector((state) => state.search.jobs);
@@ -32,14 +34,15 @@ const ResultPageContainer = () => {
   const handleOnclickLoadMore = () => {
     dispatch({ type: GET_JOBS });
   };
-
-  return (
-    <div className={hasError ? classes.errorContainer : classes.root}>
-      {/* Si l'animation backdrop est en cours (donc que la requete a l'api n'est pas terminée)
+  // *************** VERSION MOBILE ***********************************************
+  if (isMobile) {
+    return (
+      <div className={hasError ? classes.errorContainer : classes.root}>
+        {/* Si l'animation backdrop est en cours (donc que la requete a l'api n'est pas terminée)
       On affiche pas la card de message // Et si il ya eu une erreur dans la requete
       on affiche le composant Error  */}
-      {hasError && <Error />}
-      {!backdrop && (hasError === false)
+        {hasError && <Error />}
+        {!backdrop && (hasError === false)
       && (
       <Card className={classes.card__message}>
         <CardContent>
@@ -53,7 +56,7 @@ const ResultPageContainer = () => {
         </CardContent>
       </Card>
       )}
-      {!backdrop && !hasError
+        {!backdrop && !hasError
         && (
         <div className={classes.filtersContainer}>
           <Typography variant="body1">
@@ -72,22 +75,23 @@ const ResultPageContainer = () => {
           </Button>
         </div>
         )}
-      <Box>
-        { /* Ici nous faisons un map sur les offres d'emplois récupérées par notre requete
+        <Box>
+          { /* Ici nous faisons un map sur les offres d'emplois récupérées par notre requete
          a l'api afin de creer un composant resulTpageCard pour chaqque offre d'emploi */}
-        {jobs.map((element) => (
-          <ResultPageCard
-            key={element.id}
-            logo={element.origineOffre.partenaires ? element.origineOffre.partenaires[0].logo : 'n/c'}
-            job={element.intitule}
-            company={element.entreprise.nom}
-            location={element.lieuTravail.libelle}
-            id={element.id}
-            date={getDate(element.dateActualisation, currentDate)}
-            avatarBgColor={element.avatarBgColor}
-          />
-        ))}
-        {!backdrop && !hasError && Number(statusCode) === 206
+          {jobs.map((element) => (
+            <ResultPageCard
+              key={element.id}
+              logo={element.origineOffre.partenaires ? element.origineOffre.partenaires[0].logo : 'n/c'}
+              job={element.intitule}
+              company={element.entreprise.nom}
+              location={element.lieuTravail.libelle}
+              id={element.id}
+              date={getDate(element.dateActualisation, currentDate)}
+              avatarBgColor={element.avatarBgColor}
+              isSelected={element.isSelected}
+            />
+          ))}
+          {!backdrop && !hasError && Number(statusCode) === 206
         && (
         <Button
           onClick={handleOnclickLoadMore}
@@ -98,6 +102,47 @@ const ResultPageContainer = () => {
           Charger Plus
         </Button>
         )}
+        </Box>
+        <Backdrop open={backdrop} className={classes.backdrop}>
+          <CircularProgress color="inherit" />
+        </Backdrop>
+      </div>
+    );
+  }
+  // *************** VERSION DESKTOP *******************************
+  return (
+    <div className={hasError ? classes.errorContainer : classes.container__desktop}>
+      {/* Si l'animation backdrop est en cours (donc que la requete a l'api n'est pas terminée)
+          On affiche pas la card de message // Et si il ya eu une erreur dans la requete
+          on affiche le composant Error  */}
+
+      <Box>
+        { /* Ici nous faisons un map sur les offres d'emplois récupérées par notre requete
+             a l'api afin de creer un composant resulTpageCard pour chaqque offre d'emploi */}
+        {jobs.map((element) => (
+          <ResultPageCard
+            key={element.id}
+            logo={element.origineOffre.partenaires ? element.origineOffre.partenaires[0].logo : 'n/c'}
+            job={element.intitule}
+            company={element.entreprise.nom}
+            location={element.lieuTravail.libelle}
+            id={element.id}
+            date={getDate(element.dateActualisation, currentDate)}
+            avatarBgColor={element.avatarBgColor}
+            isSelected={element.isSelected}
+          />
+        ))}
+        {!backdrop && !hasError && Number(statusCode) === 206
+            && (
+            <Button
+              onClick={handleOnclickLoadMore}
+              className={classes.loadMore}
+              variant="contained"
+              size="medium"
+            >
+              Charger Plus
+            </Button>
+            )}
       </Box>
       <Backdrop open={backdrop} className={classes.backdrop}>
         <CircularProgress color="inherit" />

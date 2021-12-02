@@ -1,11 +1,12 @@
 // IMPORT NPM
-import { InputBase, useMediaQuery } from '@material-ui/core';
+import { InputBase, useMediaQuery, Paper } from '@material-ui/core';
 import Autocomplete from '@material-ui/lab/Autocomplete';
-import { useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
 import GpsFixedIcon from '@material-ui/icons/GpsFixed';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import { useState } from 'react';
+import { useLocation } from 'react-router-dom';
 
 // IMPORT FICHIERS
 import {
@@ -20,29 +21,39 @@ import useStyles from './style';
 
 const LocationInput = () => {
   const classes = useStyles();
-  const location = useLocation();
+  const [autocompleteLocationValue, setAutocompleteLocationValue] = useState('');
   const isMobile = useMediaQuery('(max-width:800px)');
   const dispatch = useDispatch();
+  const location = useLocation();
   const locationInputValue = useSelector((state) => state.search.locationInputValue);
   const geolocationLoading = useSelector((state) => state.search.geolocationLoading);
   const defaultLocationSuggestion = ['Autour de moi', 'Toute la France'];
 
-  // Version Mobile ***************************
+  // ************************** Version Mobile ***************************
   if (isMobile) {
     return (
       <Autocomplete
+        id="custom-input-demo"
         openOnFocus
         autoComplete
         noOptionsText="Département ou Région inconnue"
-        ListboxProps={{ style: { maxHeight: '10rem' } }}
-        value={locationInputValue}
+        getOptionSelected={(option, value) => option.includes(value)}
+        ListboxProps={{
+          style: {
+            maxHeight: '10rem',
+            minHeight: '5rem',
+          },
+        }}
+        PaperComponent={(props) => (
+          <Paper
+            {...props}
+            className={classes.listBox__container__mobile}
+            placement="bottom"
+          />
+        )}
+        value={autocompleteLocationValue}
         onChange={(event, newValue) => {
-          dispatch({
-            type: CHANGE_INPUTS_VALUES,
-            field: 'locationInputValue',
-            inputValue: newValue,
-          });
-
+          setAutocompleteLocationValue(newValue);
           if (newValue === 'Autour de moi') {
             if ('geolocation' in navigator) {
               dispatch({ type: SET_GEOLOCATION_LOADING });
@@ -55,13 +66,109 @@ const LocationInput = () => {
               });
             }
           }
-          event.target.focus();
-        /* } ici nous faisons perder le focus a l'input car ca force l'utulisateur a
-     clické de nouveau dans l'input s'il veut changer sa valeur, cela permet donc
-     d'avoir de nouveau les suggestions
-    */
         }}
+        inputValue={locationInputValue}
+        onInputChange={(event, newInputValue) => {
+          dispatch({
+            type: CHANGE_INPUTS_VALUES,
+            field: 'locationInputValue',
+            inputValue: newInputValue,
+          });
+        }}
+        options={
+          locationInputValue
+            ? getFilterdLocation(locationInputValue, [...departments, ...frenchStates])
+              .map((element) => element.nom)
+            : defaultLocationSuggestion
+}
+        renderOption={(options) => {
+          if (options === 'Autour de moi') {
+            return (
+              <>
+                <LocationOnIcon className={classes.optionLabelIcon} />
+                <p> {options}</p>
+              </>
+            );
+          }
+          if (options === 'Toute la France') {
+            return (
+              <>
+                <GpsFixedIcon className={classes.optionLabelIcon} />
+                <p>{options}</p>
+              </>
+            );
+          }
+          return options;
+        }}
+        renderInput={(params) => (
+          <div
+            className={classes.inputbase_container}
+            ref={params.InputProps.ref}
+          >
+            <InputBase
+              {...params.inputProps}
+              className={classes.searchModalInput}
+              placeholder="département, région"
+              variant="outlined"
+            />
+            { geolocationLoading
+          && <CircularProgress /> }
+          </div>
+        )}
+      />
+    );
+  }
+  // ******************************* Version Desktop *************************
+  return (
+    <>
+      <Autocomplete
         id="custom-input-demo"
+        openOnFocus
+        autoComplete
+        noOptionsText="Département ou Région inconnue"
+        className={location.pathname === '/'
+          ? classes.autoComplete__desktop__locationInput
+          : classes.autoComplete_desktop_result}
+        getOptionSelected={(option, value) => option.includes(value)}
+        ListboxProps={{
+          style: {
+            maxHeight: '10rem',
+            minHeight: '5rem',
+          },
+        }}
+        PaperComponent={(props) => (
+          <Paper
+            {...props}
+            className={location.pathname === '/'
+              ? classes.listBox__container
+              : classes.listBox__container__result}
+            placement="bottom"
+          />
+        )}
+        value={autocompleteLocationValue}
+        inputValue={locationInputValue}
+        onInputChange={(event, newInputValue) => {
+          dispatch({
+            type: CHANGE_INPUTS_VALUES,
+            field: 'locationInputValue',
+            inputValue: newInputValue,
+          });
+        }}
+        onChange={(event, newValue) => {
+          setAutocompleteLocationValue(newValue);
+          if (newValue === 'Autour de moi') {
+            if ('geolocation' in navigator) {
+              dispatch({ type: SET_GEOLOCATION_LOADING });
+              navigator.geolocation.getCurrentPosition((position) => {
+                dispatch({
+                  type: GET_CITYCODE_GEOLOCATION,
+                  latitude: position.coords.latitude,
+                  longitude: position.coords.longitude,
+                });
+              });
+            }
+          }
+        }}
         options={locationInputValue
           ? getFilterdLocation(locationInputValue, [...departments, ...frenchStates])
             .map((element) => element.nom)
@@ -92,112 +199,18 @@ const LocationInput = () => {
           >
             <InputBase
               {...params.inputProps}
-              className={isMobile ? classes.searchModalInput : classes.searchModalInput_desktop}
-              placeholder="département, région"
+              className={classes.searchModalInput_desktop_result}
+              placeholder="Département, Région"
               variant="outlined"
-              value={locationInputValue}
-              onChange={(event) => {
-                dispatch({
-                  type: CHANGE_INPUTS_VALUES,
-                  field: 'locationInputValue',
-                  inputValue: event.target.value,
-                });
-              }}
+              value={locationInputValue || ''}
             />
             { geolocationLoading
-       && <CircularProgress /> }
+            && <CircularProgress /> }
+            <div className={classes.hr} />
           </div>
         )}
       />
-    );
-  }
-  // Version Desktop *******************************
-  return (
-    <Autocomplete
-      openOnFocus
-      freeSolo
-      autoComplete
-      noOptionsText="Département ou Région inconnue"
-      ListboxProps={{ style: { maxHeight: '10rem' } }}
-      className={location.pathname === '/'
-        ? classes.autoComplete_desktop
-        : classes.autoComplete_desktop_result}
-      value={locationInputValue}
-      onChange={(event, newValue) => {
-        dispatch({
-          type: CHANGE_INPUTS_VALUES,
-          field: 'locationInputValue',
-          inputValue: newValue,
-        });
-
-        if (newValue === 'Autour de moi') {
-          if ('geolocation' in navigator) {
-            dispatch({ type: SET_GEOLOCATION_LOADING });
-            navigator.geolocation.getCurrentPosition((position) => {
-              dispatch({
-                type: GET_CITYCODE_GEOLOCATION,
-                latitude: position.coords.latitude,
-                longitude: position.coords.longitude,
-              });
-            });
-          }
-        }
-        event.target.focus();
-      /* } ici nous faisons perder le focus a l'input car ca force l'utulisateur a
-   clické de nouveau dans l'input s'il veut changer sa valeur, cela permet donc
-   d'avoir de nouveau les suggestions
-  */
-      }}
-      id="custom-input-demo"
-      options={locationInputValue
-        ? getFilterdLocation(locationInputValue, [...departments, ...frenchStates])
-          .map((element) => element.nom)
-        : defaultLocationSuggestion}
-      renderOption={(options) => {
-        if (options === 'Autour de moi') {
-          return (
-            <>
-              <LocationOnIcon className={classes.optionLabelIcon} />
-              <p> {options}</p>
-            </>
-          );
-        }
-        if (options === 'Toute la France') {
-          return (
-            <>
-              <GpsFixedIcon className={classes.optionLabelIcon} />
-              <p>{options}</p>
-            </>
-          );
-        }
-        return options;
-      }}
-      renderInput={(params) => (
-        <div
-          className={classes.inputbase_container}
-          ref={params.InputProps.ref}
-        >
-          <InputBase
-            {...params.inputProps}
-            className={location.pathname === '/'
-              ? classes.searchModalInput_desktop
-              : classes.searchModalInput_desktop_result}
-            placeholder="département, région"
-            variant="outlined"
-            value={locationInputValue}
-            onChange={(event) => {
-              dispatch({
-                type: CHANGE_INPUTS_VALUES,
-                field: 'locationInputValue',
-                inputValue: event.target.value,
-              });
-            }}
-          />
-          { geolocationLoading
-     && <CircularProgress /> }
-        </div>
-      )}
-    />
+    </>
   );
 };
 

@@ -54,6 +54,12 @@ const useStyles = makeStyles((theme) => ({
     width: '15px',
     color: 'white',
   },
+  // DESKTOP ****************
+  container__desktop: {
+    width: '37%',
+    height: '45rem',
+    overflowY: 'auto',
+  },
 
 }));
 

@@ -83,8 +83,15 @@ const jobsMiddleware = (store) => (next) => (action) => {
           pour l'avatar de l'offre
           */
           const jobsArray = response.data.map((element) => (element.origineOffre.partenaires
-            ? element
-            : { ...element, avatarBgColor: `rgb(${Math.round(Math.random() * 255)}, ${Math.round(Math.random() * 255)}, ${Math.round(Math.random() * 255)})` }));
+            ? {
+              ...element,
+              isSelected: false,
+            }
+            : {
+              ...element,
+              avatarBgColor: `rgb(${Math.round(Math.random() * 255)}, ${Math.round(Math.random() * 255)}, ${Math.round(Math.random() * 255)})`,
+              isSelected: false,
+            }));
           store.dispatch({
             type: GET_JOBS_SUCCESS,
             jobsResponse: jobsArray,

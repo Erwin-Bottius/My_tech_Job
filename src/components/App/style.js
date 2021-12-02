@@ -20,6 +20,19 @@ const useStyles = makeStyles(() => ({
     alignItems: 'center',
     backgroundColor: colorTheme.palette.primary.light,
   },
+  '@global': {
+    '*::-webkit-scrollbar': {
+      backgroundColor: '#f2f2f2',
+      width: '10px',
+    },
+    '*::-webkit-scrollbar-track': {
+      '-webkit-box-shadow': 'inset 0 0 6px rgba(0,0,0,0.00)',
+    },
+    '*::-webkit-scrollbar-thumb': {
+      backgroundColor: '#babac0',
+      borderRadius: '16px',
+    },
+  },
 }));
 
 export default useStyles;

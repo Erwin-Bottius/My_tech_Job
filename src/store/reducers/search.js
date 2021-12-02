@@ -18,6 +18,7 @@ import
   GET_CITYCODE_GEOLOCATION_SUCCESS,
   SET_STATUSCODE,
   SET_GEOLOCATION_LOADING,
+  SET_ISSELECTED_JOB,
 } from 'src/store/actions';
 
 export const initialState = {
@@ -147,6 +148,28 @@ const searchReducer = (state = initialState, action) => {
         ...state,
         geolocationLoading: !state.geolocationLoading,
       };
+    case SET_ISSELECTED_JOB: {
+      // Ici nous renvoyons le tableaux de toutes les offres d'empois,
+      // toutes les offres ont le isSelected a false sauf l'offre qui
+      // a été clické par le user
+      const jobs = state.jobs.map((element) => {
+        // eslint-disable-next-line eqeqeq
+        if (element.id == action.jobId) {
+          return {
+            ...element,
+            isSelected: true,
+          };
+        }
+        return {
+          ...element,
+          isSelected: false,
+        };
+      });
+      return {
+        ...state,
+        jobs,
+      };
+    }
     default:
       return state;
   }

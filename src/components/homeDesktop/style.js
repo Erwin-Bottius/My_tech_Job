@@ -4,7 +4,7 @@ import colorTheme from 'src/styles/theme';
 const useStyles = makeStyles(() => ({
 
   box: {
-    width: '75%',
+    width: '70%',
     minWidth: '45rem',
     textAlign: 'center',
     display: 'flex',
@@ -21,25 +21,19 @@ const useStyles = makeStyles(() => ({
     textAlign: 'left',
     marginBottom: '3rem',
   },
-  hr: {
-    width: '1.5px',
-    background: colorTheme.palette.secondary.light,
-    height: '2.5rem',
-  },
   searchCard: {
-    width: '100%',
-    padding: '0.3rem 1rem',
+    padding: '0.7rem 1rem 0.7rem 0',
     background: colorTheme.palette.primary.white,
-    borderRadius: '8px',
+    borderRadius: '4px',
+    width: '100%',
   },
   form: {
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
-    width: '100%',
   },
   searchButton: {
-    padding: '0.6rem',
+    padding: '0.6rem 1rem',
     background: colorTheme.palette.primary.pinkColor,
     color: colorTheme.palette.primary.white,
     minWidth: '0',
@@ -47,7 +41,7 @@ const useStyles = makeStyles(() => ({
       margin: 'auto',
     },
   },
-  populatSearches_title: {
+  popularSearches_title: {
     textAlign: 'left',
     marginTop: '3rem',
     marginBottom: '1rem',

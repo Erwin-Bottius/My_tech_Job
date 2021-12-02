@@ -84,7 +84,6 @@ const HeaderDesk = () => {
              onSubmit={handleSubmitForm}
            >
              <JobsInput />
-             <div className={classes.hr} />
              <LocationInput />
              <Button
                variant="contained"
@@ -103,7 +102,7 @@ const HeaderDesk = () => {
       >
         <Typography
           variant="h6"
-          className={location.pathname !== '/' && classes.logo}
+          className={location.pathname !== '/' ? classes.logo : ''}
         >
           My Tech Job
         </Typography>

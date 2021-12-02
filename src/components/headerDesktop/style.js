@@ -26,18 +26,13 @@ const useStyles = makeStyles(() => ({
     position: 'relative',
 
   },
-  hr: {
-    width: '1.5px',
-    background: colorTheme.palette.secondary.light,
-    height: '2.5rem',
-  },
   searchCard: {
     padding: '0 1rem',
     background: colorTheme.palette.primary.white,
     borderRadius: '5px',
   },
   searchCard_result: {
-    padding: '0 1rem',
+    paddingRight: '1rem',
     background: colorTheme.palette.primary.white,
     borderRadius: '5px',
   },
