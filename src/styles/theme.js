@@ -16,5 +16,13 @@ const colorTheme = createTheme({
       blue: '#1de9b6',
     },
   },
+  typography: {
+    fontFamily: [
+      '"Montserrat"',
+      '"Lato"',
+      '"Nunito Sans"',
+      'sans-serif',
+    ].join(','),
+  },
 });
 export default colorTheme;

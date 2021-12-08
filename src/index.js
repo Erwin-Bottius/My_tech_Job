@@ -1,6 +1,7 @@
 // == Import : npm
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
+import { ThemeProvider } from '@material-ui/core/styles';
 import { BrowserRouter } from 'react-router-dom';
 import { PersistGate } from 'redux-persist/integration/react';
 import { store, persistor } from 'src/store';
@@ -8,6 +9,7 @@ import { store, persistor } from 'src/store';
 // == Import : local
 // Composants
 import App from 'src/components/App';
+import colorTheme from './styles/theme';
 
 // == Render
 // 1. Élément React racine (celui qui contient l'ensemble de l'app)
@@ -16,7 +18,9 @@ const rootReactElement = (
   <BrowserRouter>
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
-        <App />
+        <ThemeProvider theme={colorTheme}>
+          <App />
+        </ThemeProvider>
       </PersistGate>
     </Provider>
   </BrowserRouter>

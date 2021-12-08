@@ -10,6 +10,7 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: '0px',
     boxShadow: '1px 4px 3px 1px rgba(222,222,222,0.28)',
     position: 'sticky',
+    zIndex: 3,
     top: '0',
     right: '0',
     left: '0',
@@ -30,7 +31,8 @@ const useStyles = makeStyles((theme) => ({
     padding: '1rem 2rem',
   },
   offer__card__hr: {
-    height: '0.1rem',
+    height: '1px',
+    opacity: '0.5',
     border: 'none',
     background: colorTheme.palette.secondary.light,
   },

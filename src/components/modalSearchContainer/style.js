@@ -8,9 +8,7 @@ const useStyles = makeStyles(() => ({
     bottom: 0,
     right: 0,
     left: 0,
-    zIndex: 1101,
-    // 1101 car la valeur par defaut du zindex de Appbar venant
-    // de MUI (dans le composant header) est de 1100
+    zIndex: 4,
     background: colorTheme.palette.primary.main,
     display: 'flex',
     flexDirection: 'column',
@@ -19,6 +17,9 @@ const useStyles = makeStyles(() => ({
     paddingTop: '8rem',
     padding: '5% 10%',
     overflowY: 'auto',
+  },
+  container: {
+    display: 'block',
   },
   hidden: {
     display: 'none',

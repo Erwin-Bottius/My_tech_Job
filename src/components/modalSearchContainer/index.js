@@ -5,7 +5,7 @@ import {
 import CloseIcon from '@material-ui/icons/Close';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 
 // IMPORT FICHIERS
 import {
@@ -32,6 +32,7 @@ const ModalSearchContainer = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const history = useHistory();
+  const modalRef = useRef();
   useEffect(() => {
     if (!isSearchFormHidden) document.body.style.overflow = 'hidden';
     else document.body.style.overflow = 'visible';
@@ -81,49 +82,54 @@ const ModalSearchContainer = () => {
     }
   };
   return (
-    <Box className={isSearchFormHidden ? classes.hidden : classes.root}>
-      <CloseIcon
-        className={classes.cross}
-        onClick={() => {
-          dispatch({ type: TOGGLE_PRINT_SEARCH_FORM });
-        }}
-      />
-      <Typography variant="h6">
-        Trouvez le job qui vous convient <span className={classes.span}>vraiment</span>.
-      </Typography>
-      <div className={classes.searchCard}>
-        <form
-          onSubmit={handleSubmitForm}
-        >
-          <JobsInput />
-          <hr />
-          <LocationInput />
-          <hr />
-          <Button
-            variant="contained"
-            size="large"
-            className={classes.searchButton}
-            type="submit"
+    <div className={isSearchFormHidden ? classes.hidden : classes.container}>
+      <Box
+        className={isSearchFormHidden ? classes.hidden : classes.root}
+        ref={modalRef}
+      >
+        <CloseIcon
+          className={classes.cross}
+          onClick={() => {
+            dispatch({ type: TOGGLE_PRINT_SEARCH_FORM });
+          }}
+        />
+        <Typography variant="h6">
+          Trouvez le job qui vous convient <span className={classes.span}>vraiment</span>.
+        </Typography>
+        <div className={classes.searchCard}>
+          <form
+            onSubmit={handleSubmitForm}
           >
-            rechercher
-          </Button>
-        </form>
-      </div>
-      <Typography variant="h6" className={classes.populatSearches_title}>
-        Recherche les plus fréquentes
-      </Typography>
-      {/* Ici on map sur le tableau qui contient lui meme plusieurs tableaux
+            <JobsInput />
+            <hr />
+            <LocationInput modalRef={modalRef} />
+            <hr />
+            <Button
+              variant="contained"
+              size="large"
+              className={classes.searchButton}
+              type="submit"
+            >
+              rechercher
+            </Button>
+          </form>
+        </div>
+        <Typography variant="h6" className={classes.populatSearches_title}>
+          Recherche les plus fréquentes
+        </Typography>
+        {/* Ici on map sur le tableau qui contient lui meme plusieurs tableaux
       dans lesquels nous avons differents langage de programmations afin de creer
       une recherhce guidée qui permet au click d'ajouter directement tous les langages concerné
       dans la recherche */}
-      {basesGuidedResearch.map((element) => (
-        <GuidedResearchButton
-          key={element}
-          bases={element}
-        />
+        {basesGuidedResearch.map((element) => (
+          <GuidedResearchButton
+            key={element}
+            bases={element}
+          />
 
-      ))}
-    </Box>
+        ))}
+      </Box>
+    </div>
   );
 };
 

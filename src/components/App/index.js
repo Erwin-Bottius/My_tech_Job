@@ -45,7 +45,7 @@ const App = () => {
           <JobOffer />
         </Route>
       </Switch>
-      <footer>copiright</footer>
+      <div />
     </div>
   );
 };

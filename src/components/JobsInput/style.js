@@ -39,7 +39,6 @@ const useStyles = makeStyles(() => ({
     width: '100%',
     paddingLeft: '1rem',
     paddingBottom: '0.3rem',
-    fontFamily: 'Roboto',
     fontStyle: 'italic',
   },
   listBox__container__mobile: {

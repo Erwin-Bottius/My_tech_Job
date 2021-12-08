@@ -42,7 +42,7 @@ const useStyles = makeStyles((theme) => ({
   filtersButton: {
     display: 'flex',
     alignItems: 'center',
-    justifyContent: 'space-between',
+    justifyContent: 'center',
     fontWeight: 'bold',
     padding: '0.6rem 1rem',
     color: colorTheme.palette.primary.white,
@@ -56,9 +56,10 @@ const useStyles = makeStyles((theme) => ({
   },
   // DESKTOP ****************
   container__desktop: {
-    width: '37%',
-    height: '45rem',
+    width: '39%',
+    height: '100%',
     overflowY: 'auto',
+    paddingLeft: '0.5rem',
   },
 
 }));

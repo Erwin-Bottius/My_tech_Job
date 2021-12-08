@@ -10,6 +10,7 @@ const useStyles = makeStyles(() => ({
     color: colorTheme.palette.primary.black,
     backgroundColor: colorTheme.palette.primary.white,
     padding: '2% 5%',
+    flex: '0 1 auto',
   },
   logo: {
     whiteSpace: 'nowrap',
@@ -24,7 +25,7 @@ const useStyles = makeStyles(() => ({
     backgroundColor: colorTheme.palette.primary.main,
     padding: '2% 3%',
     position: 'relative',
-
+    flex: '0 1 auto',
   },
   searchCard: {
     padding: '0 1rem',

@@ -5,8 +5,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
 import GpsFixedIcon from '@material-ui/icons/GpsFixed';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
+import { PropTypes } from 'prop-types';
 
 // IMPORT FICHIERS
 import {
@@ -19,7 +20,7 @@ import departments from '../../../data/departments';
 import frenchStates from '../../../data/states';
 import useStyles from './style';
 
-const LocationInput = () => {
+const LocationInput = ({ modalRef }) => {
   const classes = useStyles();
   const [autocompleteLocationValue, setAutocompleteLocationValue] = useState('');
   const isMobile = useMediaQuery('(max-width:800px)');
@@ -28,6 +29,7 @@ const LocationInput = () => {
   const locationInputValue = useSelector((state) => state.search.locationInputValue);
   const geolocationLoading = useSelector((state) => state.search.geolocationLoading);
   const defaultLocationSuggestion = ['Autour de moi', 'Toute la France'];
+  const inputRef = useRef();
 
   // ************************** Version Mobile ***************************
   if (isMobile) {
@@ -35,7 +37,13 @@ const LocationInput = () => {
       <Autocomplete
         id="custom-input-demo"
         openOnFocus
+        ref={inputRef}
         autoComplete
+        onFocus={() => {
+          // Au focus, nous utilisons la modale (élémen,t sur lequel nous avons l'overflow scroll)
+          // afin de scroller à la hauteur de l'input
+          modalRef.current.scrollTo(0, inputRef.current.scrollHeight);
+        }}
         noOptionsText="Département ou Région inconnue"
         getOptionSelected={(option, value) => option.includes(value)}
         ListboxProps={{
@@ -212,6 +220,14 @@ const LocationInput = () => {
       />
     </>
   );
+};
+
+LocationInput.defaultProps = {
+  modalRef: {},
+};
+
+LocationInput.propTypes = {
+  modalRef: PropTypes.shape(),
 };
 
 export default LocationInput;
