@@ -1,8 +1,8 @@
 {
   "name": "my_tech_job",
-  "module": "back/index.js",
+  "module": "index.js",
   "scripts": {
-    "start": "node ./back/index.js",
+    "start": "node index.js",
     "dev": "cross-env NODE_ENV=development webpack serve --config config/webpack.dev.js",
     "build": "cross-env NODE_ENV=production webpack --config config/webpack.prod.js",
     "lint": "eslint src/**/*.js",
