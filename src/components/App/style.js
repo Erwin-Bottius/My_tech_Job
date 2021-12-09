@@ -4,7 +4,8 @@ import colorTheme from 'src/styles/theme';
 const useStyles = makeStyles(() => ({
   root: {
     width: '100%',
-    height: '100%',
+    height: '100vh',
+    minHeight: '-webkit-fill-available',
     backgroundColor: colorTheme.palette.primary.main,
     display: 'flex',
     flexDirection: 'column',
@@ -39,13 +40,15 @@ const useStyles = makeStyles(() => ({
       borderRadius: '16px',
     },
     '#root': {
-      height: '100%',
+      height: '100vh',
+      minHeight: '-webkit-fill-available',
     },
     html: {
       height: '-webkit-fill-available',
     },
     body: {
-      height: '100%',
+      height: '100vh',
+      minHeight: '-webkit-fill-available',
       fontFamily: colorTheme.typography.fontFamily,
     },
     '.pinkButton': {
