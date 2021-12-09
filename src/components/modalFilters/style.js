@@ -9,9 +9,8 @@ const useStyles = makeStyles(() => ({
     bottom: 0,
     right: 0,
     left: 0,
-    zIndex: 1101,
-    // 1101 car la valeur par defaut du zindex de Appbar venant
-    // de MUI (dans le composant header) est de 1100
+    zIndex: 6,
+    minHeight: '-webkit-fill-available',
     background: 'white',
     flexDirection: 'column',
     justifyContent: 'flex-start',

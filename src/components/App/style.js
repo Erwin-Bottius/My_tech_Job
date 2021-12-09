@@ -65,6 +65,12 @@ const useStyles = makeStyles(() => ({
       },
     },
   },
+  '@supports (-webkit-touch-callout: none)': {
+    body: {
+      /* The hack for Safari */
+      minHeight: '-webkit-fill-available',
+    },
+  },
 }));
 
 export default useStyles;
