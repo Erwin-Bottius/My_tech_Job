@@ -7,7 +7,7 @@ const tokenConfig = require('./API/tokenConfig');
 const createDataConfig = require('./API/createDataConfig');
 
 const app = express();
-const port = 3000;
+const port = 80;
 app.use(cors());
 app.use(express.json());
 // en mise en prod, nous utilisons le dossier static dist dans lequel se retrouve notre app front
