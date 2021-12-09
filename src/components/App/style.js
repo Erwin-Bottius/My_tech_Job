@@ -4,7 +4,7 @@ import colorTheme from 'src/styles/theme';
 const useStyles = makeStyles(() => ({
   root: {
     width: '100%',
-    height: '100vh',
+    height: '100%',
     backgroundColor: colorTheme.palette.primary.main,
     display: 'flex',
     flexDirection: 'column',
@@ -42,7 +42,7 @@ const useStyles = makeStyles(() => ({
       height: '100%',
     },
     html: {
-      height: '100%',
+      height: '-webkit-fill-available',
     },
     body: {
       height: '100%',
