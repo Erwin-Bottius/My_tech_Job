@@ -5,10 +5,11 @@ const useStyles = makeStyles(() => ({
   root: {
     display: 'flex',
     position: 'absolute',
+    top: 0,
+    bottom: 0,
     right: 0,
     left: 0,
     zIndex: 6,
-    minHeight: '-webkit-fill-available',
     background: 'white',
     flexDirection: 'column',
     justifyContent: 'flex-start',

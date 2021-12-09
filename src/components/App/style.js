@@ -5,7 +5,6 @@ const useStyles = makeStyles(() => ({
   root: {
     width: '100%',
     height: '100vh',
-    minHeight: '-webkit-fill-available',
     backgroundColor: colorTheme.palette.primary.main,
     display: 'flex',
     flexDirection: 'column',
@@ -40,15 +39,13 @@ const useStyles = makeStyles(() => ({
       borderRadius: '16px',
     },
     '#root': {
-      height: '100vh',
-      minHeight: '-webkit-fill-available',
+      height: '100%',
     },
     html: {
-      height: '-webkit-fill-available',
+      height: '100%',
     },
     body: {
-      height: '100vh',
-      minHeight: '-webkit-fill-available',
+      height: '100%',
       fontFamily: colorTheme.typography.fontFamily,
     },
     '.pinkButton': {
@@ -66,12 +63,6 @@ const useStyles = makeStyles(() => ({
         background: colorTheme.palette.secondary.main,
         opacity: 1,
       },
-    },
-  },
-  '@supports (-webkit-touch-callout: none)': {
-    body: {
-      /* The hack for Safari */
-      minHeight: '-webkit-fill-available',
     },
   },
 }));

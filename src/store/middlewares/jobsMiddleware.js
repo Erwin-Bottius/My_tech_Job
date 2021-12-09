@@ -47,7 +47,7 @@ const jobsMiddleware = (store) => (next) => (action) => {
     // On requete le server qui lui meme requete l'API
     axios({
       method: 'post',
-      url: `${window.location.protocol}//${window.location.host}`,
+      url: process.env.URL || `${window.location.protocol}//${window.location.host}`,
       headers: {
         'content-type': 'application/json',
       },

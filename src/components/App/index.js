@@ -2,6 +2,7 @@
 import { CssBaseline } from '@material-ui/core';
 import { Switch, Route, useLocation } from 'react-router-dom';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
+import { useSelector } from 'react-redux';
 
 // == Import FICHIER
 import HeaderMobile from 'src/components/headerMobile';
@@ -20,6 +21,8 @@ const App = () => {
   const classes = useStyles();
   const location = useLocation();
   const isMobile = useMediaQuery('(max-width:800px)');
+  const isFiltersModalHidden = useSelector((state) => state.search.isFiltersModalHidden);
+  const isSearchFormHidden = useSelector((state) => state.search.isSearchFormHidden);
 
   return (
     // changement de couleur du body et header en fonction de la page
@@ -38,7 +41,7 @@ const App = () => {
         </Route>
         <Route exact path="/recherche">
           {isMobile
-            ? <ResultPageContainer />
+            ? (isFiltersModalHidden && isSearchFormHidden && <ResultPageContainer />)
             : <ResultContainerDesktop />}
         </Route>
         <Route exact path="/offre-d-emploi/:id">

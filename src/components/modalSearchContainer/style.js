@@ -9,7 +9,6 @@ const useStyles = makeStyles(() => ({
     right: 0,
     left: 0,
     zIndex: 4,
-    minHeight: '-webkit-fill-available',
     background: colorTheme.palette.primary.main,
     display: 'flex',
     flexDirection: 'column',
