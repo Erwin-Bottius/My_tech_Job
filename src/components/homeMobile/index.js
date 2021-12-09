@@ -18,7 +18,10 @@ const HomeMobile = () => {
   }, []);
   return (
     <Box className={classes.box}>
-      <Typography variant="h6"> Trouver le job qui vous convient <span className={classes.span}> vraiment </span></Typography>
+      <Typography variant="h6" className={classes.title}>
+        Trouver le job qui vous convient
+        <span className={classes.span}> vraiment</span>
+      </Typography>
       <Button
         onClick={() => {
           // On affiche la modale de recherche

@@ -87,7 +87,7 @@ const HeaderDesk = () => {
              <LocationInput />
              <Button
                variant="contained"
-               className={classes.searchButton}
+               className={`${classes.searchButton} pinkButton`}
                type="submit"
                startIcon={<SearchIcon className={classes.searchIcon} style={{ fontSize: '1.8rem' }} />}
              />

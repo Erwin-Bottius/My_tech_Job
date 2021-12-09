@@ -17,8 +17,12 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'space-between',
     padding: '2% 5%',
   },
+  card__company: {
+    color: colorTheme.palette.secondary.main,
+    fontWeight: 500,
+  },
   button: {
-    fontWeight: 'bold',
+    fontWeight: 600,
     color: colorTheme.palette.primary.white,
     backgroundColor: colorTheme.palette.secondary.main,
     textTransform: 'capitalize',

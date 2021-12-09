@@ -56,7 +56,7 @@ const useStyles = makeStyles((theme) => ({
   },
   // DESKTOP ****************
   container__desktop: {
-    width: '39%',
+    width: '37%',
     height: '100%',
     overflowY: 'auto',
     paddingLeft: '0.5rem',

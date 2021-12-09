@@ -22,7 +22,7 @@ import useStyles from './style';
 
 const LocationInput = ({ modalRef }) => {
   const classes = useStyles();
-  const [autocompleteLocationValue, setAutocompleteLocationValue] = useState('');
+  const [autocompleteLocationValue, setAutocompleteLocationValue] = useState(null);
   const isMobile = useMediaQuery('(max-width:800px)');
   const dispatch = useDispatch();
   const location = useLocation();
@@ -210,7 +210,6 @@ const LocationInput = ({ modalRef }) => {
               className={classes.searchModalInput_desktop_result}
               placeholder="Département, Région"
               variant="outlined"
-              value={locationInputValue || ''}
             />
             { geolocationLoading
             && <CircularProgress /> }

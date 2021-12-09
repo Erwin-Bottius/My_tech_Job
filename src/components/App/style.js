@@ -48,6 +48,22 @@ const useStyles = makeStyles(() => ({
       height: '100%',
       fontFamily: colorTheme.typography.fontFamily,
     },
+    '.pinkButton': {
+      opacity: 0.8,
+      transition: '200ms ease-out opacity',
+      '&:hover': {
+        background: colorTheme.palette.primary.pinkColor,
+        opacity: 1,
+      },
+    },
+    '.mainButton': {
+      opacity: 0.8,
+      transition: '200ms ease-out opacity',
+      '&:hover': {
+        background: colorTheme.palette.secondary.main,
+        opacity: 1,
+      },
+    },
   },
 }));
 

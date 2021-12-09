@@ -33,6 +33,7 @@ const useStyles = makeStyles(() => ({
     marginBottom: '5px',
     backgroundColor: colorTheme.palette.secondary.main,
     borderRadius: '4px',
+    fontFamily: 'Roboto',
   },
   jobsInput__notice: {
     color: colorTheme.palette.secondary.light,

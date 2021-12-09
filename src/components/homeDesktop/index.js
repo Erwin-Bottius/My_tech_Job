@@ -93,8 +93,9 @@ const HomeDesk = () => {
           <LocationInput />
           <Button
             variant="contained"
-            className={classes.searchButton}
+            className={`${classes.searchButton} pinkButton`}
             type="submit"
+            disableElevation
             startIcon={<SearchIcon className={classes.searchIcon} style={{ fontSize: '2rem' }} />}
           />
         </form>

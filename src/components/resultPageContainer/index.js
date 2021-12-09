@@ -95,7 +95,7 @@ const ResultPageContainer = () => {
         && (
         <Button
           onClick={handleOnclickLoadMore}
-          className={classes.loadMore}
+          className={`${classes.loadMore} pinkButton`}
           variant="contained"
           size="medium"
         >
@@ -136,7 +136,7 @@ const ResultPageContainer = () => {
             && (
             <Button
               onClick={handleOnclickLoadMore}
-              className={classes.loadMore}
+              className={`${classes.loadMore} pinkButton`}
               variant="contained"
               size="medium"
             >

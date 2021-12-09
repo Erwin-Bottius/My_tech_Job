@@ -19,6 +19,7 @@ import
   SET_STATUSCODE,
   SET_GEOLOCATION_LOADING,
   SET_ISSELECTED_JOB,
+  TOGGLE_FILTER_POPUP,
 } from 'src/store/actions';
 
 export const initialState = {
@@ -38,6 +39,10 @@ export const initialState = {
   filters: {
     contractTypeValue: '',
     experienceValue: '',
+  },
+  filtersPopup: {
+    isContractPopup: false,
+    isExperiencePopup: false,
   },
 };
 
@@ -170,6 +175,14 @@ const searchReducer = (state = initialState, action) => {
         jobs,
       };
     }
+    case TOGGLE_FILTER_POPUP:
+      return {
+        ...state,
+        filtersPopup: {
+          ...state.filtersPopup,
+          [action.popup]: !state.filtersPopup[action.popup],
+        },
+      };
     default:
       return state;
   }

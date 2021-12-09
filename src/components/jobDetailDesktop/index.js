@@ -1,6 +1,6 @@
 // import NPM
 import {
-  Card, CardContent, Typography, Avatar,
+  Card, CardContent, Typography, Avatar, Button,
 } from '@material-ui/core';
 import { useSelector } from 'react-redux';
 import { useEffect, useRef } from 'react';
@@ -57,6 +57,9 @@ const JobDetailDesktop = () => {
               {jobOfferObject.lieuTravail.libelle}
             </Typography>
           </div>
+          <Button variant="contained" size="small" className={`${classes.button} mainButton`}>
+            Postuler
+          </Button>
         </CardContent>
       </Card>
       <div className={classes.offer__card}>

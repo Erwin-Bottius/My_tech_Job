@@ -40,7 +40,7 @@ const ResultPageCard = ({
           <Typography variant="subtitle1">
             {job}
           </Typography>
-          <Typography color="textSecondary">
+          <Typography className={classes.card__company}>
             {company}
           </Typography>
           <Typography variant="body2" component="p">
@@ -83,7 +83,7 @@ const ResultPageCard = ({
         <Typography variant="subtitle1">
           {job}
         </Typography>
-        <Typography color="textSecondary">
+        <Typography className={classes.card__company}>
           {company}
         </Typography>
         <Typography variant="body2" component="p">
@@ -95,7 +95,7 @@ const ResultPageCard = ({
         <Button
           variant="contained"
           size="small"
-          className={classes.button}
+          className={`${classes.button} mainButton`}
         >
           Postuler
         </Button>

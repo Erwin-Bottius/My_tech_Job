@@ -35,6 +35,7 @@ const useStyles = makeStyles(() => ({
   searchButton: {
     padding: '0.6rem 1rem',
     background: colorTheme.palette.primary.pinkColor,
+    opacity: 0.80,
     color: colorTheme.palette.primary.white,
     minWidth: '0',
     '& span': {

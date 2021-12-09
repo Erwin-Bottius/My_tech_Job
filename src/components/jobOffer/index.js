@@ -95,14 +95,14 @@ const JobOffer = () => {
           className={classes.offer__card__description__title}
         >DESCRIPTION
         </Typography>
-        <Typography variant="body1">{jobOfferObject.description}</Typography>
+        <Typography variant="body1" className={classes.offer__card__description}>{jobOfferObject.description}</Typography>
       </div>
       <Card className={classes.offer__footer}>
         <CardContent className={classes.offer__footer__cardContent}>
           <a
             className={classes.offer__back__link}
             onClick={() => history.goBack()}
-          > &lt; retour aux résultats
+          > <span> &lt; </span> retour aux résultats
           </a>
           <Button
             variant="contained"

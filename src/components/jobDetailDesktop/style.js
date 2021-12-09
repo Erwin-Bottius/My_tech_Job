@@ -18,17 +18,25 @@ const useStyles = makeStyles((theme) => ({
   offer__subHeader__cardContent: {
     display: 'flex',
     justifyContent: 'space-between',
+    alignItems: 'center',
   },
   offer__subHeader__avatar: {
     marginRight: '2rem',
     width: theme.spacing(10),
     height: theme.spacing(10),
-
+  },
+  button: {
+    fontWeight: 600,
+    padding: '0.5rem 1.5rem',
+    height: 'min-content',
+    color: colorTheme.palette.primary.white,
+    backgroundColor: colorTheme.palette.secondary.main,
+    textTransform: 'capitalize',
   },
   offer__card: {
     width: '100%',
     marginBottom: '3rem',
-    padding: '1rem 2rem',
+    padding: '1rem 3rem',
   },
   offer__card__hr: {
     height: '1px',
@@ -38,17 +46,19 @@ const useStyles = makeStyles((theme) => ({
   },
   offer__card__detailTitle: {
     marginBottom: '1.5rem',
+    fontWeight: '600',
   },
   offer__card__subtitle: {
     display: 'flex',
     justifyContent: 'space-between',
     padding: '0.5rem',
     fontSize: '0.8rem',
-    fontWeight: 'bolder',
+    fontWeight: '500',
   },
   offer__card__description__title: {
     marginTop: '1.5rem',
     marginBottom: '1.5rem',
+    fontWeight: '600',
   },
   offer__footer: {
     width: '100%',

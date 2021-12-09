@@ -11,6 +11,11 @@ const useStyles = makeStyles(() => ({
     color: colorTheme.palette.primary.transparentText,
 
   },
+  title: {
+    fontWeight: '500',
+    marginBottom: '2rem',
+    fontSize: '1.5rem',
+  },
   button: {
     borderRadius: '100px',
     color: colorTheme.palette.primary.main,

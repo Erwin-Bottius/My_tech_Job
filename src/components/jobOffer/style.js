@@ -46,28 +46,40 @@ const useStyles = makeStyles((theme) => ({
   },
   offer__footer: {
     width: '100%',
+    display: 'flex',
+    alignItems: 'center',
     position: 'fixed',
-    maxHeight: '4rem',
+    height: '5rem',
     bottom: '0',
-    padding: '0.3rem 1.5rem',
+    padding: '0 1rem;',
     borderRadius: '0px',
   },
   offer__footer__cardContent: {
     width: '100%',
     display: 'flex',
     justifyContent: 'space-between',
+    fontFamily: 'Roboto',
+  },
+  offer__card__description: {
+    marginBottom: '2.5rem',
   },
   offer__back__link: {
     width: '10rem',
-    display: 'inline-block',
+    display: 'flex',
+    alignItems: 'center',
     fontSize: '1rem',
     fontWeight: 'bold',
     color: colorTheme.palette.primary.pinkColor,
+    whiteSpace: 'nowrap',
+    '& span': {
+      fontSize: '1.7rem',
+      marginRight: '0.4rem',
+    },
   },
   offer__button: {
     background: colorTheme.palette.secondary.main,
     color: colorTheme.palette.primary.white,
-    display: 'inline-block',
+    fontWeight: 'bold',
   },
 }));
 
