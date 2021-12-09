@@ -1,13 +1,14 @@
 /* eslint-disable no-plusplus */
 /* eslint-disable no-await-in-loop */
 const express = require('express');
+require('dotenv').config();
 const axios = require('axios');
 const cors = require('cors');
 const tokenConfig = require('./API/tokenConfig');
 const createDataConfig = require('./API/createDataConfig');
 
 const app = express();
-const port = 80;
+const port = process.env.PORT || 80;
 app.use(cors());
 app.use(express.static('dist'));
 app.use(express.json());
