@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
     flex: '0 1 auto',
   },
   card__message: {
-    width: 'calc(63% - 2.5rem)',
+    width: 'calc(65% - 2.5rem)',
     minWidth: '1000px',
     margin: 'auto',
   },
@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
   },
   subHeader: {
     display: 'flex',
-    width: 'calc(63% - 2.5rem)',
+    width: 'calc(65% - 2.5rem)',
     minWidth: '1000px',
     margin: 'auto',
     alignItems: 'center',

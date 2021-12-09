@@ -10,6 +10,8 @@ const app = express();
 const port = 3000;
 app.use(cors());
 app.use(express.json());
+// en mise en prod, nous utilisons le dossier static dist dans lequel se retrouve notre app front
+app.use(express.static('dist'));
 
 app.post('/', async (req, res) => {
   console.log(req.body);
