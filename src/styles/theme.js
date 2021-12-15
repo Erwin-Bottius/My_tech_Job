@@ -3,10 +3,10 @@ import { createTheme } from '@material-ui/core/styles';
 const colorTheme = createTheme({
   palette: {
     primary: {
-      white: '#ffffff',
-      main: '#1e0447',
+      white: '#f7f7f7',
+      main: 'rgb(35, 9, 57)',
       black: '#000000',
-      transparentText: 'rgba(255, 255, 255, 0.5)',
+      transparentText: 'rgb(193, 186, 235);',
       pinkColor: '#b255cc',
       light: '#f9f9f9',
     },

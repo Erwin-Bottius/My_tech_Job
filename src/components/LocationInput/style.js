@@ -15,8 +15,9 @@ const useStyles = makeStyles(() => ({
     textAlign: 'left',
     padding: '0.5rem 0',
     paddingLeft: '2rem',
-    '& input::placeholder': {
-      fontSize: '1.3rem',
+    '& input': {
+      fontWeight: 500,
+      fontSize: '1.2rem',
     },
   },
   optionLabelIcon: {
@@ -31,6 +32,7 @@ const useStyles = makeStyles(() => ({
   },
   autoComplete_desktop_result: {
     textAlign: 'left',
+    minWidth: '22rem',
     padding: '0.3rem 0',
     '& input::placeholder': {
       fontSize: '1rem',
@@ -40,9 +42,6 @@ const useStyles = makeStyles(() => ({
     width: '100%',
     textAlign: 'left',
     padding: '0.3rem 0',
-    '& input::placeholder': {
-      fontSize: '1rem',
-    },
   },
   searchModalInput_desktop_result: {
     textAlign: 'left',

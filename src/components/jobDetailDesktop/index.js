@@ -18,6 +18,8 @@ const JobDetailDesktop = () => {
   useEffect(() => {
     cardRef.current.scrollIntoView({
       behavior: 'smooth',
+      block: 'center',
+      inline: 'center',
     });
   }, [jobs]);
   const jobOfferObject = getJobOfferByIsSelected(jobs);

@@ -36,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
   offer__card: {
     width: '100%',
     marginBottom: '3rem',
-    padding: '1rem 3rem',
+    padding: '1rem 4.2rem',
   },
   offer__card__hr: {
     height: '1px',

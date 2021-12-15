@@ -4,13 +4,13 @@ import colorTheme from 'src/styles/theme';
 const useStyles = makeStyles((theme) => ({
   container: {
     width: '100%',
-    background: '#f4f4f4',
+    background: colorTheme.palette.primary.white,
     display: 'flex',
     flexFlow: 'column',
   },
   card__message__container: {
     width: '100%',
-    backgroundColor: colorTheme.palette.primary.white,
+    backgroundColor: '#ffffff',
     boxShadow: '0px 3px 10px 2px #ededed',
     padding: '3rem 0',
     flex: '0 1 auto',
@@ -126,7 +126,7 @@ const useStyles = makeStyles((theme) => ({
     margin: 'auto',
     width: '65%',
     minWidth: '1000px',
-    minHeight: '35rem',
+    height: '42rem',
     maxHeight: '98vh',
     marginBottom: '1.5rem',
   },

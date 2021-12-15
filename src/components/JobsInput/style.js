@@ -12,14 +12,13 @@ const useStyles = makeStyles(() => ({
   jobsInput__container_desktop: {
     display: 'flex',
     '& input': {
-      width: 'auto',
-      '&::placeholder': {
-        fontSize: '1.2rem',
-      },
+      width: '100%',
+      fontWeight: 500,
+      fontSize: '1.2rem',
     },
   },
   jobsInput: {
-    padding: '0 1rem',
+    paddingLeft: '0.8rem',
     width: '100%',
   },
   jobsInput__ul: {
@@ -30,10 +29,10 @@ const useStyles = makeStyles(() => ({
   jobsInput__chip: {
     color: colorTheme.palette.primary.white,
     marginLeft: '5px',
-    marginBottom: '5px',
     backgroundColor: colorTheme.palette.secondary.main,
     borderRadius: '4px',
     fontFamily: 'Roboto',
+    fontSize: '1.1rem',
   },
   jobsInput__notice: {
     color: colorTheme.palette.secondary.light,
@@ -99,23 +98,31 @@ const useStyles = makeStyles(() => ({
   autocomplete__jobInput: {
     width: '100%',
   },
-  jobsInput__container_desktop_result: {
+  jobsInput__container_desktop_result__oneChip: {
     display: 'flex',
+    minWidth: '22rem',
     width: '100%',
     '& input': {
-      width: 'auto',
+      width: '5rem',
       '&::placeholder': {
         fontSize: '1rem',
       },
     },
   },
-  jobsInput__ul_desktop_result: {
+  jobsInput__container_desktop_result: {
     display: 'flex',
-    flexBasis: '50rem',
-    flexWrap: 'wrap',
+    minWidth: '22rem',
+    width: '100%',
+    '& input': {
+      width: '100%',
+      '&::placeholder': {
+        fontSize: '1rem',
+      },
+    },
   },
   jobsInput__ul_desktop: {
     display: 'flex',
+    paddingLeft: '1.5rem',
   },
 }));
 

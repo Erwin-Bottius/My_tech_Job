@@ -34,6 +34,7 @@ const useStyles = makeStyles(() => ({
   },
   searchCard_result: {
     paddingRight: '1rem',
+    marginLeft: '2rem',
     background: colorTheme.palette.primary.white,
     borderRadius: '5px',
   },

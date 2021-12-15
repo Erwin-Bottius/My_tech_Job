@@ -14,6 +14,8 @@ import HeaderDesk from 'src/components/headerDesktop';
 import ModalFilters from 'src/components/modalFilters';
 import HomeDesk from 'src/components/homeDesktop';
 import ResultContainerDesktop from 'src/components/resultContainerDesktop/';
+import NotFound from 'src/components/notFound';
+import About from 'src/components/about';
 import useStyles from './style';
 
 // == Composant
@@ -38,6 +40,7 @@ const App = () => {
           { isMobile
             ? <HomeMobile />
             : <HomeDesk />}
+          <About />
         </Route>
         <Route exact path="/recherche">
           {isMobile
@@ -47,6 +50,7 @@ const App = () => {
         <Route exact path="/offre-d-emploi/:id">
           <JobOffer />
         </Route>
+        <Route component={NotFound} />
       </Switch>
       <div />
     </div>

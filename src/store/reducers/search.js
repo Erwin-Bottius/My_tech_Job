@@ -65,9 +65,11 @@ const searchReducer = (state = initialState, action) => {
         locationSearched: action.locationSearched,
       };
     case CHANGE_JOBSEARCHED_VALUE:
+      // Ici nous ajoutons le chip correspondant à la valeur de l'input dans le tableau,
+      // tout en nous assurant de remplacer tous les accents éventuels
       return {
         ...state,
-        jobSearched: [...state.jobSearched, action.jobSearched],
+        jobSearched: [...state.jobSearched, action.jobSearched.normalize('NFD').replace(/[\u0300-\u036f]/g, '')],
       };
     case DELETE_EL_JOBSEARCHED_VALUE: {
       // Ici on supprime l'élément du tableau qui a été surpprimé par l'utilisateur
@@ -77,6 +79,7 @@ const searchReducer = (state = initialState, action) => {
         jobSearched: newJobSearched,
       };
     }
+    // Ici on supprime le dernier chip, lorsque l'utilisateur appui sur la basckspace
     case DELETE_LAST_EL_JOBSEARCHED_VALUE: {
       // Ici on supprime le dernier élément du tableau qui a été surpprimé par l'utilisateur
       const newJobSearched = [...state.jobSearched];

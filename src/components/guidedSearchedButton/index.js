@@ -40,7 +40,8 @@ const GuidedResearchButton = ({ bases }) => {
           });
         }}
       >
-        {bases.join(' ')}
+        {bases.map((element) => (<p key={element} className={classes.base__desktop}>{element}</p>
+        ))}
       </Button>
     </>
   );

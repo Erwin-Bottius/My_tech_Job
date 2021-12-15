@@ -17,6 +17,30 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 'bolder',
     marginTop: '2rem',
   },
+  // *********** DESKTOP
+  desktop__container: {
+    height: '100%',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+
+  },
+  ghost__desktop: {
+    width: theme.spacing(20),
+    height: theme.spacing(20),
+    marginBottom: '5rem',
+  },
+  title__desktop: {
+    fontWeight: 700,
+    fontSize: '2rem',
+    marginBottom: '3rem',
+  },
+  info__desktop: {
+    fontWeight: 500,
+    fontSize: '1.2rem',
+    marginBottom: '4rem',
+  },
 }));
 
 export default useStyles;

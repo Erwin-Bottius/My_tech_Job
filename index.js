@@ -1,6 +1,7 @@
 /* eslint-disable no-plusplus */
 /* eslint-disable no-await-in-loop */
 const express = require('express');
+const path = require('path');
 require('dotenv').config();
 const axios = require('axios');
 const cors = require('cors');
@@ -13,6 +14,14 @@ app.use(cors('*'));
 app.use(express.static('dist'));
 app.use(express.json());
 // en mise en prod, nous utilisons le dossier static dist dans lequel se retrouve notre app front
+app.get('/*', (req, res) => {
+  res.sendFile(path.join(__dirname, './dist/index.html'), (err) => {
+    if (err) {
+      console.log(err);
+      res.status(500).send(err);
+    }
+  });
+});
 
 app.post('/', async (req, res) => {
   console.log(req.body);

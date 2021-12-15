@@ -207,7 +207,9 @@ const LocationInput = ({ modalRef }) => {
           >
             <InputBase
               {...params.inputProps}
-              className={classes.searchModalInput_desktop_result}
+              className={location.pathname === '/'
+                ? classes.searchModalInput_desktop
+                : classes.searchModalInput_desktop_result}
               placeholder="Département, Région"
               variant="outlined"
             />

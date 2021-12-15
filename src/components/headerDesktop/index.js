@@ -34,6 +34,12 @@ const HeaderDesk = () => {
     }
     else {
       event.preventDefault();
+      // Ici nous récupérons les deux input pour s'assurer qu'au submit du formulaire nous
+      // perdons bien le focus (probleme de perte de focus sur la page result)
+      const inputs = event.target.querySelectorAll('input');
+      inputs.forEach((input) => {
+        input.blur();
+      });
 
       // SI jamais le state hasError est a true avant le submit, on le repasse a false
       dispatch({ type: RESET_SEARCH_ERROR });
@@ -70,15 +76,9 @@ const HeaderDesk = () => {
       : classes.resultPageTheme}
     >
       <div />
-      {/* SI on est sur la page de résultats ou d'offre,
-         on affiche un icone SEARCH dans le header pour
-        avoir la possibilité d'éffectuer une nouvelle recherche */}
-      {location.pathname !== '/'
+      {location.pathname === '/recherche'
          && (
-         <div className={location.pathname === '/'
-           ? classes.searchCard
-           : classes.searchCard_result}
-         >
+         <div className={classes.searchCard_result}>
            <form
              className={classes.form}
              onSubmit={handleSubmitForm}

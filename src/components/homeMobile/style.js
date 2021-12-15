@@ -8,6 +8,7 @@ const useStyles = makeStyles(() => ({
     textAlign: 'center',
     display: 'flex',
     flexDirection: 'column',
+    padding: '35% 0',
     color: colorTheme.palette.primary.transparentText,
 
   },

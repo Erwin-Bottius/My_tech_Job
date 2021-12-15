@@ -4,7 +4,6 @@ import colorTheme from 'src/styles/theme';
 const useStyles = makeStyles(() => ({
   root: {
     width: '100%',
-    height: '100vh',
     backgroundColor: colorTheme.palette.primary.main,
     display: 'flex',
     flexDirection: 'column',
@@ -14,17 +13,10 @@ const useStyles = makeStyles(() => ({
   resultPageTheme: {
     display: 'flex',
     width: '100%',
-    height: '100%',
+    minHeight: '100%',
     flexFlow: 'column',
-    backgroundColor: colorTheme.palette.primary.light,
-  },
-  footer: {
-    flexFlow: '0 1 auto',
-    textAlign: 'center',
-    padding: '1rem 0',
-    width: '100%',
-    background: 'white',
-    border: '1px solid #f7f7f7',
+    backgroundColor: colorTheme.palette.primary.white,
+    paddingBottom: '2rem',
   },
   '@global': {
     '*::-webkit-scrollbar': {
@@ -39,13 +31,13 @@ const useStyles = makeStyles(() => ({
       borderRadius: '16px',
     },
     '#root': {
-      height: '100%',
+      minHeight: '100%',
     },
     html: {
       height: '100%',
     },
     body: {
-      height: '100%',
+      minHeight: '100%',
       fontFamily: colorTheme.typography.fontFamily,
     },
     '.pinkButton': {

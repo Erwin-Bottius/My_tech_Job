@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 // IMPORT NPM
 import { useDispatch, useSelector } from 'react-redux';
 import {
@@ -59,7 +60,7 @@ const JobsInput = () => {
           />
         )}
         onChange={(event, newValue) => {
-          if (newValue && jobSearched.length < 3) {
+          if (newValue && newValue.length > 2 && jobSearched.length < 3) {
             setAutocompleteJobValue(newValue);
             // On ajoute les valeurs de l'input job au state jobSearched (tableau)
             dispatch({
@@ -77,6 +78,8 @@ const JobsInput = () => {
         }}
         inputValue={jobInputValue}
         onInputChange={(event, newInputValue) => {
+          // Si il ya déja 3 chips, on empeche l'utilisateur d'entrer
+          // une nouvelle valeur dans l'input
           if (jobSearched.length < 3) {
             dispatch({
               type: CHANGE_INPUTS_VALUES,
@@ -125,7 +128,7 @@ const JobsInput = () => {
               // a la perte du focus, si l'utilsateur n'a pas creer le Chip
               // On le créé pour lui, seulement si la valeur de l'input est non nulle
               onBlur={() => {
-                if (jobSearched.length < 5 && jobInputValue) {
+                if (jobInputValue && jobSearched.length < 3 && jobInputValue.length > 2) {
                   dispatch({
                     type: CHANGE_JOBSEARCHED_VALUE,
                     jobSearched: jobInputValue,
@@ -139,7 +142,7 @@ const JobsInput = () => {
                 }
               }}
               onKeyDown={(event) => {
-                if (event.key === 'Enter' || event.key === ' ') {
+                if (event.key === 'Enter') {
                   event.preventDefault();
                 }
                 // Si l'utilisaeur appui sur backspace, et que l'input est vide,
@@ -195,7 +198,8 @@ const JobsInput = () => {
         },
       }}
       onChange={(event, newValue) => {
-        if (newValue && jobSearched.length < 3) {
+        // Si la valeur de l'input comporte plus de 2 lettres et que nous avons moins de 3 chips
+        if (newValue && newValue.length > 2 && jobSearched.length < 3) {
           setAutocompleteJobValue(newValue);
           // On ajoute les valeurs de l'input job au state jobSearched (tableau)
           dispatch({
@@ -209,10 +213,12 @@ const JobsInput = () => {
             inputValue: '',
           });
         }
+        // Sinon on ne fait rien
         setAutocompleteJobValue('');
       }}
       inputValue={jobInputValue}
       onInputChange={(event, newInputValue) => {
+        // Si il ya déja 3 chips, on empeche l'utilisateur d'entrer une nouvelle valeur dans l'input
         if (jobSearched.length < 3) {
           dispatch({
             type: CHANGE_INPUTS_VALUES,
@@ -240,13 +246,17 @@ const JobsInput = () => {
       }}
       renderInput={(params) => (
         <div
-          className={classes.jobsInput__container_desktop_result}
+        // ici Nous attribuaons une classe differente au container de l'input
+        // en fonction de l'url, mais aussi si il y a au moins un chip,
+        // afin rendre plus petit l'input sur la page result
+          className={location.pathname === '/'
+            ? classes.jobsInput__container_desktop
+            : (jobSearched.length === 0
+              ? classes.jobsInput__container_desktop_result
+              : classes.jobsInput__container_desktop_result__oneChip)}
           ref={params.InputProps.ref}
         >
-          <ul className={location.pathname === '/'
-            ? classes.jobsInput__ul_desktop
-            : classes.jobsInput__ul_desktop_result}
-          >
+          <ul className={classes.jobsInput__ul_desktop}>
             {jobSearched.map((element, index) => (
               // eslint-disable-next-line react/no-array-index-key
               <li key={`${element}${index}`}>
@@ -263,12 +273,12 @@ const JobsInput = () => {
           <InputBase
             {...params.inputProps}
             className={classes.jobsInput}
-            placeholder="Langages, Frameworks..."
+            placeholder={jobSearched.length === 0 && 'Langages,  Frameworks,  Plateforme...'}
             variant="outlined"
             // a la perte du focus, si l'utilsateur n'a pas creer le Chip
-            // On le créé pour lui, seulement si la valeur de l'input est non nulle
+            // On le créé pour lui, seulement si la valeur de l'input contient plus de 2 lettres
             onBlur={() => {
-              if (jobSearched.length < 5 && jobInputValue) {
+              if (jobInputValue && jobSearched.length < 3 && jobInputValue.length > 2) {
                 dispatch({
                   type: CHANGE_JOBSEARCHED_VALUE,
                   jobSearched: jobInputValue,
@@ -282,7 +292,7 @@ const JobsInput = () => {
               }
             }}
             onKeyDown={(event) => {
-              if ((event.key === 'Enter' || event.key === ' ')) {
+              if ((event.key === 'Enter')) {
                 event.preventDefault();
               }
               // Si l'utilisaeur appui sur backspace, et que l'input est vide,

@@ -4,25 +4,28 @@ import colorTheme from 'src/styles/theme';
 const useStyles = makeStyles(() => ({
 
   box: {
-    width: '70%',
-    minWidth: '45rem',
+    width: '65%',
+    minWidth: '950px',
     textAlign: 'center',
     display: 'flex',
     flexDirection: 'column',
+    justifyContent: 'center',
     color: colorTheme.palette.primary.transparentText,
+    padding: '3.5% 0',
 
   },
   span: {
     color: colorTheme.palette.primary.white,
-    fontWeight: 'bolder',
+    fontWeight: 700,
   },
   title: {
-    fontSize: '2rem',
+    fontSize: '2.3rem',
+    fontWeight: 700,
     textAlign: 'left',
     marginBottom: '3rem',
   },
   searchCard: {
-    padding: '0.7rem 1rem 0.7rem 0',
+    padding: '0.7rem 2rem 0.7rem 0',
     background: colorTheme.palette.primary.white,
     borderRadius: '4px',
     width: '100%',
