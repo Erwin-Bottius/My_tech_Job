@@ -4,13 +4,14 @@ import {
 } from '@material-ui/core';
 import { useSelector } from 'react-redux';
 import { useEffect, useRef } from 'react';
+import { PropTypes } from 'prop-types';
 
 // Import Fichiers
-import getJobOfferByIsSelected from 'src/store/selectors/getJobOfferByIsSelected';
+
 import getDate from 'src/store/functions/getDate';
 import useStyles from './style';
 
-const JobDetailDesktop = () => {
+const JobDetailDesktop = ({ jobOfferObject }) => {
   const classes = useStyles();
   const cardRef = useRef();
   const jobs = useSelector((state) => state.search.jobs);
@@ -22,7 +23,7 @@ const JobDetailDesktop = () => {
       inline: 'center',
     });
   }, [jobs]);
-  const jobOfferObject = getJobOfferByIsSelected(jobs);
+
   return (
     <div className={classes.offer__container} ref={cardRef}>
       <Card className={classes.offer__subHeader}>
@@ -103,6 +104,10 @@ const JobDetailDesktop = () => {
       </div>
     </div>
   );
+};
+
+JobDetailDesktop.propTypes = {
+  jobOfferObject: PropTypes.shape().isRequired,
 };
 
 export default JobDetailDesktop;

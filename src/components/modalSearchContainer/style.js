@@ -9,6 +9,7 @@ const useStyles = makeStyles(() => ({
     right: 0,
     left: 0,
     zIndex: 4,
+    overflowX: 'hidden',
     background: colorTheme.palette.primary.main,
     display: 'flex',
     flexDirection: 'column',

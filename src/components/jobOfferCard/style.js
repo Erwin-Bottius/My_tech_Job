@@ -2,32 +2,34 @@ import { makeStyles } from '@material-ui/core';
 import colorTheme from 'src/styles/theme';
 
 const useStyles = makeStyles((theme) => ({
-  card: {
+  // ************* VERSION MOBILE
+  offer: {
     width: '90%',
     marginTop: '1rem',
     padding: '2% 5%',
     margin: 'auto',
   },
-  avatar: {
+  offer__avatar: {
     width: theme.spacing(7),
     height: theme.spacing(7),
   },
-  cardFooter: {
+  offer__footer: {
     display: 'flex',
     justifyContent: 'space-between',
     padding: '2% 5%',
   },
-  card__company: {
+  offer__company: {
     color: colorTheme.palette.secondary.main,
     fontWeight: 500,
   },
-  button: {
+  offer__footer__button: {
     fontWeight: 600,
     color: colorTheme.palette.primary.white,
     backgroundColor: colorTheme.palette.secondary.main,
     textTransform: 'capitalize',
   },
-  cardDesktop: {
+  // **************** VERSION DESKTOP ***********************
+  offerDesktop: {
     borderRadius: '8px',
     marginTop: '1rem',
     marginRight: '1rem',

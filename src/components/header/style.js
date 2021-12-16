@@ -2,7 +2,27 @@ import { makeStyles } from '@material-ui/core';
 import colorTheme from 'src/styles/theme';
 
 const useStyles = makeStyles(() => ({
-  root: {
+  // *************** VERSION MOBILE ***************
+  headerHomeMobile: {
+    width: '100%',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    color: colorTheme.palette.primary.black,
+    backgroundColor: colorTheme.palette.primary.white,
+    padding: '4% 5%',
+  },
+  headerMobile: {
+    width: '100%',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    color: colorTheme.palette.primary.white,
+    backgroundColor: colorTheme.palette.primary.main,
+    padding: '4% 5%',
+  },
+  // *************** VERSION DESKTOP ***************
+  headerHomeDesktop: {
     width: '100%',
     display: 'flex',
     alignItems: 'center',
@@ -12,10 +32,7 @@ const useStyles = makeStyles(() => ({
     padding: '2% 5%',
     flex: '0 1 auto',
   },
-  logo: {
-    whiteSpace: 'nowrap',
-  },
-  resultPageTheme: {
+  headerDesktop: {
     width: '100%',
     display: 'flex',
     flexDirection: 'row-reverse',
@@ -27,23 +44,18 @@ const useStyles = makeStyles(() => ({
     position: 'relative',
     flex: '0 1 auto',
   },
-  searchCard: {
-    padding: '0 1rem',
-    background: colorTheme.palette.primary.white,
-    borderRadius: '5px',
-  },
-  searchCard_result: {
+  headerDesktop__searchCard: {
     paddingRight: '1rem',
     marginLeft: '2rem',
     background: colorTheme.palette.primary.white,
     borderRadius: '5px',
   },
-  form: {
+  headerDesktop__searchCard__form: {
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
   },
-  searchButton: {
+  headerDesktop__searchCard__form__searchButton: {
     padding: '0.2rem',
     background: colorTheme.palette.primary.pinkColor,
     color: colorTheme.palette.primary.white,
@@ -52,7 +64,9 @@ const useStyles = makeStyles(() => ({
       margin: 'auto',
     },
   },
-
+  headerDesktop__logo: {
+    whiteSpace: 'nowrap',
+  },
 }));
 
 export default useStyles;

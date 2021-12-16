@@ -11,7 +11,7 @@ import getJobObject from 'src/store/selectors/jobOfferSelector';
 import getDate from 'src/store/functions/getDate';
 import useStyles from './style';
 
-const JobOffer = () => {
+const JobDetailMobile = () => {
   const classes = useStyles();
   const history = useHistory();
   const { id } = useParams();
@@ -116,4 +116,4 @@ const JobOffer = () => {
   );
 };
 
-export default JobOffer;
+export default JobDetailMobile;

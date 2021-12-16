@@ -1,17 +1,20 @@
+// IMPORT NPM
+
 import {
   Box,
   Typography,
   Button,
+  useMediaQuery,
 } from '@material-ui/core';
+import SearchIcon from '@material-ui/icons/Search';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import SearchIcon from '@material-ui/icons/Search';
 
 // IMPORT FICHIERS
-import JobsInput from 'src/components/JobsInput';
-import LocationInput from 'src/components/LocationInput';
+
 import {
+  TOGGLE_PRINT_SEARCH_FORM,
   RESET_STATES,
   RESET_SEARCH_ERROR,
   RESET_MIN_RANGE,
@@ -21,13 +24,16 @@ import {
   TOGGLE_BACKDROP,
   GET_JOBS,
 } from 'src/store/actions';
+import JobsInput from 'src/components/JobsInput';
+import LocationInput from 'src/components/LocationInput';
 import GuidedResearchButton from 'src/components/guidedSearchedButton';
 import basesGuidedResearch from '../../../data/basesGuidedResearch';
 import useStyles from './style';
 
-const HomeDesk = () => {
+const HomePage = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
+  const isMobile = useMediaQuery('(max-width:800px)');
   const history = useHistory();
   const jobInputValue = useSelector((state) => state.search.jobInputValue);
   const locationInputValue = useSelector((state) => state.search.locationInputValue);
@@ -75,39 +81,65 @@ const HomeDesk = () => {
       dispatch({ type: GET_JOBS });
     }
   };
+  if (isMobile) {
+    // ********************** VERSION MOBILE ************************
+    return (
+      <Box className={classes.homeMobile}>
+        <Typography variant="h6" className={classes.homeMobile__title}>
+          Trouver le job qui vous convient
+          <span className={classes.homeMobile__title__span}> vraiment</span>
+        </Typography>
+        <Button
+          onClick={() => {
+          // On affiche la modale de recherche
+            dispatch({
+              type: TOGGLE_PRINT_SEARCH_FORM,
+            });
+          }}
+          variant="contained"
+          size="large"
+          className={classes.homeMobile__button}
+          startIcon={<SearchIcon className={classes.homeMobile__button__searchIcon} style={{ fontSize: '2rem' }} />}
+        >
+          Rechercher des offres d'emploi
+        </Button>
+      </Box>
+    );
+  }
+  // ********************** VERSION DESKTOP ************************
   return (
-    <Box className={classes.box}>
+    <Box className={classes.homeDesktop}>
       <Typography
         variant="h6"
-        className={classes.title}
+        className={classes.homeDesktop__title}
       >
         Trouver le job qui vous convient
-        <span className={classes.span}> vraiment </span>
+        <span className={classes.homeDesktop__title__span}> vraiment </span>
       </Typography>
-      <div className={classes.searchCard}>
+      <div className={classes.homeDesktop__searchCard}>
         <form
-          className={classes.form}
+          className={classes.homeDesktop__searchCard__form}
           onSubmit={handleSubmitForm}
         >
           <JobsInput />
           <LocationInput />
           <Button
             variant="contained"
-            className={`${classes.searchButton} pinkButton`}
+            className={`${classes.homeDesktop__searchCard__form__button} pinkButton`}
             type="submit"
             disableElevation
-            startIcon={<SearchIcon className={classes.searchIcon} style={{ fontSize: '2rem' }} />}
+            startIcon={<SearchIcon style={{ fontSize: '2rem' }} />}
           />
         </form>
       </div>
-      <Typography variant="h6" className={classes.popularSearches_title}>
+      <Typography variant="h6" className={classes.homeDesktop__popularSearches__title}>
         Recherche les plus fréquentes
       </Typography>
       {/* Ici on map sur le tableau qui contient lui meme plusieurs tableaux
       dans lesquels nous avons differents langage de programmations afin de creer
       une recherhce guidée qui permet au click d'ajouter directement tous les langages concerné
       dans la recherche */}
-      <div className={classes.guided__container}>
+      <div className={classes.homeDesktop__popularSearches__basesContainer}>
         {basesGuidedResearch.map((element) => (
           <GuidedResearchButton
             key={element}
@@ -120,4 +152,4 @@ const HomeDesk = () => {
   );
 };
 
-export default HomeDesk;
+export default HomePage;

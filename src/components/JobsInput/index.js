@@ -273,7 +273,7 @@ const JobsInput = () => {
           <InputBase
             {...params.inputProps}
             className={classes.jobsInput}
-            placeholder={jobSearched.length === 0 && 'Langages,  Frameworks,  Plateforme...'}
+            placeholder={jobSearched.length === 0 ? 'Langages,  Frameworks,  Plateforme...' : ''}
             variant="outlined"
             // a la perte du focus, si l'utilsateur n'a pas creer le Chip
             // On le créé pour lui, seulement si la valeur de l'input contient plus de 2 lettres

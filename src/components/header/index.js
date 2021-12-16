@@ -1,14 +1,19 @@
 // IMPORT NPM
 import {
   Typography,
+  IconButton,
   Button,
+  useMediaQuery,
 } from '@material-ui/core';
+import { useState } from 'react';
 import SearchIcon from '@material-ui/icons/Search';
+import { Turn as Hamburger } from 'hamburger-react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation, Link } from 'react-router-dom';
 
 // IMPORT FICHIERS
 import {
+  TOGGLE_PRINT_SEARCH_FORM,
   RESET_JOBSEARCHED_VALUE,
   RESET_SEARCH_ERROR,
   RESET_MIN_RANGE,
@@ -22,8 +27,10 @@ import JobsInput from 'src/components/JobsInput';
 import LocationInput from 'src/components/LocationInput';
 import useStyles from './style';
 
-const HeaderDesk = () => {
+const Header = () => {
   const classes = useStyles();
+  const isMobile = useMediaQuery('(max-width:800px)');
+  const [isOpen, setOpen] = useState(false);
   const dispatch = useDispatch();
   const location = useLocation();
   const locationInputValue = useSelector((state) => state.search.locationInputValue);
@@ -69,27 +76,68 @@ const HeaderDesk = () => {
       dispatch({ type: GET_JOBS });
     }
   };
-
+  // ****************** VERSION MOBILE *********************************
+  if (isMobile) {
+    return (
+      <header className={location.pathname === '/' ? classes.headerHomeMobile : classes.headerMobile}>
+        {/* SI on est sur la page de résultats ou d'offre,
+         on affiche un icone SEARCH dans le header pour
+        avoir la possibilité d'éffectuer une nouvelle recherche */}
+        {location.pathname !== '/'
+         && (
+         <IconButton
+           onClick={() => {
+             // lorsqu'on click sur l'icone SEARCH, on affiche la modale
+             dispatch({
+               type: TOGGLE_PRINT_SEARCH_FORM,
+             });
+           }}
+           edge="start"
+           color="inherit"
+         >
+           <SearchIcon />
+         </IconButton>
+         )}
+        <Typography variant="h6">
+          <Link
+            to="/"
+            onClick={() => {
+              dispatch({ type: RESET_JOBSEARCHED_VALUE });
+            }}
+          >
+            My Tech Job
+          </Link>
+        </Typography>
+        <Hamburger
+          toggled={isOpen}
+          toggle={setOpen}
+          className={classes.menuButton}
+          size={22}
+        />
+      </header>
+    );
+  }
+  // ****************** VERSION DESKTOP *********************************
   return (
     <div className={location.pathname === '/'
-      ? classes.root
-      : classes.resultPageTheme}
+      ? classes.headerHomeDesktop
+      : classes.headerDesktop}
     >
       <div />
       {location.pathname === '/recherche'
          && (
-         <div className={classes.searchCard_result}>
+         <div className={classes.headerDesktop__searchCard}>
            <form
-             className={classes.form}
+             className={classes.headerDesktop__searchCard__form}
              onSubmit={handleSubmitForm}
            >
              <JobsInput />
              <LocationInput />
              <Button
                variant="contained"
-               className={`${classes.searchButton} pinkButton`}
+               className={`${classes.headerDesktop__searchCard__form__searchButton} pinkButton`}
                type="submit"
-               startIcon={<SearchIcon className={classes.searchIcon} style={{ fontSize: '1.8rem' }} />}
+               startIcon={<SearchIcon style={{ fontSize: '1.8rem' }} />}
              />
            </form>
          </div>
@@ -102,7 +150,7 @@ const HeaderDesk = () => {
       >
         <Typography
           variant="h6"
-          className={location.pathname !== '/' ? classes.logo : ''}
+          className={location.pathname !== '/' ? classes.headerDesktop__logo : ''}
         >
           My Tech Job
         </Typography>
@@ -111,4 +159,4 @@ const HeaderDesk = () => {
   );
 };
 
-export default HeaderDesk;
+export default Header;

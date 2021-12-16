@@ -24,6 +24,7 @@ import
 
 export const initialState = {
   isSearchFormHidden: true,
+  isFiltersModalHidden: true,
   statusCode: '',
   jobInputValue: '',
   locationInputValue: '',
@@ -34,7 +35,6 @@ export const initialState = {
   backdropOpen: false,
   hasError: false,
   requestMinRange: 0,
-  isFiltersModalHidden: true,
   geolocationLoading: false,
   filters: {
     contractTypeValue: '',
