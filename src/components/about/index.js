@@ -30,9 +30,6 @@ const About = () => {
             le site n'a cependant aucune prétention commerciale.
           </Typography>
           <Typography variant="body1" className={classes.about__card__content__description}>
-            Le but de ce projet était de se rapprocher le plus possible du site Monster.fr,
-            j'ai cependant fait le choix d'en faire un site pour rechercher un emploi dans le monde
-            du développement web afin que le site me soit utile.
             Grâce à Mytechjob, je peux désormais rechercher toutes les offres d'emplois
             me concernant, en renseigant ma stack technique, ma localistion, mais aussi mon
             expérience et le type de contrat souhaité.

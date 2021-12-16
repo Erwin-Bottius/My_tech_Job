@@ -16,7 +16,6 @@ const useStyles = makeStyles(() => ({
     minHeight: '100%',
     flexFlow: 'column',
     backgroundColor: colorTheme.palette.primary.white,
-    paddingBottom: '2rem',
   },
   '@global': {
     '*::-webkit-scrollbar': {

@@ -16,6 +16,8 @@ import ModalFilters from 'src/components/modalFilters';
 import NotFound from 'src/components/notFound';
 import About from 'src/components/about';
 import JobDetailMobile from 'src/components/jobDetailMobile';
+import Footer from 'src/components/footer';
+import AppStores from 'src/components/appStores';
 import useStyles from './style';
 
 // == Composant
@@ -31,7 +33,7 @@ const App = () => {
       <CssBaseline />
       <ModalSearchContainer />
       <ModalFilters />
-      {(isSearchFormHidden === false || !isFiltersModalHidden === false)
+      {(isSearchFormHidden && isFiltersModalHidden)
       && (
       <>
         <Header />
@@ -39,6 +41,7 @@ const App = () => {
           <Route exact path="/">
             <HomePage />
             <About />
+            <AppStores />
           </Route>
           <Route exact path="/recherche">
             <ResultPage />
@@ -48,6 +51,7 @@ const App = () => {
           </Route>
           <Route component={NotFound} />
         </Switch>
+        <Footer />
       </>
       )}
       <div />

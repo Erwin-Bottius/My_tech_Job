@@ -86,7 +86,9 @@ const HomePage = () => {
     return (
       <Box className={classes.homeMobile}>
         <Typography variant="h6" className={classes.homeMobile__title}>
-          Trouver le job qui vous convient
+          Trouvez le poste de
+          <span className={classes.homeMobile__title__span}> développeur</span>
+          <br />qui vous convient
           <span className={classes.homeMobile__title__span}> vraiment</span>
         </Typography>
         <Button
@@ -113,8 +115,10 @@ const HomePage = () => {
         variant="h6"
         className={classes.homeDesktop__title}
       >
-        Trouver le job qui vous convient
-        <span className={classes.homeDesktop__title__span}> vraiment </span>
+        Trouvez le poste de
+        <span className={classes.homeMobile__title__span}> développeur</span>
+        <br />qui vous convient
+        <span className={classes.homeMobile__title__span}> vraiment</span>
       </Typography>
       <div className={classes.homeDesktop__searchCard}>
         <form

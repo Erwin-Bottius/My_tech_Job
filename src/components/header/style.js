@@ -64,8 +64,25 @@ const useStyles = makeStyles(() => ({
       margin: 'auto',
     },
   },
+  headerDesktop__logo__home: {
+    whiteSpace: 'nowrap',
+    fontFamily: 'Fredoka One, cursive',
+    fontSize: '2rem',
+    wordSpacing: '-5px',
+    color: colorTheme.palette.secondary.main,
+    '& span': {
+      color: colorTheme.palette.secondary.blue,
+    },
+  },
   headerDesktop__logo: {
     whiteSpace: 'nowrap',
+    fontFamily: 'Fredoka One, cursive',
+    fontSize: '2rem',
+    wordSpacing: '-5px',
+    color: colorTheme.palette.secondary.white,
+    '& span': {
+      color: colorTheme.palette.secondary.blue,
+    },
   },
 }));
 

@@ -62,7 +62,7 @@ const useStyles = makeStyles(() => ({
   },
   listBox__container: {
     borderRadius: '0px  0 4px 4px',
-    marginTop: '1rem',
+    marginTop: '0.9rem',
     borderTop: '1px solid #dddddd',
   },
   listBox__container__result: {

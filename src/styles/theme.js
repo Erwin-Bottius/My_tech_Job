@@ -13,7 +13,7 @@ const colorTheme = createTheme({
     secondary: {
       main: '#5E35B1',
       light: '#cccccc',
-      blue: '#1de9b6',
+      blue: 'rgb(0, 182, 180);',
     },
   },
   typography: {

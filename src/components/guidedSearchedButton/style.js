@@ -19,7 +19,10 @@ const useStyles = makeStyles(() => ({
     marginRight: '1rem',
     whiteSpace: 'nowrap',
     fontWeight: 'lighter',
-    border: '2px solid rgba(255, 255, 255, 0.12)',
+    border: '2px solid transparent',
+    '&:hover': {
+      border: '2px solid rgba(255, 255, 255, 0.12)',
+    },
   },
   base__desktop: {
     wordSpacing: '0.01%',

@@ -141,7 +141,6 @@ const LocationInput = ({ modalRef }) => {
         ListboxProps={{
           style: {
             maxHeight: '10rem',
-            minHeight: '5rem',
           },
         }}
         PaperComponent={(props) => (

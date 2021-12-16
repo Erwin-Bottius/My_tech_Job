@@ -38,7 +38,7 @@ const useStyles = makeStyles(() => ({
   },
   // *************** VERSION DESKTOP ********************
   homeDesktop: {
-    width: '65%',
+    width: '70%',
     minWidth: '950px',
     textAlign: 'center',
     display: 'flex',

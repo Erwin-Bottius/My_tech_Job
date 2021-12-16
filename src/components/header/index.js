@@ -98,7 +98,7 @@ const Header = () => {
            <SearchIcon />
          </IconButton>
          )}
-        <Typography variant="h6">
+        <Typography variant="h6" className={classes.headerMobile__logo}>
           <Link
             to="/"
             onClick={() => {
@@ -150,9 +150,9 @@ const Header = () => {
       >
         <Typography
           variant="h6"
-          className={location.pathname !== '/' ? classes.headerDesktop__logo : ''}
+          className={location.pathname !== '/' ? classes.headerDesktop__logo : classes.headerDesktop__logo__home}
         >
-          My Tech Job
+          My <span>Tech</span> Job
         </Typography>
       </Link>
     </div>

@@ -7,13 +7,12 @@ const useStyles = makeStyles(() => ({
     justifyContent: 'center',
     width: '100%',
     background: colorTheme.palette.primary.white,
-    padding: '2rem',
+    padding: '2rem 0',
   },
   about__card: {
     display: 'flex',
     boxShadow: 'none',
-    width: '68%',
-    marginLeft: '2.5rem',
+    width: '80%',
     background: '#efefef',
   },
   about__card__content: {
