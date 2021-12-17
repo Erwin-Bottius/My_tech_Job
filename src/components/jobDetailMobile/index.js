@@ -107,7 +107,7 @@ const JobDetailMobile = () => {
           <Button
             variant="contained"
             size="small"
-            className={classes.offer__button}
+            className={`${classes.offer__button} mainButton`}
           > Postuler
           </Button>
         </CardContent>

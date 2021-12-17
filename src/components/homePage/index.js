@@ -86,10 +86,15 @@ const HomePage = () => {
     return (
       <Box className={classes.homeMobile}>
         <Typography variant="h6" className={classes.homeMobile__title}>
-          Trouvez le poste de
-          <span className={classes.homeMobile__title__span}> développeur</span>
-          <br />qui vous convient
-          <span className={classes.homeMobile__title__span}> vraiment</span>
+          <span className={classes.noBreak}>Trouvez le poste de</span>
+          <br />
+          <span className={classes.noBreak}>
+            <span className={classes.homeMobile__title__span}>développeur </span>
+            qui
+            <br />
+          </span>
+          <span className={classes.noBreak}>vous convient</span> <br />
+          <span className={classes.homeMobile__title__span}> vraiment.</span>
         </Typography>
         <Button
           onClick={() => {

@@ -5,28 +5,35 @@ const useStyles = makeStyles(() => ({
 
   // *************** VERSION MOBILE ********************
   homeMobile: {
-    width: '75%',
+    width: '100%',
     textAlign: 'center',
     display: 'flex',
     flexDirection: 'column',
-    padding: '35% 0',
+    padding: '6rem 0',
     color: colorTheme.palette.primary.transparentText,
+    backgroundColor: colorTheme.palette.primary.main,
 
   },
   homeMobile__title: {
     fontWeight: '500',
-    marginBottom: '2rem',
+    marginBottom: '1.5rem',
     fontSize: '1.5rem',
+  },
+  noBreak: {
+    whiteSpace: 'nowrap',
   },
   homeMobile__title__span: {
     color: colorTheme.palette.primary.white,
     fontWeight: 'bolder',
   },
   homeMobile__button: {
+    maxWidth: '90%',
+    margin: 'auto',
     borderRadius: '100px',
     color: colorTheme.palette.primary.main,
-    fontSize: '1.2rem',
-    marginTop: '1rem',
+    fontSize: '1rem',
+    fontWeight: 600,
+    padding: '0.5rem 2rem 0.5rem 2rem',
     background: colorTheme.palette.primary.white,
     textTransform: 'capitalize',
     '&:hover': {
@@ -53,9 +60,6 @@ const useStyles = makeStyles(() => ({
     fontWeight: 700,
     textAlign: 'left',
     marginBottom: '2rem',
-  },
-  noBreak: {
-    whiteSpace: 'nowrap',
   },
   homeDesktop__title__span: {
     color: colorTheme.palette.primary.white,

@@ -107,7 +107,7 @@ const ModalSearchContainer = () => {
             <Button
               variant="contained"
               size="large"
-              className={classes.searchButton}
+              className={`${classes.searchButton} pinkButton`}
               type="submit"
             >
               rechercher

@@ -54,7 +54,7 @@ const jobOfferCard = ({
             onClick={handleClickOfferDetail}
             variant="contained"
             size="medium"
-            className={classes.offer__footer__button}
+            className={`${classes.offer__footer__button} mainButton`}
           >
             Afficher
           </Button>

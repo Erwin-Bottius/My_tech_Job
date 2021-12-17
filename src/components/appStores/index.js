@@ -5,7 +5,7 @@ import {
 } from '@material-ui/core';
 import appleStore from 'src/assets/images/appstore.svg';
 import googlePlayStore from 'src/assets/images/googlePlaystore.svg';
-import phone from 'src/assets/images/phone.webp';
+import phone from 'src/assets/images/monster-app-graphic@2x-01.webp';
 import useStyles from './style';
 
 const AppStores = () => {
@@ -14,18 +14,10 @@ const AppStores = () => {
   // ********************* MOBILE VERSION ***********************
   if (isMobile) {
     return (
-      <div>
-        hello
-      </div>
-    );
-  }
-  // ********************* DESKTOP VERSION ***********************
-  return (
-    <Box className={classes.box}>
       <div className={classes.appStores}>
         <div className={classes.appStores__card}>
           <Typography variant="h6" className={classes.appStores__card__title}>
-            Téléchargez l'appli My Tech Job
+            Téléchargez l'appli <br /> My Tech Job
           </Typography>
           <Typography variant="body1" className={classes.appStores__card__information}>
             Recherchez parmi des dizaines de milliers d'emplois <br />et trouvez celui qui
@@ -49,6 +41,41 @@ const AppStores = () => {
             src={phone}
             alt="phone animation"
             className={classes.appStores__animation__image}
+          />
+        </div>
+      </div>
+    );
+  }
+  // ********************* DESKTOP VERSION ***********************
+  return (
+    <Box className={classes.boxDesktop}>
+      <div className={classes.appStoresDesktop}>
+        <div className={classes.appStoresDesktop__card}>
+          <Typography variant="h6" className={classes.appStoresDesktop__card__title}>
+            Téléchargez l'appli My Tech Job
+          </Typography>
+          <Typography variant="body1" className={classes.appStoresDesktop__card__information}>
+            Recherchez parmi des dizaines de milliers d'emplois <br />et trouvez celui qui
+            vous convient
+          </Typography>
+          <div className={classes.appStoresDesktop__card__storesContainer}>
+            <img
+              src={appleStore}
+              alt="logo apple store"
+              className={classes.appStoresDesktop__card__storesContainer__svg}
+            />
+            <img
+              src={googlePlayStore}
+              alt="logo apple store"
+              className={classes.appStoresDesktop__card__storesContainer__svg}
+            />
+          </div>
+        </div>
+        <div className={classes.appStoresDesktop__animation}>
+          <img
+            src={phone}
+            alt="phone animation"
+            className={classes.appStoresDesktop__animation__image}
           />
         </div>
       </div>

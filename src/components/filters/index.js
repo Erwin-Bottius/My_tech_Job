@@ -35,7 +35,7 @@ const Filters = () => {
           Des centaines d'offres trouvées
         </Typography>
         <Button
-          className={classes.filtersMobile__button}
+          className={`${classes.filtersMobile__button} pinkButton`}
           variant="contained"
           size="medium"
           onClick={() => {

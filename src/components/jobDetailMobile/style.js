@@ -8,7 +8,6 @@ const useStyles = makeStyles((theme) => ({
   offer__subHeader: {
     width: '100%',
     borderRadius: '0px',
-    boxShadow: '1px 4px 3px 1px rgba(222,222,222,0.28)',
   },
   offer__subHeader__cardContent: {
     display: 'flex',
@@ -22,8 +21,9 @@ const useStyles = makeStyles((theme) => ({
   },
   offer__card: {
     width: '100%',
-    marginBottom: '3rem',
     padding: '1rem 2rem',
+    background: 'white',
+    boxShadow: '1px 4px 3px 5px rgba(230,230,233, 1)',
   },
   offer__card__hr: {
     height: '0.1rem',

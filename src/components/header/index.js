@@ -98,16 +98,19 @@ const Header = () => {
            <SearchIcon />
          </IconButton>
          )}
-        <Typography variant="h6" className={classes.headerMobile__logo}>
-          <Link
-            to="/"
-            onClick={() => {
-              dispatch({ type: RESET_JOBSEARCHED_VALUE });
-            }}
+        <Link
+          to="/"
+          onClick={() => {
+            dispatch({ type: RESET_JOBSEARCHED_VALUE });
+          }}
+        >
+          <Typography
+            variant="h6"
+            className={location.pathname !== '/' ? classes.headerMobile__logo : classes.headerMobile__logo__home}
           >
-            My Tech Job
-          </Link>
-        </Typography>
+            My <span>Tech</span> Job
+          </Typography>
+        </Link>
         <Hamburger
           toggled={isOpen}
           toggle={setOpen}
@@ -123,7 +126,7 @@ const Header = () => {
       ? classes.headerHomeDesktop
       : classes.headerDesktop}
     >
-      <div />
+      <div className={classes.headerDesktop__fakeDiv} />
       {location.pathname === '/recherche'
          && (
          <div className={classes.headerDesktop__searchCard}>

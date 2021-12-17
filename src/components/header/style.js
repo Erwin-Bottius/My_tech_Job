@@ -10,7 +10,7 @@ const useStyles = makeStyles(() => ({
     justifyContent: 'space-between',
     color: colorTheme.palette.primary.black,
     backgroundColor: colorTheme.palette.primary.white,
-    padding: '4% 5%',
+    padding: '5% 5%',
   },
   headerMobile: {
     width: '100%',
@@ -19,7 +19,27 @@ const useStyles = makeStyles(() => ({
     justifyContent: 'space-between',
     color: colorTheme.palette.primary.white,
     backgroundColor: colorTheme.palette.primary.main,
-    padding: '4% 5%',
+    padding: '5% 5%',
+  },
+  headerMobile__logo__home: {
+    whiteSpace: 'nowrap',
+    fontFamily: 'Fredoka One, cursive',
+    fontSize: '1.8rem',
+    wordSpacing: '-5px',
+    color: colorTheme.palette.secondary.main,
+    '& span': {
+      color: colorTheme.palette.secondary.blue,
+    },
+  },
+  headerMobile__logo: {
+    whiteSpace: 'nowrap',
+    fontFamily: 'Fredoka One, cursive',
+    fontSize: '1.8rem',
+    wordSpacing: '-5px',
+    color: colorTheme.palette.secondary.white,
+    '& span': {
+      color: colorTheme.palette.secondary.blue,
+    },
   },
   // *************** VERSION DESKTOP ***************
   headerHomeDesktop: {
@@ -47,6 +67,7 @@ const useStyles = makeStyles(() => ({
   headerDesktop__searchCard: {
     paddingRight: '1rem',
     marginLeft: '2rem',
+    justifySelf: 'center',
     background: colorTheme.palette.primary.white,
     borderRadius: '5px',
   },
@@ -76,6 +97,7 @@ const useStyles = makeStyles(() => ({
   },
   headerDesktop__logo: {
     whiteSpace: 'nowrap',
+    width: '5rem',
     fontFamily: 'Fredoka One, cursive',
     fontSize: '2rem',
     wordSpacing: '-5px',
@@ -83,6 +105,9 @@ const useStyles = makeStyles(() => ({
     '& span': {
       color: colorTheme.palette.secondary.blue,
     },
+  },
+  headerDesktop__fakeDiv: {
+    width: '5rem',
   },
 }));
 

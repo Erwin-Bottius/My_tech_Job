@@ -1,5 +1,5 @@
 // import NPM
-import { CssBaseline } from '@material-ui/core';
+import { CssBaseline, useMediaQuery } from '@material-ui/core';
 import {
   Switch,
   Route,
@@ -24,16 +24,17 @@ import useStyles from './style';
 const App = () => {
   const classes = useStyles();
   const location = useLocation();
+  const isMobile = useMediaQuery('(max-width:800px)');
   const isFiltersModalHidden = useSelector((state) => state.search.isFiltersModalHidden);
   const isSearchFormHidden = useSelector((state) => state.search.isSearchFormHidden);
-
-  return (
+  if (isMobile) {
+    return (
     // changement de couleur du body et header en fonction de la page
-    <div className={location.pathname === '/' ? classes.root : classes.resultPageTheme}>
-      <CssBaseline />
-      <ModalSearchContainer />
-      <ModalFilters />
-      {(isSearchFormHidden && isFiltersModalHidden)
+      <div className={location.pathname === '/' ? classes.appHomeMobile : classes.app}>
+        <CssBaseline />
+        <ModalSearchContainer />
+        <ModalFilters />
+        {(isSearchFormHidden && isFiltersModalHidden)
       && (
       <>
         <Header />
@@ -54,6 +55,33 @@ const App = () => {
         <Footer />
       </>
       )}
+        <div />
+      </div>
+    );
+  }
+  return (
+    <div className={location.pathname === '/' ? classes.appHomeDesktop : classes.app}>
+      <CssBaseline />
+      <ModalSearchContainer />
+      <ModalFilters />
+      {(isSearchFormHidden && isFiltersModalHidden)
+        && (
+        <>
+          <Header />
+          <Switch>
+            <Route exact path="/">
+              <HomePage />
+              <About />
+              <AppStores />
+            </Route>
+            <Route exact path="/recherche">
+              <ResultPage />
+            </Route>
+            <Route component={NotFound} />
+          </Switch>
+          <Footer />
+        </>
+        )}
       <div />
     </div>
   );

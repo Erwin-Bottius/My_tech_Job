@@ -107,6 +107,11 @@ const useStyles = makeStyles(() => ({
     display: 'flex',
     minWidth: '22rem',
     width: '100%',
+    '&:after': {
+      content: '""',
+      width: '2px',
+      backgroundColor: 'rgb(200, 200, 200)',
+    },
     '& input': {
       width: '5rem',
       '&::placeholder': {
@@ -118,6 +123,11 @@ const useStyles = makeStyles(() => ({
     display: 'flex',
     minWidth: '22rem',
     width: '100%',
+    '&:after': {
+      content: '""',
+      width: '2px',
+      backgroundColor: 'rgb(200, 200, 200)',
+    },
     '& input': {
       width: '100%',
       '&::placeholder': {

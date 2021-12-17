@@ -2,20 +2,27 @@ import { makeStyles } from '@material-ui/core';
 import colorTheme from 'src/styles/theme';
 
 const useStyles = makeStyles(() => ({
-  root: {
+  appHomeMobile: {
     width: '100%',
-    backgroundColor: colorTheme.palette.primary.main,
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-between',
     alignItems: 'center',
   },
-  resultPageTheme: {
+  app: {
     display: 'flex',
     width: '100%',
     minHeight: '100%',
     flexFlow: 'column',
     backgroundColor: colorTheme.palette.primary.white,
+  },
+  appHomeDesktop: {
+    width: '100%',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'space-between',
+    backgroundColor: colorTheme.palette.primary.main,
+    alignItems: 'center',
   },
   '@global': {
     '*::-webkit-scrollbar': {
