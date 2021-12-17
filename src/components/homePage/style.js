@@ -38,28 +38,31 @@ const useStyles = makeStyles(() => ({
   },
   // *************** VERSION DESKTOP ********************
   homeDesktop: {
-    width: '70%',
+    width: '80%',
     minWidth: '950px',
     textAlign: 'center',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
     color: colorTheme.palette.primary.transparentText,
-    padding: '3.5% 0',
+    padding: '5.3% 0',
 
   },
   homeDesktop__title: {
-    fontSize: '2.3rem',
+    fontSize: '2rem',
     fontWeight: 700,
     textAlign: 'left',
-    marginBottom: '3rem',
+    marginBottom: '2rem',
+  },
+  noBreak: {
+    whiteSpace: 'nowrap',
   },
   homeDesktop__title__span: {
     color: colorTheme.palette.primary.white,
     fontWeight: 700,
   },
   homeDesktop__searchCard: {
-    padding: '0.7rem 2rem 0.7rem 0',
+    padding: '0.5rem 2rem 0.5rem 0',
     background: colorTheme.palette.primary.white,
     borderRadius: '4px',
     width: '100%',
@@ -81,7 +84,8 @@ const useStyles = makeStyles(() => ({
   },
   homeDesktop__popularSearches__title: {
     textAlign: 'left',
-    marginTop: '3rem',
+    fontSize: '1rem',
+    marginTop: '1.8rem',
     marginBottom: '1rem',
     color: colorTheme.palette.primary.white,
   },

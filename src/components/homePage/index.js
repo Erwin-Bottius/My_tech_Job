@@ -115,10 +115,14 @@ const HomePage = () => {
         variant="h6"
         className={classes.homeDesktop__title}
       >
+
         Trouvez le poste de
-        <span className={classes.homeMobile__title__span}> développeur</span>
-        <br />qui vous convient
-        <span className={classes.homeMobile__title__span}> vraiment</span>
+        <span className={classes.homeMobile__title__span}> développeur </span>
+
+        <span className={classes.noBreak}>
+          qui vous convient
+          <span className={classes.homeMobile__title__span}> vraiment.</span>
+        </span>
       </Typography>
       <div className={classes.homeDesktop__searchCard}>
         <form

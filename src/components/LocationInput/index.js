@@ -214,7 +214,6 @@ const LocationInput = ({ modalRef }) => {
             />
             { geolocationLoading
             && <CircularProgress /> }
-            <div className={classes.hr} />
           </div>
         )}
       />

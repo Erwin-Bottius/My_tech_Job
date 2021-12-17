@@ -51,18 +51,13 @@ const useStyles = makeStyles(() => ({
       width: 'auto',
     },
   },
-  hr: {
-    width: '1.5px',
-    background: colorTheme.palette.secondary.light,
-    height: '2.5rem',
-  },
   listBox__container__mobile: {
     borderRadius: '0px  0 4px 4px',
     borderTop: '1px solid #dddddd',
   },
   listBox__container: {
     borderRadius: '0px  0 4px 4px',
-    marginTop: '0.9rem',
+    marginTop: '0.7rem',
     borderTop: '1px solid #dddddd',
   },
   listBox__container__result: {

@@ -16,6 +16,11 @@ const useStyles = makeStyles(() => ({
       fontWeight: 500,
       fontSize: '1.2rem',
     },
+    '&:after': {
+      content: '""',
+      width: '2px',
+      backgroundColor: 'rgb(200, 200, 200)',
+    },
   },
   jobsInput: {
     paddingLeft: '0.8rem',
