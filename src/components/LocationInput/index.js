@@ -116,7 +116,7 @@ const LocationInput = ({ modalRef }) => {
             <InputBase
               {...params.inputProps}
               className={classes.searchModalInput}
-              placeholder="département, région"
+              placeholder="Département, Région"
               variant="outlined"
             />
             { geolocationLoading

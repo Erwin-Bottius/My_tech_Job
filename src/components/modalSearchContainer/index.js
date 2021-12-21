@@ -93,7 +93,7 @@ const ModalSearchContainer = () => {
             dispatch({ type: TOGGLE_PRINT_SEARCH_FORM });
           }}
         />
-        <Typography variant="h6">
+        <Typography variant="h6" className={classes.title}>
           Trouvez le job qui vous convient <span className={classes.span}>vraiment</span>.
         </Typography>
         <div className={classes.searchCard}>

@@ -16,7 +16,7 @@ const useStyles = makeStyles(() => ({
     justifyContent: 'flex-start',
     color: colorTheme.palette.primary.transparentText,
     paddingTop: '8rem',
-    padding: '5% 10%',
+    padding: '5% 5%',
     overflowY: 'auto',
   },
   container: {
@@ -24,6 +24,9 @@ const useStyles = makeStyles(() => ({
   },
   hidden: {
     display: 'none',
+  },
+  title: {
+    fontWeight: 700,
   },
   searchCard: {
     width: '100%',
@@ -55,6 +58,7 @@ const useStyles = makeStyles(() => ({
   },
   populatSearches_title: {
     marginBottom: '1rem',
+    fontWeight: 700,
   },
 }));
 

@@ -122,8 +122,8 @@ const JobsInput = () => {
             </ul>
             <InputBase
               {...params.inputProps}
-              className={classes.jobsInput}
-              placeholder="langage, framework..."
+              className={classes.jobsInputMobile}
+              placeholder="Langages, Frameworks..."
               variant="outlined"
               // a la perte du focus, si l'utilsateur n'a pas creer le Chip
               // On le créé pour lui, seulement si la valeur de l'input est non nulle

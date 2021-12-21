@@ -22,6 +22,13 @@ const useStyles = makeStyles(() => ({
       backgroundColor: 'rgb(200, 200, 200)',
     },
   },
+  jobsInputMobile: {
+    paddingLeft: '0.8rem',
+    width: '100%',
+    '& input::placeholder': {
+      fontSize: '1.2rem',
+    },
+  },
   jobsInput: {
     paddingLeft: '0.8rem',
     width: '100%',

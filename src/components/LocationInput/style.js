@@ -6,6 +6,9 @@ const useStyles = makeStyles(() => ({
   searchModalInput: {
     padding: '1rem 1rem',
     width: '100%',
+    '& input::placeholder': {
+      fontSize: '1.2rem',
+    },
   },
   autoComplete_desktop: {
     width: '55%',
