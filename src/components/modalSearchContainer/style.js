@@ -15,7 +15,7 @@ const useStyles = makeStyles(() => ({
     flexDirection: 'column',
     justifyContent: 'flex-start',
     color: colorTheme.palette.primary.transparentText,
-    paddingTop: '8rem',
+    paddingTop: '6rem',
     padding: '5% 5%',
     overflowY: 'auto',
   },
@@ -34,7 +34,7 @@ const useStyles = makeStyles(() => ({
     marginBottom: '2rem',
     background: colorTheme.palette.primary.white,
     paddingBottom: '1rem',
-    borderRadius: '4px',
+    borderRadius: '6px',
   },
   cross: {
     color: colorTheme.palette.primary.white,

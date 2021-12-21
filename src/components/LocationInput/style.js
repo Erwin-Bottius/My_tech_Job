@@ -8,6 +8,8 @@ const useStyles = makeStyles(() => ({
     width: '100%',
     '& input::placeholder': {
       fontSize: '1.2rem',
+      color: 'black',
+      fontWeight: 500,
     },
   },
   autoComplete_desktop: {

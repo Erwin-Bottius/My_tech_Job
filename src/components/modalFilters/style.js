@@ -38,7 +38,7 @@ const useStyles = makeStyles(() => ({
 
   },
   contractType__from: {
-    marginTop: '3rem',
+    marginTop: '2rem',
   },
   contractType__title: {
     marginBottom: '1rem',

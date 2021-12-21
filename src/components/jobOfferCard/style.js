@@ -8,6 +8,7 @@ const useStyles = makeStyles((theme) => ({
     marginTop: '1rem',
     padding: '2% 5%',
     margin: 'auto',
+    boxShadow: '0px 3px 8px 1px rgba(110,110,110,0.05)',
   },
   offer__avatar: {
     width: theme.spacing(7),
