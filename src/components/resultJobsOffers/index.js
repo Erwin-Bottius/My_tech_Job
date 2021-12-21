@@ -3,6 +3,7 @@ import {
   Box, Button, useMediaQuery,
 } from '@material-ui/core';
 import { useSelector, useDispatch } from 'react-redux';
+import ContentLoader from 'react-content-loader';
 
 // import Fichiers
 import { GET_JOBS } from 'src/store/actions';
@@ -29,19 +30,32 @@ const ResultJobsOffers = () => {
       <Box>
         { /* Ici nous faisons un map sur les offres d'emplois récupérées par notre requete
      a l'api afin de creer un composant resulTpageCard pour chaqque offre d'emploi */}
-        {jobs.map((element) => (
-          <JobOfferCard
-            key={element.id}
-            logo={element.origineOffre.partenaires ? element.origineOffre.partenaires[0].logo : 'n/c'}
-            job={element.intitule}
-            company={element.entreprise.nom}
-            location={element.lieuTravail.libelle}
-            id={element.id}
-            date={getDate(element.dateActualisation, currentDate)}
-            avatarBgColor={element.avatarBgColor}
-            isSelected={element.isSelected}
-          />
-        ))}
+        {!backdrop
+          ? jobs.map((element) => (
+            <JobOfferCard
+              key={element.id}
+              logo={element.origineOffre.partenaires ? element.origineOffre.partenaires[0].logo : 'n/c'}
+              job={element.intitule}
+              company={element.entreprise.nom}
+              location={element.lieuTravail.libelle}
+              id={element.id}
+              date={getDate(element.dateActualisation, currentDate)}
+              avatarBgColor={element.avatarBgColor}
+              isSelected={element.isSelected}
+            />
+          ))
+          : [...Array(6)].map(() => (
+            <div className={classes.offer}>
+              <ContentLoader foregroundColor="#dbdbdb">
+                {/* Only SVG shapes */}
+                <rect x="10%" y="5%" rx="70" ry="70" width="70" height="70" />
+                <rect x="10%" y="42%" rx="4" ry="4" width="80%" height="13" />
+                <rect x="10%" y="55%" rx="4" ry="4" width="80%" height="13" />
+                <rect x="10%" y="68%" rx="4" ry="4" width="80%" height="13" />
+                <rect x="10%" y="85%" rx="4" ry="4" width="25%" height="13" />
+              </ContentLoader>
+            </div>
+          ))}
         {!backdrop && !hasError && Number(statusCode) === 206
     && (
     <Button
@@ -61,19 +75,35 @@ const ResultJobsOffers = () => {
     <Box className={classes.jobsOffersDesktop}>
       { /* Ici nous faisons un map sur les offres d'emplois récupérées par notre requete
    a l'api afin de creer un composant resulTpageCard pour chaqque offre d'emploi */}
-      {jobs.map((element) => (
-        <JobOfferCard
-          key={element.id}
-          logo={element.origineOffre.partenaires ? element.origineOffre.partenaires[0].logo : 'n/c'}
-          job={element.intitule}
-          company={element.entreprise.nom}
-          location={element.lieuTravail.libelle}
-          id={element.id}
-          date={getDate(element.dateActualisation, currentDate)}
-          avatarBgColor={element.avatarBgColor}
-          isSelected={element.isSelected}
-        />
-      ))}
+      { !backdrop
+        ? jobs.map((element) => (
+          <JobOfferCard
+            key={element.id}
+            logo={element.origineOffre.partenaires ? element.origineOffre.partenaires[0].logo : 'n/c'}
+            job={element.intitule}
+            company={element.entreprise.nom}
+            location={element.lieuTravail.libelle}
+            id={element.id}
+            date={getDate(element.dateActualisation, currentDate)}
+            avatarBgColor={element.avatarBgColor}
+            isSelected={element.isSelected}
+          />
+        ))
+        : (
+          [...Array(6)].map(() => (
+            <div className={classes.offerDesktop}>
+              <ContentLoader foregroundColor="#dbdbdb">
+                {/* Only SVG shapes */}
+                <rect x="10%" y="5%" rx="70" ry="70" width="70" height="70" />
+                <rect x="10%" y="42%" rx="4" ry="4" width="80%" height="13" />
+                <rect x="10%" y="55%" rx="4" ry="4" width="80%" height="13" />
+                <rect x="10%" y="68%" rx="4" ry="4" width="80%" height="13" />
+                <rect x="10%" y="85%" rx="4" ry="4" width="25%" height="13" />
+              </ContentLoader>
+            </div>
+
+          ))
+        )}
       {!backdrop && !hasError && Number(statusCode) === 206
   && (
   <Button

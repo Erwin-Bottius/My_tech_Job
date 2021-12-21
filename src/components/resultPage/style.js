@@ -59,7 +59,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: colorTheme.palette.secondary.main,
     color: 'white',
     fontWeight: '600',
-    margin: '0 auto 4rem auto',
+    margin: '0 auto 2rem auto',
 
   },
   resultPageDesktop__main__defaultOfferDetail__informations: {
@@ -67,6 +67,10 @@ const useStyles = makeStyles((theme) => ({
     padding: '0 15%',
     fontWeight: '700',
     textAlign: 'center',
+  },
+  resultPageDesktop__main__defaultOfferDetail__loaderContainer: {
+    width: '100%',
+    padding: '0 20%',
   },
 
 }));

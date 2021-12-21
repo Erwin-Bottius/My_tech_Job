@@ -32,7 +32,7 @@ const useStyles = makeStyles(() => ({
     width: '100%',
     marginTop: '1rem',
     marginBottom: '2rem',
-    background: colorTheme.palette.primary.white,
+    background: '#fff',
     paddingBottom: '1rem',
     borderRadius: '6px',
     '& hr': {

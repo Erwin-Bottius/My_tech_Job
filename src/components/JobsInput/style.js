@@ -26,14 +26,20 @@ const useStyles = makeStyles(() => ({
     paddingLeft: '0.8rem',
     width: '100%',
     '& input::placeholder': {
-      fontSize: '1.2rem',
-      color: 'black',
-      fontWeight: 500,
+      fontSize: '1.1rem',
+      color: '#848484',
+      opacity: 1,
     },
   },
   jobsInput: {
     paddingLeft: '0.8rem',
     width: '100%',
+    '& input::placeholder': {
+      fontSize: '1.2rem',
+      color: '#848484',
+      fontWeight: 400,
+      opacity: 1,
+    },
   },
   jobsInput__ul: {
     display: 'flex',
@@ -43,6 +49,7 @@ const useStyles = makeStyles(() => ({
   jobsInput__chip: {
     color: colorTheme.palette.primary.white,
     marginLeft: '5px',
+    marginBottom: '5px',
     backgroundColor: colorTheme.palette.secondary.main,
     borderRadius: '4px',
     fontFamily: 'Roboto',

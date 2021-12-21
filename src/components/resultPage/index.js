@@ -1,11 +1,11 @@
+/* eslint-disable max-len */
 // IMPORT NPM
 import {
-  Backdrop,
-  CircularProgress,
   useMediaQuery,
   Typography,
 
 } from '@material-ui/core';
+import ContentLoader from 'react-content-loader';
 import { useSelector } from 'react-redux';
 
 // IMPORTS FICHIERS
@@ -34,7 +34,7 @@ const ResultPage = () => {
       // Et si il ya eu une erreur dans la requete
       on affiche le composant Error  */}
         {hasError && <Error />}
-        {!backdrop && !hasError
+        {!hasError
       && (
         <>
           <ResultInformation />
@@ -42,11 +42,6 @@ const ResultPage = () => {
           <ResultJobsOffers />
         </>
       )}
-        {/* ici nous avons Le backfrop, c'est notre loader lorsque nous avons pas
-        encore recu la réponse a notre requete */}
-        <Backdrop open={backdrop} className={classes.backdrop}>
-          <CircularProgress color="inherit" />
-        </Backdrop>
       </div>
     );
   }
@@ -57,7 +52,7 @@ const ResultPage = () => {
           On affiche pas la card de message // Et si il ya eu une erreur dans la requete
           on affiche le composant Error  */}
       {hasError && <Error />}
-      {!backdrop && !hasError
+      {!hasError
       && (
       <>
         <ResultInformation />
@@ -79,14 +74,26 @@ const ResultPage = () => {
                   <div className={classes.resultPageDesktop__main__defaultOfferDetail__avatar}>
                     My Tech Job
                   </div>
-                  <Typography
-                    className={classes.resultPageDesktop__main__defaultOfferDetail__informations}
-                  >{
+                  {!backdrop
+                    ? (
+                      <Typography
+                        className={classes.resultPageDesktop__main__defaultOfferDetail__informations}
+                      >{
                 jobs.length >= 14
                   ? "Nous avons trouvé des centaines d'offres correspondants à vos critères"
                   : 'Voici quelques offres correspondants à vos critères. \n Essayez de modifier votre recherche pour plus de résultats.'
               }
-                  </Typography>
+                      </Typography>
+                    )
+                    : (
+                      <div className={classes.resultPageDesktop__main__defaultOfferDetail__loaderContainer}>
+                        <ContentLoader viewBox="0 0 300 70" foregroundColor="#dbdbdb">
+                          {/* Only SVG shapes */}
+                          <rect y="17" rx="4" ry="4" width="300" height="17" margin="auto" />
+                          <rect y="45" rx="3" ry="3" width="300" height="17" />
+                        </ContentLoader>
+                      </div>
+                    )}
                 </div>
               )}
             <div />
@@ -94,9 +101,6 @@ const ResultPage = () => {
         </main>
       </>
       )}
-      <Backdrop open={backdrop} className={classes.backdrop}>
-        <CircularProgress color="inherit" />
-      </Backdrop>
     </div>
   );
 };

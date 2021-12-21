@@ -1,5 +1,5 @@
 import { makeStyles } from '@material-ui/core';
-import colorTheme from 'src/styles/theme';
+// import colorTheme from 'src/styles/theme';
 
 const useStyles = makeStyles(() => ({
 
@@ -7,9 +7,9 @@ const useStyles = makeStyles(() => ({
     padding: '1rem 1rem',
     width: '100%',
     '& input::placeholder': {
-      fontSize: '1.2rem',
-      color: 'black',
-      fontWeight: 500,
+      fontSize: '1.1rem',
+      color: '#848484',
+      opacity: 1,
     },
   },
   autoComplete_desktop: {
@@ -23,14 +23,17 @@ const useStyles = makeStyles(() => ({
     '& input': {
       fontWeight: 500,
       fontSize: '1.2rem',
+      '&::placeholder': {
+        fontSize: '1.2rem',
+        color: '#848484',
+        fontWeight: 400,
+        opacity: 1,
+      },
     },
   },
   optionLabelIcon: {
     marginRight: '0.5rem',
   },
-  width: '1.5px',
-  background: colorTheme.palette.secondary.light,
-  height: '2.5rem',
   inputbase_container: {
     display: 'flex',
     flexDirection: 'row-reverse',
