@@ -108,7 +108,7 @@ const HomePage = () => {
           className={classes.homeMobile__button}
           startIcon={<SearchIcon className={classes.homeMobile__button__searchIcon} style={{ fontSize: '2rem' }} />}
         >
-          Rechercher des offres d'emploi
+          Rechercher des offres <br /> d'emploi
         </Button>
       </Box>
     );

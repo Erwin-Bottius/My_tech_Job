@@ -13,7 +13,7 @@ const useStyles = makeStyles(() => ({
     background: 'white',
     flexDirection: 'column',
     justifyContent: 'flex-start',
-    padding: '2rem 10%',
+    padding: '2rem 10% 6rem 10%',
   },
   hidden: {
     display: 'none',
