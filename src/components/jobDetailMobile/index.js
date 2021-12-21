@@ -51,7 +51,7 @@ const JobDetailMobile = () => {
             <Typography className={classes.offer__subHeader__subTitle} variant="subtitle1">
               {jobOfferObject.intitule}
             </Typography>
-            <Typography color="textSecondary">
+            <Typography color="textSecondary" className={classes.company}>
               {jobOfferObject.entreprise.nom}
             </Typography>
             <Typography variant="body2" component="p">

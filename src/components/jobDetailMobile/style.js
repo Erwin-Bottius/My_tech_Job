@@ -19,6 +19,10 @@ const useStyles = makeStyles((theme) => ({
     height: theme.spacing(10),
 
   },
+  company: {
+    color: colorTheme.palette.secondary.main,
+    fontWeight: 500,
+  },
   offer__card: {
     width: '100%',
     padding: '1rem 2rem',
@@ -28,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
   offer__card__hr: {
     height: '0.1rem',
     border: 'none',
-    background: colorTheme.palette.secondary.light,
+    borderTop: '1px solid #e5e5e5',
   },
   offer__card__detailTitle: {
     marginBottom: '1.5rem',
