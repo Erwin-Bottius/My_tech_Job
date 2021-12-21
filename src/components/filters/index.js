@@ -39,6 +39,7 @@ const Filters = () => {
           variant="contained"
           size="medium"
           onClick={() => {
+            window.scrollTo(0, 0);
             dispatch({ type: TOGGLE_PRINT_FILTERS_MODAL });
           }}
         >

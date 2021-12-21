@@ -35,6 +35,10 @@ const useStyles = makeStyles(() => ({
     background: colorTheme.palette.primary.white,
     paddingBottom: '1rem',
     borderRadius: '6px',
+    '& hr': {
+      border: 0,
+      borderTop: '1px solid #e5e5e5',
+    },
   },
   cross: {
     color: colorTheme.palette.primary.white,
