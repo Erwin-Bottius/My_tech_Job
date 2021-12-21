@@ -23,8 +23,8 @@ const useStyles = makeStyles(() => ({
   },
   headerMobile__logo__home: {
     whiteSpace: 'nowrap',
-    fontFamily: 'Fredoka One, cursive',
     letterSpacing: '-2px',
+    fontFamily: 'Russo One, sans-serif',
     fontSize: '1.8rem',
     wordSpacing: '-5px',
     color: colorTheme.palette.secondary.main,
@@ -34,8 +34,8 @@ const useStyles = makeStyles(() => ({
   },
   headerMobile__logo: {
     whiteSpace: 'nowrap',
-    fontFamily: 'Fredoka One, cursive',
     letterSpacing: '-2px',
+    fontFamily: 'Russo One, sans-serif',
     fontSize: '1.8rem',
     wordSpacing: '-5px',
     color: colorTheme.palette.secondary.white,
@@ -89,9 +89,10 @@ const useStyles = makeStyles(() => ({
   },
   headerDesktop__logo__home: {
     whiteSpace: 'nowrap',
+    width: '5rem',
     letterSpacing: '-2px',
-    fontFamily: 'Fredoka One, cursive',
-    fontSize: '2rem',
+    fontFamily: 'Russo One, sans-serif',
+    fontSize: '1.8rem',
     wordSpacing: '-5px',
     color: colorTheme.palette.secondary.main,
     '& span': {
@@ -102,8 +103,8 @@ const useStyles = makeStyles(() => ({
     whiteSpace: 'nowrap',
     width: '5rem',
     letterSpacing: '-2px',
-    fontFamily: 'Fredoka One, cursive',
-    fontSize: '2rem',
+    fontFamily: 'Russo One, sans-serif',
+    fontSize: '1.8rem',
     wordSpacing: '-5px',
     color: colorTheme.palette.secondary.white,
     '& span': {

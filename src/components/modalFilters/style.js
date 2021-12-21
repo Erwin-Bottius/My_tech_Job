@@ -46,13 +46,14 @@ const useStyles = makeStyles(() => ({
   },
   modalFooter: {
     display: 'flex',
-    justifyContent: 'space-between',
+    justifyContent: 'space-evenly',
     alignItems: 'center',
     position: 'absolute',
     bottom: 0,
     left: 0,
     right: 0,
-    padding: '3rem 1rem',
+    height: '6rem',
+    maxHeight: '6rem',
     background: colorTheme.palette.primary.light,
   },
   button: {

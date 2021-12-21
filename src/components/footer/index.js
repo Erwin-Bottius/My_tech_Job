@@ -1,12 +1,15 @@
 import { Typography, useMediaQuery } from '@material-ui/core';
 import { useSelector } from 'react-redux';
+import { useLocation } from 'react-router-dom';
 import useStyles from './style';
 
 const Footer = () => {
   const classes = useStyles();
   const backdrop = useSelector((state) => state.search.backdropOpen);
+  const location = useLocation();
+  // Ici nous récupérons le path de l'url mais sans les params
+  const currentPath = location.pathname.slice(0, location.pathname.lastIndexOf('/'));
   const isMobile = useMediaQuery('(max-width:800px)');
-
   if (isMobile) {
   // ***************** VERSION MOBILE *******************
 
@@ -14,7 +17,7 @@ const Footer = () => {
       <>
         { !backdrop
       && (
-      <footer className={classes.footer}>
+      <footer className={currentPath === '/offre-d-emploi' ? classes.footer__jobDetail : classes.footer}>
         <div className={classes.footer__logo}>My <span>Tech</span> Job</div>
         <div className={classes.footer__socialMedia}>
           <a
