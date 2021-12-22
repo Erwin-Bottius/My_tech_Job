@@ -34,6 +34,7 @@ const useStyles = makeStyles(() => ({
     height: '15rem',
     marginTop: '1rem',
     marginRight: '1rem',
+    background: '#fff',
     margin: 'auto',
     boxShadow: '0px 3px 8px 1px rgba(110,110,110,0.10)',
     cursor: 'pointer',
