@@ -6,7 +6,8 @@ const useStyles = makeStyles(() => ({
   informationMobile: {
     borderRadius: '0px',
     boxShadow: '1px 4px 3px 1px rgba(222,222,222,0.28)',
-    padding: ' 2rem 2rem',
+    padding: ' 1.5rem 2rem',
+    background: '#fff',
   },
   informationMobile__title: {
     fontWeight: 'bold',
@@ -19,7 +20,7 @@ const useStyles = makeStyles(() => ({
     width: '100%',
     backgroundColor: '#ffffff',
     boxShadow: '0px 3px 10px 2px #ededed',
-    padding: '3rem 0',
+    padding: '2.5rem 0',
     flex: '0 1 auto',
   },
   informationDesktop__title: {

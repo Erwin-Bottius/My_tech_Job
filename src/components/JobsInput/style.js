@@ -50,6 +50,7 @@ const useStyles = makeStyles(() => ({
     color: colorTheme.palette.primary.white,
     marginLeft: '5px',
     marginBottom: '5px',
+    marginTop: '5px',
     backgroundColor: colorTheme.palette.secondary.main,
     borderRadius: '4px',
     fontFamily: 'Roboto',

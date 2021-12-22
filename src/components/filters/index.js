@@ -31,7 +31,7 @@ const Filters = () => {
 
     return (
       <div className={classes.filtersMobile}>
-        <Typography variant="body1">
+        <Typography variant="body1" className={classes.filtersMobile__information}>
           Des centaines d'offres trouvées
         </Typography>
         <Button

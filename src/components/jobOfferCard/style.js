@@ -6,13 +6,18 @@ const useStyles = makeStyles((theme) => ({
   offer: {
     width: '90%',
     marginTop: '1rem',
-    padding: '2% 5%',
+    padding: '6% 5%',
     margin: 'auto',
-    boxShadow: '0px 3px 8px 1px rgba(110,110,110,0.05)',
+    borderRadius: '6px',
+    boxShadow: 'rgb(33 33 33 / 10%) 0px 4px 9px',
+    '&:first-child': {
+      marginTop: '0.4rem',
+    },
   },
   offer__avatar: {
     width: theme.spacing(7),
     height: theme.spacing(7),
+    marginBottom: '1rem',
   },
   offer__footer: {
     display: 'flex',

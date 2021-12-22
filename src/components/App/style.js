@@ -14,7 +14,7 @@ const useStyles = makeStyles(() => ({
     width: '100%',
     minHeight: '100%',
     flexFlow: 'column',
-    backgroundColor: colorTheme.palette.primary.white,
+    backgroundColor: 'rgb(242, 242, 242)',
   },
   appHomeDesktop: {
     width: '100%',
@@ -47,7 +47,7 @@ const useStyles = makeStyles(() => ({
       fontFamily: colorTheme.typography.fontFamily,
     },
     '.pinkButton': {
-      opacity: 0.8,
+      opacity: 0.9,
       transition: '200ms ease-out opacity',
       '&:hover': {
         background: colorTheme.palette.primary.pinkColor,

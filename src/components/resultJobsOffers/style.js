@@ -8,6 +8,7 @@ const useStyles = makeStyles(() => ({
     padding: '2% 5%',
     height: '15rem',
     borderRadius: '6px',
+    background: '#fff',
     margin: 'auto',
     boxShadow: '0px 3px 8px 1px rgba(110,110,110,0.15)',
     '& svg': {

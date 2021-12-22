@@ -57,6 +57,10 @@ const useStyles = makeStyles(() => ({
     padding: '0.2rem 2rem 0.2rem 1rem',
     '& input': {
       width: 'auto',
+      '&::placeholder': {
+        color: '#848484',
+        opacity: 1,
+      },
     },
   },
   listBox__container__mobile: {

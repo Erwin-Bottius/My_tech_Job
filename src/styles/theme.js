@@ -7,7 +7,7 @@ const colorTheme = createTheme({
       main: 'rgb(35, 9, 57)',
       black: '#000000',
       transparentText: 'rgb(193, 186, 235);',
-      pinkColor: '#b255cc',
+      pinkColor: 'rgb(171, 81, 165)',
       light: '#f9f9f9',
     },
     secondary: {
