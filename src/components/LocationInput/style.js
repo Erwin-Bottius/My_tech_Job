@@ -90,7 +90,19 @@ const useStyles = makeStyles(() => ({
     zIndex: 0,
     left: 0,
     right: 0,
-    // animation: `$translateGelocationError 1000ms ${theme.transitions.easing.easeOut}`,
+  },
+  optionLabel__geolocationError__result: {
+    width: '100%',
+    backgroundColor: 'rgb(251, 236, 235)',
+    color: 'rgb(194, 63, 52)',
+    padding: '0.5rem 1rem',
+    borderRadius: '3px',
+    position: 'absolute',
+    fontWeight: 500,
+    bottom: '-4rem',
+    zIndex: 0,
+    left: 0,
+    right: 0,
   },
 }));
 

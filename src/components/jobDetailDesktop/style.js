@@ -47,18 +47,31 @@ const useStyles = makeStyles((theme) => ({
   offer__card__detailTitle: {
     marginBottom: '1.5rem',
     fontWeight: '600',
+    fontSize: '1.5rem',
+
   },
   offer__card__subtitle: {
     display: 'flex',
     justifyContent: 'space-between',
     padding: '0.5rem',
-    fontSize: '0.8rem',
+    fontSize: '0.9rem',
     fontWeight: '500',
+  },
+  offer__subHeader__company: {
+    color: colorTheme.palette.secondary.main,
+    fontWeight: 700,
+  },
+  offer__subHeader__subTitle: {
+    fontWeight: 500,
+  },
+  offer__card__span: {
+    fontWeight: 600,
   },
   offer__card__description__title: {
     marginTop: '1.5rem',
     marginBottom: '1.5rem',
     fontWeight: '600',
+    fontSize: '1.5rem',
   },
   offer__footer: {
     width: '100%',

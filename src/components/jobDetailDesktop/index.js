@@ -53,10 +53,10 @@ const JobDetailDesktop = ({ jobOfferObject }) => {
             <Typography className={classes.offer__subHeader__subTitle} variant="subtitle1">
               {jobOfferObject.intitule}
             </Typography>
-            <Typography color="textSecondary">
+            <Typography className={classes.offer__subHeader__company}>
               {jobOfferObject.entreprise.nom}
             </Typography>
-            <Typography variant="body2" component="p">
+            <Typography variant="body2" className={classes.offer__subHeader__subTitle}>
               {jobOfferObject.lieuTravail.libelle}
             </Typography>
           </div>
@@ -69,26 +69,26 @@ const JobDetailDesktop = ({ jobOfferObject }) => {
         <Typography
           variant="h6"
           className={classes.offer__card__detailTitle}
-        >DÉTAILS DU POSTE
+        >Détails du poste
         </Typography>
         <Typography
           variant="subtitle1"
           className={classes.offer__card__subtitle}
-        >TYPE DE CONTRAT
+        >Type de contrat
           <span className={classes.offer__card__span}> {jobOfferObject.typeContrat}</span>
         </Typography>
         <hr className={classes.offer__card__hr} />
         <Typography
           variant="subtitle1"
           className={classes.offer__card__subtitle}
-        >ADRESSE
+        >Adresse
           <span className={classes.offer__card__span}> {jobOfferObject.lieuTravail.libelle}</span>
         </Typography>
         <hr className={classes.offer__card__hr} />
         <Typography
           variant="subtitle1"
           className={classes.offer__card__subtitle}
-        >DATE DE PUBLICATION
+        >Date de publication
           <span
             className={classes.offer__card__span}
           > {getDate(jobOfferObject.dateActualisation, currentDate)}
@@ -98,7 +98,7 @@ const JobDetailDesktop = ({ jobOfferObject }) => {
         <Typography
           variant="h6"
           className={classes.offer__card__description__title}
-        >DESCRIPTION
+        >Description
         </Typography>
         <Typography variant="body1">{jobOfferObject.description}</Typography>
       </div>

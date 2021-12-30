@@ -298,7 +298,10 @@ const LocationInput = ({ modalRef }) => {
             />
             { geolocationError
             && (
-            <p className={classes.optionLabel__geolocationError}>
+            <p className={location.pathname === '/'
+              ? classes.optionLabel__geolocationError
+              : classes.optionLabel__geolocationError__result}
+            >
               Veuillez autoriser la géolocalisation sur
               votre navigateur pour utiliser cette fonctionnalité
             </p>

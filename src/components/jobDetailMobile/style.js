@@ -19,13 +19,16 @@ const useStyles = makeStyles((theme) => ({
     height: theme.spacing(10),
 
   },
-  company: {
-    color: colorTheme.palette.secondary.main,
+  offer__subHeader__subTitle: {
     fontWeight: 500,
+  },
+  offer__subHeader__company: {
+    color: colorTheme.palette.secondary.main,
+    fontWeight: 600,
   },
   offer__card: {
     width: '100%',
-    padding: '1rem 2rem',
+    padding: '1rem 1.5rem',
     background: 'white',
     boxShadow: '1px 4px 3px 5px rgba(230,230,233, 1)',
   },
@@ -36,17 +39,23 @@ const useStyles = makeStyles((theme) => ({
   },
   offer__card__detailTitle: {
     marginBottom: '1.5rem',
+    fontWeight: 600,
   },
   offer__card__subtitle: {
     display: 'flex',
     justifyContent: 'space-between',
     padding: '0.5rem',
-    fontSize: '0.8rem',
-    fontWeight: 'bolder',
+    fontSize: '0.9rem',
+    fontWeight: 500,
+  },
+  offer__card__span: {
+    fontWeight: 600,
   },
   offer__card__description__title: {
     marginTop: '1.5rem',
     marginBottom: '1.5rem',
+    fontWeight: 600,
+
   },
   offer__footer: {
     width: '100%',
