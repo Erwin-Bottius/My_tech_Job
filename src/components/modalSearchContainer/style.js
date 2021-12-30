@@ -31,7 +31,7 @@ const useStyles = makeStyles(() => ({
   searchCard: {
     width: '100%',
     marginTop: '1rem',
-    marginBottom: '2rem',
+    marginBottom: '1rem',
     background: '#fff',
     paddingBottom: '1rem',
     borderRadius: '6px',
@@ -39,6 +39,17 @@ const useStyles = makeStyles(() => ({
       border: 0,
       borderTop: '1px solid #e5e5e5',
     },
+  },
+  optionLabel__geolocationError: {
+    width: '100%',
+    marginBottom: '1rem',
+    backgroundColor: 'rgb(251, 236, 235)',
+    color: 'rgb(194, 63, 52)',
+    padding: '0.5rem 1rem',
+    borderRadius: '3px',
+    fontWeight: 500,
+    bottom: '-145%',
+    // animation: `$translateGelocationError 1000ms ${theme.transitions.easing.easeOut}`,
   },
   cross: {
     color: colorTheme.palette.primary.white,

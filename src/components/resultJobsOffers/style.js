@@ -39,6 +39,9 @@ const useStyles = makeStyles(() => ({
     boxShadow: '0px 3px 8px 1px rgba(110,110,110,0.10)',
     cursor: 'pointer',
     border: '2px solid transparent',
+    '&:first-child': {
+      marginTop: '0',
+    },
     '& svg': {
       width: '100%',
       height: '100%',

@@ -14,6 +14,7 @@ import {
   CHANGE_INPUTS_VALUES,
   SET_GEOLOCATION_LOADING,
   GET_CITYCODE_GEOLOCATION,
+  TOGGLE_ERROR_GEOLOCATION,
 } from 'src/store/actions';
 import getFilterdLocation from 'src/store/selectors/filteredLocations';
 import departments from '../../../data/departments';
@@ -28,6 +29,7 @@ const LocationInput = ({ modalRef }) => {
   const location = useLocation();
   const locationInputValue = useSelector((state) => state.search.locationInputValue);
   const geolocationLoading = useSelector((state) => state.search.geolocationLoading);
+  const geolocationError = useSelector((state) => state.search.geolocationError);
   const defaultLocationSuggestion = ['Autour de moi', 'Toute la France'];
   const inputRef = useRef();
 
@@ -61,16 +63,50 @@ const LocationInput = ({ modalRef }) => {
         )}
         value={autocompleteLocationValue}
         onChange={(event, newValue) => {
+          if (geolocationError) {
+            dispatch({
+              type: TOGGLE_ERROR_GEOLOCATION,
+              geolocationError: false,
+            });
+          }
           setAutocompleteLocationValue(newValue);
           if (newValue === 'Autour de moi') {
             if ('geolocation' in navigator) {
-              dispatch({ type: SET_GEOLOCATION_LOADING });
-              navigator.geolocation.getCurrentPosition((position) => {
-                dispatch({
-                  type: GET_CITYCODE_GEOLOCATION,
-                  latitude: position.coords.latitude,
-                  longitude: position.coords.longitude,
-                });
+              navigator.geolocation.getCurrentPosition(
+                // geolocation success
+                (success) => {
+                  dispatch({ type: SET_GEOLOCATION_LOADING });
+                  dispatch({
+                    type: GET_CITYCODE_GEOLOCATION,
+                    latitude: success.coords.latitude,
+                    longitude: success.coords.longitude,
+                  });
+                },
+                // geolocation error
+                () => {
+                  dispatch({
+                    type: CHANGE_INPUTS_VALUES,
+                    field: 'locationInputValue',
+                    inputValue: '',
+                  });
+                  setAutocompleteLocationValue('');
+                  dispatch({
+                    type: TOGGLE_ERROR_GEOLOCATION,
+                    geolocationError: true,
+                  });
+                },
+              );
+            }
+            else {
+              dispatch({
+                type: CHANGE_INPUTS_VALUES,
+                field: 'locationInputValue',
+                inputValue: '',
+              });
+              setAutocompleteLocationValue('');
+              dispatch({
+                type: TOGGLE_ERROR_GEOLOCATION,
+                geolocationError: true,
               });
             }
           }
@@ -78,17 +114,22 @@ const LocationInput = ({ modalRef }) => {
         inputValue={locationInputValue}
         onInputChange={(event, newInputValue) => {
           dispatch({
+            type: TOGGLE_ERROR_GEOLOCATION,
+            geolocationError: false,
+          });
+          dispatch({
             type: CHANGE_INPUTS_VALUES,
             field: 'locationInputValue',
             inputValue: newInputValue,
           });
         }}
-        options={
-          locationInputValue
-            ? getFilterdLocation(locationInputValue, [...departments, ...frenchStates])
-              .map((element) => element.nom)
-            : defaultLocationSuggestion
-}
+                  // si l'utilisateur a renseigné l'input et qu'il n'a pas choisi
+        // Autout de moi ou Toute la france alors on affiche les départements et régions
+        // sinon on affiche Autour de moi et tout la france
+        options={locationInputValue !== 'Autour de moi' && locationInputValue !== 'Toute la France' && locationInputValue
+          ? getFilterdLocation(locationInputValue, [...departments, ...frenchStates])
+            .map((element) => element.nom)
+          : defaultLocationSuggestion}
         renderOption={(options) => {
           if (options === 'Autour de moi') {
             return (
@@ -155,6 +196,12 @@ const LocationInput = ({ modalRef }) => {
         value={autocompleteLocationValue}
         inputValue={locationInputValue}
         onInputChange={(event, newInputValue) => {
+          if (geolocationError) {
+            dispatch({
+              type: TOGGLE_ERROR_GEOLOCATION,
+              geolocationError: false,
+            });
+          }
           dispatch({
             type: CHANGE_INPUTS_VALUES,
             field: 'locationInputValue',
@@ -162,21 +209,58 @@ const LocationInput = ({ modalRef }) => {
           });
         }}
         onChange={(event, newValue) => {
+          if (geolocationError) {
+            dispatch({
+              type: TOGGLE_ERROR_GEOLOCATION,
+              geolocationError: false,
+            });
+          }
           setAutocompleteLocationValue(newValue);
           if (newValue === 'Autour de moi') {
             if ('geolocation' in navigator) {
-              dispatch({ type: SET_GEOLOCATION_LOADING });
-              navigator.geolocation.getCurrentPosition((position) => {
-                dispatch({
-                  type: GET_CITYCODE_GEOLOCATION,
-                  latitude: position.coords.latitude,
-                  longitude: position.coords.longitude,
-                });
+              navigator.geolocation.getCurrentPosition(
+                // location success
+                (success) => {
+                  dispatch({ type: SET_GEOLOCATION_LOADING });
+                  dispatch({
+                    type: GET_CITYCODE_GEOLOCATION,
+                    latitude: success.coords.latitude,
+                    longitude: success.coords.longitude,
+                  });
+                },
+                // location error
+                () => {
+                  setAutocompleteLocationValue('');
+                  dispatch({
+                    type: CHANGE_INPUTS_VALUES,
+                    field: 'locationInputValue',
+                    inputValue: '',
+                  });
+                  dispatch({
+                    type: TOGGLE_ERROR_GEOLOCATION,
+                    geolocationError: true,
+                  });
+                },
+              );
+            }
+            else {
+              dispatch({
+                type: CHANGE_INPUTS_VALUES,
+                field: 'locationInputValue',
+                inputValue: '',
+              });
+              setAutocompleteLocationValue('');
+              dispatch({
+                type: TOGGLE_ERROR_GEOLOCATION,
+                geolocationError: true,
               });
             }
           }
         }}
-        options={locationInputValue
+        // si l'utilisateur a renseigné l'input et qu'il n'a pas choisi
+        // Autout de moi ou Toute la france alors on affiche les départements et régions
+        // sinon on affiche Autour de moi et tout la france
+        options={locationInputValue !== 'Autour de moi' && locationInputValue !== 'Toute la France' && locationInputValue
           ? getFilterdLocation(locationInputValue, [...departments, ...frenchStates])
             .map((element) => element.nom)
           : defaultLocationSuggestion}
@@ -212,6 +296,13 @@ const LocationInput = ({ modalRef }) => {
               placeholder="Département, Région"
               variant="outlined"
             />
+            { geolocationError
+            && (
+            <p className={classes.optionLabel__geolocationError}>
+              Veuillez autoriser la géolocalisation sur
+              votre navigateur pour utiliser cette fonctionnalité
+            </p>
+            )}
             { geolocationLoading
             && <CircularProgress /> }
           </div>

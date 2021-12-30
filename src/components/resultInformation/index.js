@@ -13,7 +13,7 @@ const ResultInformation = () => {
   const locationSearched = useSelector((state) => state.search.locationSearched);
   const jobSearched = useSelector((state) => state.search.jobSearched);
   const classes = useStyles();
-
+  // VERSION MOBILE
   if (isMobile) {
     return (
       <div className={classes.informationMobile}>
@@ -27,6 +27,7 @@ const ResultInformation = () => {
       </div>
     );
   }
+  // VERSION DESKTOP
   return (
     <div className={classes.informationDesktop}>
       <Typography variant="h6" className={classes.informationDesktop__title}>
@@ -34,7 +35,7 @@ const ResultInformation = () => {
         <span className={classes.informationDesktop__title__span}>
           {jobSearched.length > 0 ? ` ${jobSearched.join(' ')} ` : ' jobs les plus populaires '}
         </span>
-        dans <span className={classes.informationDesktop__title}>{locationSearched || 'France'} </span>
+        dans <span className={classes.informationDesktop__title__span}>{locationSearched || 'France'} </span>
       </Typography>
     </div>
   );

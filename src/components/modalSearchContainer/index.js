@@ -29,6 +29,7 @@ const ModalSearchContainer = () => {
   const locationInputValue = useSelector((state) => state.search.locationInputValue);
   const isSearchFormHidden = useSelector((state) => state.search.isSearchFormHidden);
   const geolocationLoading = useSelector((state) => state.search.geolocationLoading);
+  const geolocationError = useSelector((state) => state.search.geolocationError);
   const classes = useStyles();
   const dispatch = useDispatch();
   const history = useHistory();
@@ -114,6 +115,13 @@ const ModalSearchContainer = () => {
             </Button>
           </form>
         </div>
+        { geolocationError
+            && (
+            <p className={classes.optionLabel__geolocationError}>
+              Veuillez autoriser la géolocalisation sur
+              votre navigateur pour utiliser cette fonctionnalité
+            </p>
+            )}
         <Typography variant="h6" className={classes.populatSearches_title}>
           Recherche les plus fréquentes
         </Typography>

@@ -20,6 +20,7 @@ import
   SET_GEOLOCATION_LOADING,
   SET_ISSELECTED_JOB,
   TOGGLE_FILTER_POPUP,
+  TOGGLE_ERROR_GEOLOCATION,
 } from 'src/store/actions';
 
 export const initialState = {
@@ -44,6 +45,7 @@ export const initialState = {
     isContractPopup: false,
     isExperiencePopup: false,
   },
+  geolocationError: false,
 };
 
 const searchReducer = (state = initialState, action) => {
@@ -185,6 +187,11 @@ const searchReducer = (state = initialState, action) => {
           ...state.filtersPopup,
           [action.popup]: !state.filtersPopup[action.popup],
         },
+      };
+    case TOGGLE_ERROR_GEOLOCATION:
+      return {
+        ...state,
+        geolocationError: action.geolocationError,
       };
     default:
       return state;
