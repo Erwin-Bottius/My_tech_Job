@@ -1,6 +1,7 @@
 // Import Npm
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
+import { PropTypes } from 'prop-types';
 import { HashLink as Link } from 'react-router-hash-link';
 
 // import Fichiers
@@ -9,7 +10,7 @@ import {
 } from 'src/store/actions';
 import useStyles from './style';
 
-const Navbar = () => {
+const Navbar = ({ setOpen }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const navbarOpen = useSelector((state) => state.search.navbarOpen);
@@ -26,6 +27,7 @@ const Navbar = () => {
     <div className={navbarOpen ? classes.navbarClose : classes.navbarOpen}>
       <Link
         onClick={() => {
+          setOpen();
           dispatch({
             type: TOGGLE_SHOW_NAVBAR,
           });
@@ -38,6 +40,7 @@ const Navbar = () => {
       <div className={classes.hr} />
       <Link
         onClick={() => {
+          setOpen();
           dispatch({
             type: TOGGLE_SHOW_NAVBAR,
           });
@@ -51,5 +54,9 @@ const Navbar = () => {
     </div>
 
   );
+};
+
+Navbar.propTypes = {
+  setOpen: PropTypes.func.isRequired,
 };
 export default Navbar;

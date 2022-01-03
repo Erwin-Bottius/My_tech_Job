@@ -5,7 +5,7 @@ import {
   Button,
   useMediaQuery,
 } from '@material-ui/core';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import SearchIcon from '@material-ui/icons/Search';
 import { Turn as Hamburger } from 'hamburger-react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -24,6 +24,7 @@ import {
   GET_JOBS,
   TOGGLE_SHOW_NAVBAR,
 } from 'src/store/actions';
+import Navbar from 'src/components/navbar';
 import JobsInput from 'src/components/JobsInput';
 import LocationInput from 'src/components/LocationInput';
 import useStyles from './style';
@@ -34,17 +35,16 @@ const Header = () => {
   const [isOpen, setOpen] = useState(false);
   const dispatch = useDispatch();
   const location = useLocation();
-  const navbarOpen = useSelector((state) => state.search.navbarOpen);
   const locationInputValue = useSelector((state) => state.search.locationInputValue);
   const geolocationLoading = useSelector((state) => state.search.geolocationLoading);
-  useEffect(() => {
-    // ici nous changeons les burger menu,
-    // nous repassons de l'icone cross a l'icone burger
-    // utile lorque le user click sur un des lien de navbar
-    if (isMobile && isOpen) {
-      setOpen();
-    }
-  }, [navbarOpen]);
+  // useEffect(() => {
+  // ici nous changeons les burger menu,
+  // nous repassons de l'icone cross a l'icone burger
+  // utile lorque le user click sur un des lien de navbar
+  // if (isMobile && isOpen) {
+  //   setOpen();
+  // }
+  // }, [navbarOpen]);
   const handleSubmitForm = (event) => {
     if (geolocationLoading) {
       event.preventDefault();
@@ -89,11 +89,12 @@ const Header = () => {
   // ****************** VERSION MOBILE *********************************
   if (isMobile) {
     return (
-      <header className={location.pathname === '/' ? classes.headerHomeMobile : classes.headerMobile}>
-        {/* SI on est sur la page de résultats ou d'offre,
+      <>
+        <header className={location.pathname === '/' ? classes.headerHomeMobile : classes.headerMobile}>
+          {/* SI on est sur la page de résultats ou d'offre,
          on affiche un icone SEARCH dans le header pour
         avoir la possibilité d'éffectuer une nouvelle recherche */}
-        {location.pathname !== '/'
+          {location.pathname !== '/'
          && (
          <IconButton
            onClick={() => {
@@ -108,31 +109,33 @@ const Header = () => {
            <SearchIcon />
          </IconButton>
          )}
-        <Link
-          to="/"
-          onClick={() => {
-            dispatch({ type: RESET_JOBSEARCHED_VALUE });
-          }}
-        >
-          <Typography
-            variant="h6"
-            className={location.pathname !== '/' ? classes.headerMobile__logo : classes.headerMobile__logo__home}
+          <Link
+            to="/"
+            onClick={() => {
+              dispatch({ type: RESET_JOBSEARCHED_VALUE });
+            }}
           >
-            My <span>Tech</span> Job
-          </Typography>
-        </Link>
-        <div onClick={() => {
-          dispatch({ type: TOGGLE_SHOW_NAVBAR });
-        }}
-        >
-          <Hamburger
-            toggled={isOpen}
-            toggle={setOpen}
-            className={classes.menuButton}
-            size={22}
-          />
-        </div>
-      </header>
+            <Typography
+              variant="h6"
+              className={location.pathname !== '/' ? classes.headerMobile__logo : classes.headerMobile__logo__home}
+            >
+              My <span>Tech</span> Job
+            </Typography>
+          </Link>
+          <div onClick={() => {
+            dispatch({ type: TOGGLE_SHOW_NAVBAR });
+          }}
+          >
+            <Hamburger
+              toggled={isOpen}
+              toggle={setOpen}
+              className={classes.menuButton}
+              size={22}
+            />
+          </div>
+        </header>
+        <Navbar setOpen={setOpen} />
+      </>
     );
   }
   // ****************** VERSION DESKTOP *********************************

@@ -5,15 +5,14 @@ const useStyles = makeStyles((theme) => ({
   navbarClose: {
     display: 'flex',
     flexDirection: 'column',
-    alignItems: 'center',
+    alignItems: 'flex-start',
     position: 'absolute',
-    background: colorTheme.palette.secondary.main,
+    background: 'rgb(64, 41, 101)',
     top: '5rem',
     right: 0,
     left: 0,
     bottom: 0,
     zIndex: 10,
-    padding: '2rem 0',
     animation: `$navbarClose 500ms ${theme.transitions.easing.easeOut}`,
   },
   '@keyframes navbarClose': {
@@ -46,13 +45,13 @@ const useStyles = makeStyles((theme) => ({
   },
   navbar__link: {
     color: 'white',
-    fontSize: '1.3rem',
+    fontSize: '1.1rem',
+    marginLeft: '2rem',
+    padding: '1.2rem 0',
   },
   hr: {
-    width: '60%',
-    borderTop: '1px solid white',
-    marginTop: '0.4rem',
-    marginBottom: '1.3rem',
+    width: '100%',
+    borderTop: '1px solid rgb(87, 55, 138)',
   },
 }));
 

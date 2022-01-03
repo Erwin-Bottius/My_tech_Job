@@ -18,7 +18,6 @@ import About from 'src/components/about';
 import JobDetailMobile from 'src/components/jobDetailMobile';
 import Footer from 'src/components/footer';
 import AppStores from 'src/components/appStores';
-import Navbar from 'src/components/navbar';
 import useStyles from './style';
 
 // == Composant
@@ -41,7 +40,6 @@ const App = () => {
       && (
       <>
         <Header />
-        <Navbar />
         <Switch>
           <Route exact path="/">
             <HomePage />
