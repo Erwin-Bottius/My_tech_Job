@@ -27,6 +27,7 @@ const App = () => {
   const isMobile = useMediaQuery('(max-width:800px)');
   const isFiltersModalHidden = useSelector((state) => state.search.isFiltersModalHidden);
   const isSearchFormHidden = useSelector((state) => state.search.isSearchFormHidden);
+  const isNavbarOpen = useSelector((state) => state.search.navbarOpen);
   if (isMobile) {
     return (
     // changement de couleur du body et header en fonction de la page
@@ -40,21 +41,26 @@ const App = () => {
       && (
       <>
         <Header />
-        <Switch>
-          <Route exact path="/">
-            <HomePage />
-            <About />
-            <AppStores />
-          </Route>
-          <Route exact path="/recherche">
-            <ResultPage />
-          </Route>
-          <Route exact path="/offre-d-emploi/:id">
-            <JobDetailMobile />
-          </Route>
-          <Route component={NotFound} />
-        </Switch>
-        <Footer />
+        {isNavbarOpen
+        && (
+        <>
+          <Switch>
+            <Route exact path="/">
+              <HomePage />
+              <About />
+              <AppStores />
+            </Route>
+            <Route exact path="/recherche">
+              <ResultPage />
+            </Route>
+            <Route exact path="/offre-d-emploi/:id">
+              <JobDetailMobile />
+            </Route>
+            <Route component={NotFound} />
+          </Switch>
+          <Footer />
+        </>
+        )}
       </>
       )}
         <div />
