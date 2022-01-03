@@ -41,7 +41,7 @@ const App = () => {
       && (
       <>
         <Header />
-        {isNavbarOpen
+        {!isNavbarOpen
         && (
         <>
           <Switch>
