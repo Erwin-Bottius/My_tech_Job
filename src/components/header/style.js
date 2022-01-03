@@ -5,21 +5,23 @@ const useStyles = makeStyles(() => ({
   // *************** VERSION MOBILE ***************
   headerHomeMobile: {
     width: '100%',
+    height: '5rem',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'space-between',
     color: colorTheme.palette.primary.black,
     backgroundColor: colorTheme.palette.primary.white,
-    padding: '5% 5%',
+    padding: '0 5%',
   },
   headerMobile: {
     width: '100%',
+    height: '5rem',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'space-between',
     color: colorTheme.palette.primary.white,
     backgroundColor: colorTheme.palette.primary.main,
-    padding: '5% 5%',
+    padding: '0 5%',
   },
   headerMobile__logo__home: {
     whiteSpace: 'nowrap',

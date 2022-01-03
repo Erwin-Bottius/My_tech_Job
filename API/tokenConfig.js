@@ -1,3 +1,6 @@
+// eslint-disable-next-line no-unused-expressions
+require('dotenv').config;
+
 const tokenConfig = {
   method: 'post',
   url: 'https://entreprise.pole-emploi.fr/connexion/oauth2/access_token?realm=/partenaire',
@@ -7,11 +10,11 @@ const tokenConfig = {
   data: new URLSearchParams({
     grant_type: 'client_credentials',
     client_id:
-      'PAR_myjobtech_79acea2c0d77e181403f36ff351fe2bb626e154881ede4665d458bfe0e5ebd76',
+      process.env.CLIENT_ID,
     client_secret:
-      '7e554e2651161bdcde31ca84e09871d615878bdb667a48b1a0b0561e418aa777',
+      process.env.SECRET_KEY,
     scope:
-      'application_PAR_myjobtech_79acea2c0d77e181403f36ff351fe2bb626e154881ede4665d458bfe0e5ebd76 api_offresdemploiv2 o2dsoffre',
+      `application_${process.env.CLIENT_ID} api_offresdemploiv2 o2dsoffre`,
   }),
 
 };

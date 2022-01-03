@@ -5,7 +5,7 @@ import {
   Button,
   useMediaQuery,
 } from '@material-ui/core';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import SearchIcon from '@material-ui/icons/Search';
 import { Turn as Hamburger } from 'hamburger-react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -22,6 +22,7 @@ import {
   CLEAR_JOBS,
   TOGGLE_BACKDROP,
   GET_JOBS,
+  TOGGLE_SHOW_NAVBAR,
 } from 'src/store/actions';
 import JobsInput from 'src/components/JobsInput';
 import LocationInput from 'src/components/LocationInput';
@@ -33,8 +34,17 @@ const Header = () => {
   const [isOpen, setOpen] = useState(false);
   const dispatch = useDispatch();
   const location = useLocation();
+  const navbarOpen = useSelector((state) => state.search.navbarOpen);
   const locationInputValue = useSelector((state) => state.search.locationInputValue);
   const geolocationLoading = useSelector((state) => state.search.geolocationLoading);
+  useEffect(() => {
+    // ici nous changeons les burger menu,
+    // nous repassons de l'icone cross a l'icone burger
+    // utile lorque le user click sur un des lien de navbar
+    if (isMobile && isOpen) {
+      setOpen();
+    }
+  }, [navbarOpen]);
   const handleSubmitForm = (event) => {
     if (geolocationLoading) {
       event.preventDefault();
@@ -111,12 +121,17 @@ const Header = () => {
             My <span>Tech</span> Job
           </Typography>
         </Link>
-        <Hamburger
-          toggled={isOpen}
-          toggle={setOpen}
-          className={classes.menuButton}
-          size={22}
-        />
+        <div onClick={() => {
+          dispatch({ type: TOGGLE_SHOW_NAVBAR });
+        }}
+        >
+          <Hamburger
+            toggled={isOpen}
+            toggle={setOpen}
+            className={classes.menuButton}
+            size={22}
+          />
+        </div>
       </header>
     );
   }

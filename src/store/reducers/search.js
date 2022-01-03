@@ -21,6 +21,7 @@ import
   SET_ISSELECTED_JOB,
   TOGGLE_FILTER_POPUP,
   TOGGLE_ERROR_GEOLOCATION,
+  TOGGLE_SHOW_NAVBAR,
 } from 'src/store/actions';
 
 export const initialState = {
@@ -46,6 +47,7 @@ export const initialState = {
     isExperiencePopup: false,
   },
   geolocationError: false,
+  navbarOpen: false,
 };
 
 const searchReducer = (state = initialState, action) => {
@@ -192,6 +194,12 @@ const searchReducer = (state = initialState, action) => {
       return {
         ...state,
         geolocationError: action.geolocationError,
+      };
+    case TOGGLE_SHOW_NAVBAR:
+      return {
+        ...state,
+        navbarOpen: !state.navbarOpen,
+
       };
     default:
       return state;

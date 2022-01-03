@@ -10,7 +10,7 @@ const About = () => {
   const isMobile = useMediaQuery('(max-width:800px)');
   if (isMobile) {
     return (
-      <div className={classes.about}>
+      <div className={classes.about} id="about">
         <Card className={classes.about__card}>
           <CardContent className={classes.about__card__content}>
             <Typography variant="h3" className={classes.about__card__content__title}>

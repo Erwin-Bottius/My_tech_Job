@@ -18,6 +18,7 @@ import About from 'src/components/about';
 import JobDetailMobile from 'src/components/jobDetailMobile';
 import Footer from 'src/components/footer';
 import AppStores from 'src/components/appStores';
+import Navbar from 'src/components/navbar';
 import useStyles from './style';
 
 // == Composant
@@ -30,7 +31,9 @@ const App = () => {
   if (isMobile) {
     return (
     // changement de couleur du body et header en fonction de la page
-      <div className={location.pathname === '/' ? classes.appHomeMobile : classes.app}>
+      <div
+        className={location.pathname === '/' ? classes.appHomeMobile : classes.app}
+      >
         <CssBaseline />
         <ModalSearchContainer />
         <ModalFilters />
@@ -38,6 +41,7 @@ const App = () => {
       && (
       <>
         <Header />
+        <Navbar />
         <Switch>
           <Route exact path="/">
             <HomePage />
