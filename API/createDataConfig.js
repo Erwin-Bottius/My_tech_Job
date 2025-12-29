@@ -1,6 +1,7 @@
 // Fonction qui créé la config pour la requete avec
 // les valeurs des input renséeignés par l'utilisateur
-const createDataConfig = function (base,
+const createDataConfig = function (
+  base,
   location,
   isDepartment,
   isFrenchState,
@@ -8,8 +9,10 @@ const createDataConfig = function (base,
   responseToken,
   experience,
   contractType,
-  isCity) {
-  let url = 'https://api.emploi-store.fr/partenaire/offresdemploi/v2/offres/search?motsCles=M1805';
+  isCity
+) {
+  let url =
+    "https://api.francetravail.io/partenaire/offresdemploi/v2/offres/search?motsCles=M1805";
   // ****** BASES
   if (base) {
     url += `,${base}`;
@@ -17,11 +20,9 @@ const createDataConfig = function (base,
   // ***** LOCATION
   if (location && isCity) {
     url += `&commune=${location}&distance=30`;
-  }
-  else if (location && isDepartment) {
+  } else if (location && isDepartment) {
     url += `&departement=${location}`;
-  }
-  else if (location && isFrenchState) {
+  } else if (location && isFrenchState) {
     url += `&region=${location}`;
   }
   // ***** FILTERS
@@ -29,17 +30,16 @@ const createDataConfig = function (base,
     url += `&experience=${experience}`;
   }
   if (contractType) {
-    if (contractType === 'CDI' || contractType === 'CDD') {
+    if (contractType === "CDI" || contractType === "CDD") {
       url += `&typeContrat=${contractType}`;
-    }
-    else if (contractType === 'alternate') {
-      url += '&natureContrat=E2';
+    } else if (contractType === "alternate") {
+      url += "&natureContrat=E2";
     }
   }
   url += `&sort=2&range=${minRange}-${minRange + 14}`;
-  console.log(url);
+
   return {
-    method: 'get',
+    method: "get",
     url: url,
     headers: {
       Authorization: `Bearer ${responseToken.data.access_token}`,

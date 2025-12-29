@@ -1,21 +1,21 @@
 /* eslint-disable no-plusplus */
 /* eslint-disable no-await-in-loop */
-const express = require('express');
-const path = require('path');
-require('dotenv').config();
-const axios = require('axios');
-const cors = require('cors');
-const tokenConfig = require('./API/tokenConfig');
-const createDataConfig = require('./API/createDataConfig');
+const express = require("express");
+const path = require("path");
+require("dotenv").config();
+const axios = require("axios");
+const cors = require("cors");
+const tokenConfig = require("./API/tokenConfig");
+const createDataConfig = require("./API/createDataConfig");
 
 const app = express();
 const port = process.env.PORT || 80;
-app.use(cors('*'));
-app.use(express.static('dist'));
+app.use(cors("*"));
+app.use(express.static("dist"));
 app.use(express.json());
 // en mise en prod, nous utilisons le dossier static dist dans lequel se retrouve notre app front
-app.get('/*', (req, res) => {
-  res.sendFile(path.join(__dirname, './dist/index.html'), (err) => {
+app.get("/*", (req, res) => {
+  res.sendFile(path.join(__dirname, "./dist/index.html"), (err) => {
     if (err) {
       console.log(err);
       res.status(500).send(err);
@@ -23,8 +23,7 @@ app.get('/*', (req, res) => {
   });
 });
 
-app.post('/', async (req, res) => {
-  console.log(req.body);
+app.post("/", async (req, res) => {
   try {
     const {
       base,
@@ -47,28 +46,9 @@ app.post('/', async (req, res) => {
     // Si l'utilsateur n'a pas reseigné de base, on requete sans base pour avoir
     // toutes les offres
     if (base.length === 0) {
-      const responseJobs = await axios(createDataConfig(
-        undefined,
-        location,
-        isDepartment,
-        isFrenchState,
-        minRange,
-        responseToken,
-        experience,
-        contractType,
-        isCity,
-      ));
-      if (Number(responseJobs.status) === 206) {
-        responseStatus = 206;
-      }
-      res.status(responseStatus).send(responseJobs.data.resultats);
-    }
-    // Si l'utilisateur a renseigné au moins un langage
-    else {
-    // on boucle sur le tableau comportant les bases (technos)
-    //  en faisant une requete pour chaque techno
-      for (let index = 0; index < base.length; index++) {
-        const responseJobs = await axios(createDataConfig(base[index],
+      const responseJobs = await axios(
+        createDataConfig(
+          undefined,
           location,
           isDepartment,
           isFrenchState,
@@ -76,12 +56,38 @@ app.post('/', async (req, res) => {
           responseToken,
           experience,
           contractType,
-          isCity));
+          isCity
+        )
+      );
+      if (Number(responseJobs.status) === 206) {
+        responseStatus = 206;
+      }
+      res.status(responseStatus).send(responseJobs.data.resultats);
+    }
+    // Si l'utilisateur a renseigné au moins un langage
+    else {
+      // on boucle sur le tableau comportant les bases (technos)
+      //  en faisant une requete pour chaque techno
+      for (let index = 0; index < base.length; index++) {
+        const responseJobs = await axios(
+          createDataConfig(
+            base[index],
+            location,
+            isDepartment,
+            isFrenchState,
+            minRange,
+            responseToken,
+            experience,
+            contractType,
+            isCity
+          )
+        );
         if (Number(responseJobs.status) === 206) {
           responseStatus = 206;
         }
         // On push le résultat de chaque requete dans le tableu jobs[]
-        if (responseJobs.data.resultats) jobs.push(...responseJobs.data.resultats);
+        if (responseJobs.data.resultats)
+          jobs.push(...responseJobs.data.resultats);
       }
       // Puis on filtre le tableau en supprimant tous les objets qui ont le meme id
       // (certains objets sont differents cependant ont le meme id, d'ou ce petit algo)
@@ -92,11 +98,10 @@ app.post('/', async (req, res) => {
         return !duplicate;
       });
       // Puis on envoie la reponse au front
-      console.log(responseStatus);
+
       res.status(responseStatus).send(filteredUNiqueResult);
     }
-  }
-  catch (error) {
+  } catch (error) {
     console.log(error);
     res.status(500).send(error);
   }
