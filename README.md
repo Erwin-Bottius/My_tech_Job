@@ -3,10 +3,11 @@
 [erwinbottius.com](https://www.erwinbottius.com)
 
 ## Description
- Mytechjob est un site d’annonces d’offres d’emploi que
+
+Mytechjob est un site d’annonces d’offres d’emploi que
 j’ai réalisé avec React en front
 et Express en back.
-Basé sur Monster.fr pour le design,  j’ai adapté le projet pour en faire un site qui sert  exclusivement à trouver un job de développeur. Toutes les annonces sont réelles et proviennent de l’API Pole-emploi.io, le site n'a cependant aucune prétention commerciale.
+Basé sur Monster.fr pour le design, j’ai adapté le projet pour en faire un site qui sert exclusivement à trouver un job dans le digital. Toutes les annonces sont réelles et proviennent de l’API Pole-emploi.io, le site n'a cependant aucune prétention commerciale.
 
 ## Fonctionnement
 
@@ -23,6 +24,4 @@ Pour finir, le frontend requête le Back grâce a un middleware Redux, en passan
 
 ## Backend
 
-Le backend du projet est simplement un server express avec une seule route, qui  lorsqu'elle est appellée, requete l'api de pole emploi en s'identifiant afin d'obtenir un token d'accès, puis réalise une 2e requete pour récupérer toutes les offres d'emploi correspondantes aux critères renseignés par l'utiisateur.
-
-
+Le backend du projet est simplement un server express avec une seule route, qui lorsqu'elle est appellée, requete l'api de pole emploi en s'identifiant afin d'obtenir un token d'accès, puis réalise une 2e requete pour récupérer toutes les offres d'emploi correspondantes aux critères renseignés par l'utiisateur.

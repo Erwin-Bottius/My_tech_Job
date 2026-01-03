@@ -1,15 +1,10 @@
 // IMPORT NPM
 
-import {
-  Box,
-  Typography,
-  Button,
-  useMediaQuery,
-} from '@material-ui/core';
-import SearchIcon from '@material-ui/icons/Search';
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { Box, Typography, Button, useMediaQuery } from "@material-ui/core";
+import SearchIcon from "@material-ui/icons/Search";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 
 // IMPORT FICHIERS
 
@@ -23,21 +18,25 @@ import {
   CLEAR_JOBS,
   TOGGLE_BACKDROP,
   GET_JOBS,
-} from 'src/store/actions';
-import JobsInput from 'src/components/JobsInput';
-import LocationInput from 'src/components/LocationInput';
-import GuidedResearchButton from 'src/components/guidedSearchedButton';
-import basesGuidedResearch from '../../../data/basesGuidedResearch';
-import useStyles from './style';
+} from "src/store/actions";
+import JobsInput from "src/components/JobsInput";
+import LocationInput from "src/components/LocationInput";
+import GuidedResearchButton from "src/components/guidedSearchedButton";
+import basesGuidedResearch from "../../../data/basesGuidedResearch";
+import useStyles from "./style";
 
 const HomePage = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const isMobile = useMediaQuery('(max-width:800px)');
+  const isMobile = useMediaQuery("(max-width:800px)");
   const history = useHistory();
   const jobInputValue = useSelector((state) => state.search.jobInputValue);
-  const locationInputValue = useSelector((state) => state.search.locationInputValue);
-  const geolocationLoading = useSelector((state) => state.search.geolocationLoading);
+  const locationInputValue = useSelector(
+    (state) => state.search.locationInputValue
+  );
+  const geolocationLoading = useSelector(
+    (state) => state.search.geolocationLoading
+  );
   // Lorsque l'utilisateur est sur la page home, on reset tous le sates
   useEffect(() => {
     dispatch({ type: RESET_STATES });
@@ -45,13 +44,18 @@ const HomePage = () => {
   const handleSubmitForm = (event) => {
     if (geolocationLoading) {
       event.preventDefault();
-    }
-    else {
+    } else {
       event.preventDefault();
       // Au Submit du formulaire, on change l'url
-      history.push(`/recherche?emploi=${jobInputValue
-        .toLowerCase().normalize('NFD').replace(/\p{Diacritic}/gu, '')}&localisation=${locationInputValue
-        .toLowerCase().normalize('NFD').replace(/\p{Diacritic}/gu, '')}`);
+      history.push(
+        `/recherche?emploi=${jobInputValue
+          .toLowerCase()
+          .normalize("NFD")
+          .replace(/\p{Diacritic}/gu, "")}&localisation=${locationInputValue
+          .toLowerCase()
+          .normalize("NFD")
+          .replace(/\p{Diacritic}/gu, "")}`
+      );
 
       // SI jamais le state hasError est a true avant le submit, on le repasse a false
       dispatch({ type: RESET_SEARCH_ERROR });
@@ -67,8 +71,8 @@ const HomePage = () => {
       // Et on reset la valeur de l'input des jobs (seulement l'input mais pas les chips)
       dispatch({
         type: CHANGE_INPUTS_VALUES,
-        field: 'jobInputValue',
-        inputValue: '',
+        field: "jobInputValue",
+        inputValue: "",
       });
       // Au submit, on clear le tableau contenant toutes les offres d'emplois
       // car c'est la meme action que lorsque l'on click sur le button load more
@@ -89,7 +93,9 @@ const HomePage = () => {
           <span className={classes.noBreak}>Trouvez le poste de</span>
           <br />
           <span className={classes.noBreak}>
-            <span className={classes.homeMobile__title__span}>développeur </span>
+            <span className={classes.homeMobile__title__span}>
+              dans le digital
+            </span>
             qui
             <br />
           </span>
@@ -98,7 +104,7 @@ const HomePage = () => {
         </Typography>
         <Button
           onClick={() => {
-          // On affiche la modale de recherche
+            // On affiche la modale de recherche
             dispatch({
               type: TOGGLE_PRINT_SEARCH_FORM,
             });
@@ -106,7 +112,12 @@ const HomePage = () => {
           variant="contained"
           size="large"
           className={classes.homeMobile__button}
-          startIcon={<SearchIcon className={classes.homeMobile__button__searchIcon} style={{ fontSize: '2rem' }} />}
+          startIcon={
+            <SearchIcon
+              className={classes.homeMobile__button__searchIcon}
+              style={{ fontSize: "2rem" }}
+            />
+          }
         >
           Rechercher des offres <br /> d'emploi
         </Button>
@@ -116,14 +127,9 @@ const HomePage = () => {
   // ********************** VERSION DESKTOP ************************
   return (
     <Box className={classes.homeDesktop}>
-      <Typography
-        variant="h6"
-        className={classes.homeDesktop__title}
-      >
-
-        Trouvez le poste de
-        <span className={classes.homeMobile__title__span}> développeur </span>
-
+      <Typography variant="h6" className={classes.homeDesktop__title}>
+        Trouvez le poste dans le
+        <span className={classes.homeMobile__title__span}> digital </span>
         <span className={classes.noBreak}>
           qui vous convient
           <span className={classes.homeMobile__title__span}> vraiment.</span>
@@ -141,11 +147,14 @@ const HomePage = () => {
             className={`${classes.homeDesktop__searchCard__form__button} pinkButton`}
             type="submit"
             disableElevation
-            startIcon={<SearchIcon style={{ fontSize: '2rem' }} />}
+            startIcon={<SearchIcon style={{ fontSize: "2rem" }} />}
           />
         </form>
       </div>
-      <Typography variant="h6" className={classes.homeDesktop__popularSearches__title}>
+      <Typography
+        variant="h6"
+        className={classes.homeDesktop__popularSearches__title}
+      >
         Recherche les plus fréquentes
       </Typography>
       {/* Ici on map sur le tableau qui contient lui meme plusieurs tableaux
@@ -154,11 +163,7 @@ const HomePage = () => {
       dans la recherche */}
       <div className={classes.homeDesktop__popularSearches__basesContainer}>
         {basesGuidedResearch.map((element) => (
-          <GuidedResearchButton
-            key={element}
-            bases={element}
-          />
-
+          <GuidedResearchButton key={element} bases={element} />
         ))}
       </div>
     </Box>

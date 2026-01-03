@@ -1,12 +1,12 @@
 const basesGuidedResearch = [
-  ['ios', 'swift'],
-  ['nodejs', 'react', 'javascript'],
-  ['android', 'java', 'c++'],
-  ['nodejs', 'vuejs', 'javascript'],
-  ['mobile', 'react native'],
-  ['java', 'j2ee', 'angular'],
-  ['python', 'django', 'angular'],
-  ['php', 'symphony', 'javascript'],
+  ["développeur", "frontend", "react"],
+  ["développeur", "backend", "python"],
+  ["développeur", "fullstack", "react", "java"],
+  ["webdesigner", "ux"],
+  ["développeur web", "mobile"],
+  ["développeur android"],
+  ["chef de projet"],
+  ["product owner"],
 ];
 
 export default basesGuidedResearch;

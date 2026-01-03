@@ -12,10 +12,10 @@ const createDataConfig = function (
   isCity
 ) {
   let url =
-    "https://api.francetravail.io/partenaire/offresdemploi/v2/offres/search?motsCles=M1805";
+    "https://api.francetravail.io/partenaire/offresdemploi/v2/offres/search?codeROME=M1805,M1802,M1801,M1806,M1803,E1205,E1104,E1101,M1705,E1402,E1401,M1403,M1402,M1810,D1406,D1402";
   // ****** BASES
   if (base) {
-    url += `,${base}`;
+    url += `&motsCles=${base}`;
   }
   // ***** LOCATION
   if (location && isCity) {
@@ -37,7 +37,7 @@ const createDataConfig = function (
     }
   }
   url += `&sort=2&range=${minRange}-${minRange + 14}`;
-
+  console.log(url, "hello");
   return {
     method: "get",
     url: url,
